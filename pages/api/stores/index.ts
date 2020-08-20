@@ -1,6 +1,9 @@
-import { firestore } from '../../../src/utils/firebaseInit';
+import { firestore } from './../'
 
 export default function handler(req, res) {
+    if (req.methd === 'POST') {
+        return
+    }
     firestore
         .collection('stores')
         .get()
@@ -10,6 +13,6 @@ export default function handler(req, res) {
                     ...store.data(),
                     id: store.id
                 }
-            }));
-        });
-};
+            }))
+        })
+}

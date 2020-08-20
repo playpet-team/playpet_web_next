@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { useParams } from "react-router";
 import { firebaseTimeStampToStringStamp, fetcher } from "../../../src/utils";
 import useSWR from 'swr'
 import { Form } from ".";

@@ -1,4 +1,4 @@
-import { firestore } from '../../../src/utils/firebaseInit';
+import { firestore } from './../'
 
 export default function personHandler({ query: { uid } }, res) {
     firestore
@@ -6,6 +6,6 @@ export default function personHandler({ query: { uid } }, res) {
         .doc(uid)
         .get()
         .then(user => {
-            res.status(200).json(user.data());
-        });
-};
+            res.status(200).json(user.data())
+        })
+}

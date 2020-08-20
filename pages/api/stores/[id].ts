@@ -1,4 +1,4 @@
-import { firestore } from '../../../src/utils/firebaseInit';
+import { firestore } from './../'
 
 export default function personHandler({ query: { id } }, res) {
     firestore
@@ -9,6 +9,6 @@ export default function personHandler({ query: { id } }, res) {
             res.status(200).json({
                 ...product.data(),
                 id: product.id,
-            });
-        });
-};
+            })
+        })
+}

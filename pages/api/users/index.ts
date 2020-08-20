@@ -1,6 +1,9 @@
-import { firestore } from '../../../src/utils/firebaseInit';
+import { firestore } from './../';
 
 export default function handler(req, res) {
+    if (req.methd === 'POST') {
+        return;
+    }
     firestore
         .collection('users')
         .get()

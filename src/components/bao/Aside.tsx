@@ -16,7 +16,7 @@ export default function Aside() {
     const router = useRouter();
     return (
         <ListBlock desktop={desktop ? 1 : 0}>
-            {ASIDES.map((item, index) => (
+            {ASIDES.map(item => (
                 <ListItem
                     key={item}
                     button

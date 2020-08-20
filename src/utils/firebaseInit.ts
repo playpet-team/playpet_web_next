@@ -7,7 +7,8 @@
 import * as admin from 'firebase-admin'
 try {
     // 이미 initial 되있다면 하지않는다
-    if (!admin.app.length) {
+    console.log('admin.app.length-------', admin.app.length);
+    // if (!admin.app.length) {
         admin.initializeApp({
             credential: admin.credential.cert({
                 "projectId": "playpet-5b432",
@@ -16,7 +17,7 @@ try {
             }),
             databaseURL: "https://playpet-5b432.firebaseio.com",
         })
-    }
+    // }
 } catch (error) {
     /*
     * We skip the "already exists" message which is

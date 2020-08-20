@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { useParams } from "react-router-dom";
-import { firebaseTimeStampToStringStamp } from "../../src/utils";
+import { firebaseTimeStampToStringStamp } from "../../../src/utils";
 
 export default function StoreDetail() {
-    const { uid } = useParams();
     const [storeDetail, setStoreDetail] = useState<any | null>(null);
 
     useEffect(() => {
