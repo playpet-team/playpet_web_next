@@ -15,7 +15,6 @@ export default function Users() {
     const router = useRouter();
 
     useEffect(() => {
-        console.log('users-----', users, data)
         if (data) {
             setUsers(data)
         }

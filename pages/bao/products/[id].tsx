@@ -16,7 +16,6 @@ export default function ProductDetail() {
     )
 
     useEffect(() => {
-        console.log('data--------', data);
         if (data) {
             setProductDetail(data)
         }
