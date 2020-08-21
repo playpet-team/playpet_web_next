@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { firebaseTimeStampToStringStamp, fetcher } from "../../../src/utils";
+import { firebaseTimeStampToStringStamp, fetcher, server } from "../../../src/utils";
 import useSWR from 'swr'
 import { Form } from ".";
 import { useRouter } from "next/router";
 import BaoLayout from "../../../src/components/bao/BaoLayout";
 
-export default function ProductDetail() {
+export async function getServerSideProps({ params }) {
+    const res = await fetch(params.id && `${server}/api/products/${params.id}`)
+    return {
+        props: { data: await res.json() }
+    }
+}
+
+export default function ProductDetail(props) {
     const { query } = useRouter()
     const [productDetail, setProductDetail] = useState<Form | null>(null);
     const { data } = useSWR(
         () => query.id && `/api/products/${query.id}`,
-        fetcher
+        fetcher,
+        { initialData: props.data }
     )
 
     useEffect(() => {

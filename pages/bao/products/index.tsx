@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react"
 import styled from "@emotion/styled"
-import { firebaseTimeStampToStringStamp, fetcher } from "../../../src/utils"
+import { firebaseTimeStampToStringStamp, fetcher, server } from "../../../src/utils"
 import { TextField, Button } from "@material-ui/core"
 import { RowBlock, LinkWrapper } from "../../../src/styles"
 import ProductFormModal from "../../../src/components/bao/ProductFormModal"
@@ -8,62 +8,20 @@ import Link from "next/link"
 import BaoLayout from "../../../src/components/bao/BaoLayout"
 import useSWR from 'swr'
 
-export type petType = 'dog' | 'cat' | 'all'
-export interface Form {
-    id: string
-    uid: string
-    title: string
-    status: 'active' | 'deactive'
-    description: string
-    petType: petType
-    ratings: number
-    mallName: string
-    originalCategoery: string
-    tags: string[]
-    category: string
-    url: string
-    image: string
-    price: number
-    discountPrice: number
-    hits: number
-    reviewCount: number
-    orderCount: number
-    profits: number
-    createdAt: any
-    updatedAt: any
-    expiredAt: any
+export async function getServerSideProps() {
+    const res = await fetch(`${server}/api/products`)
+    return {
+        props: { data: await res.json() }
+    }
 }
 
-export default function Products() {
+export default function Products(props) {
     const [products, setProducts] = useState<any>([])
     const [visibleModal, setVisibleModal] = useState(false)
     const [inputProduct, setInputProduct] = useState('')
-    const [form, setForm] = useState<Form>({
-        id: '',
-        uid: '',
-        status: 'active',
-        title: '',
-        description: '',
-        petType: 'all',
-        ratings: 4,
-        mallName: '',
-        originalCategoery: '',
-        tags: [],
-        category: '',
-        url: '',
-        image: '',
-        price: 0,
-        discountPrice: 0,
-        hits: 0,
-        reviewCount: 0,
-        orderCount: 0,
-        profits: 0,
-        createdAt: '',
-        updatedAt: '',
-        expiredAt: '',
-    })
+    const [form, setForm] = useState(initialForm)
 
-    const { data } = useSWR('/api/products', fetcher)
+    const { data } = useSWR('/api/products', fetcher, { initialData: props.data })
 
     useEffect(() => {
         if (data) {
@@ -72,6 +30,7 @@ export default function Products() {
     }, [data])
 
     useEffect(() => {
+        // use service account creds
         return () => setVisibleModal(false)
     }, [])
 
@@ -149,9 +108,60 @@ const ProductsBlock = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;
-`;
+`
 
 const ProductSearch = styled.div`
     display: flex;
     align-items: center;
-`;
+`
+
+export type petType = 'dog' | 'cat' | 'all'
+export interface Form {
+    id: string
+    uid: string
+    title: string
+    status: 'active' | 'deactive'
+    description: string
+    petType: petType
+    ratings: number
+    mallName: string
+    originalCategoery: string
+    tags: string[]
+    category: string
+    url: string
+    image: string
+    price: number
+    discountPrice: number
+    hits: number
+    reviewCount: number
+    orderCount: number
+    profits: number
+    createdAt: any
+    updatedAt: any
+    expiredAt: any
+}
+
+const initialForm: Form = {
+    id: '',
+    uid: '',
+    status: 'active',
+    title: '',
+    description: '',
+    petType: 'all',
+    ratings: 4,
+    mallName: '',
+    originalCategoery: '',
+    tags: [],
+    category: '',
+    url: '',
+    image: '',
+    price: 0,
+    discountPrice: 0,
+    hits: 0,
+    reviewCount: 0,
+    orderCount: 0,
+    profits: 0,
+    createdAt: '',
+    updatedAt: '',
+    expiredAt: '',
+}
