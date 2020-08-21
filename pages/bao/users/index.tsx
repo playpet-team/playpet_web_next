@@ -1,18 +1,18 @@
-import React, { useEffect, useState, useCallback } from "react"
-import styled from "@emotion/styled"
-import { firebaseTimeStampToStringStamp, fetcher } from "../../../src/utils"
-import { TextField, Button } from "@material-ui/core"
+import React, { useEffect, useState, useCallback } from 'react'
+import styled from '@emotion/styled'
+import { firebaseTimeStampToStringStamp, fetcher } from '../../../src/utils'
+import { TextField, Button } from '@material-ui/core'
 import { RowBlock, LinkWrapper } from '../../../src/styles'
-import BaoLayout from "../../../src/components/bao/BaoLayout"
+import BaoLayout from '../../../src/components/bao/BaoLayout'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
 
 export default function Users() {
     const [users, setUsers] = useState<any[]>([])
     const [inputUser, setInputUser] = useState('')
     const { data } = useSWR('/api/users', fetcher)
-    const router = useRouter();
+    const router = useRouter()
 
     useEffect(() => {
         if (data) {
