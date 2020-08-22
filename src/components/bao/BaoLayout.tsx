@@ -2,13 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Aside from "./Aside"
 import { useMediaQuery } from "@material-ui/core"
-// import { adminFirebaseInit } from '../../utils/firebaseInit'
-// import { isServer } from '../../utils'
-// console.log("isServer-----", isServer());
-// if (isServer()) {
-//     console.log('--------------')
-//     // adminFirebaseInit();
-// }
 
 export interface BaoLayoutProps {
     clearOnTop?: boolean

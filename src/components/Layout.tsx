@@ -3,6 +3,7 @@ import React from 'react';
 import { Global, jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { baseCSS } from '../lib/styles';
+import useAnalytics from '../hooks/useAnalytics';
 
 const MainBlock = styled.main<{ clearOnTop: boolean }>`
   min-height: 100vh;
@@ -24,6 +25,7 @@ function Layout({
     // darkMode,
     // noFooter,
 }: LayoutProps) {
+    useAnalytics();
     return (
         <React.Fragment>
             <Global styles={baseCSS} />
