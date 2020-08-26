@@ -7,18 +7,18 @@ export default function Footer() {
             <BusinessSection>
                 <Text>플레이펫컴퍼니&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표 : 김관우</Text>
                 <Text>사업자등록번호 : 868-18-01356&nbsp;&nbsp;&nbsp;</Text>
-                <Text>통신판매번호 : -</Text>
+                <Text>통신판매번호 : 제2020-서울강남-01093호</Text>
                 <Text>서울특별시 강남구 테헤란로 425, 5층</Text>
                 <Text>고객센터 : support@playpet.me&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;010-9235-0736</Text>
             </BusinessSection>
             <ProvisionSection>
-                <Link href="">이용약관</Link>
-                <Link href="">개인정보 처리방침</Link>
-                <SocialBlock>
+                <Link target="_blank" href="https://docs.google.com/document/d/1kWXTsC_KWR3SNG1T8eCVXTN8O9XY2bz_yeZVmMO5kd4/edit?usp=sharing">이용약관</Link>
+                <Link target="_blank" href="https://docs.google.com/document/d/1y9a-1p2gRYxVgXUX2VWyRM_BKRnMcrVGqxbu1JTT0Mw/edit?usp=sharing">개인정보 처리방침</Link>
+                {/* <SocialBlock>
                     페북 아이콘
                     <br />
                     인스타 아이콘
-                </SocialBlock>
+                </SocialBlock> */}
             </ProvisionSection>
         </FooterBlock>
     )
