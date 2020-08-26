@@ -6,9 +6,15 @@ export default function personHandler({ query: { id } }, res) {
         .doc(id)
         .get()
         .then(product => {
-            res.status(200).json({
-                ...product.data(),
-                id: product.id,
-            })
+            if (product.exists) {
+                res.status(200).json({
+                    ...product.data(),
+                    id: product.id,
+                })
+            } else {
+                res.status(404).json({
+                    message: '찾는 카드가 없습니다',
+                })
+            }
         })
 }

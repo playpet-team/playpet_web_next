@@ -8,7 +8,7 @@ export default function Footer() {
                 <Text>플레이펫컴퍼니&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표 : 김관우</Text>
                 <Text>사업자등록번호 : 868-18-01356&nbsp;&nbsp;&nbsp;</Text>
                 <Text>통신판매번호 : 제2020-서울강남-01093호</Text>
-                <Text>서울특별시 강남구 테헤란로 425, 5층</Text>
+                <Text>주소 : 서울특별시 강남구 테헤란로 425, 5층</Text>
                 <Text>고객센터 : support@playpet.me&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;010-9235-0736</Text>
             </BusinessSection>
             <ProvisionSection>
