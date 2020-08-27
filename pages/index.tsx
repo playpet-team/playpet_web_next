@@ -7,9 +7,7 @@ export default function Landing() {
     <Layout>
       <LandingBlock>
         <BackgroundSection data-source="https://www.pxfuel.com/en/free-photo-qanng">
-          <LogoImg
-            src="/logo/playpet_logo_w.png"
-          />
+          <LogoImg src="/logo/playpet_logo_w.png" />
         </BackgroundSection>
       </LandingBlock>
       <Footer />
