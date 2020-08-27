@@ -12,7 +12,7 @@ export default function PlaypetHead({
                 <meta property="og:url" content="https://playpet.me" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <title>{{ title }}</title>
+                <title>{title}</title>
                 <meta name="robots" content="index, follow" />
                 <meta name="title" content={title} />
                 <meta name="description" content={description} />
