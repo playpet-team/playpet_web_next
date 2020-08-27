@@ -25,6 +25,7 @@ export default function PlaypetHead({
                 <meta property="og:site_name" content="플레이펫" />
                 <meta property="og:locale" content="ko_KR" />
                 <link rel="icon" href="/logo/playpet.ico" />
+                <meta name="naver-site-verification" content="6627b9d77d737924f4326cc7692eb0c27e9b1cec" />
                 <script type="application/ld+json">
                     {`
                     "@context": "http://schema.org",
