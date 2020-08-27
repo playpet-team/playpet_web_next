@@ -1,12 +1,10 @@
 import styled from "@emotion/styled"
 import Layout from "../src/components/Layout"
 import Footer from "../src/components/Footer"
-import PlaypetHead from "../src/components/PlaypetHead"
 
 export default function Landing() {
   return (
     <Layout>
-      <PlaypetHead />
       <LandingBlock>
         <BackgroundSection data-source="https://www.pxfuel.com/en/free-photo-qanng">
           <LogoImg

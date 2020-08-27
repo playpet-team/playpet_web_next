@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Aside from "./Aside"
 import { useMediaQuery } from "@material-ui/core"
+import Head from 'next/head'
 
 export interface BaoLayoutProps {
     clearOnTop?: boolean
@@ -17,6 +18,9 @@ function BaoLayout({
 
     return (
         <BaoLayoutBlock desktop={desktop ? 1 : 0}>
+            <Head>
+                <meta name="robots" content="noindex, nofollow" />
+            </Head>
             <Aside />
             <Main clearOnTop={clearOnTop}>{children}</Main>
         </BaoLayoutBlock>
