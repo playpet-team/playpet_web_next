@@ -6,4 +6,4 @@ User-agent: Yeti
 Allow: /
 User-agent: NaverBot
 Allow: /
-Sitemap: https://playpet.me/sitemap.xml
+Sitemap: https://playpet.me/sitemap/top_nav.xml
