@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /bao
+
+Allow: /
+User-agent: Yeti
+Allow: /
+User-agent: NaverBot
+Allow: /
+Sitemap: https://playpet.me/sitemap.xml
