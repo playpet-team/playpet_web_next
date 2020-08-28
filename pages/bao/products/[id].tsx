@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { firebaseTimeStampToStringStamp, fetcher, server } from "../../../src/utils";
+import { firebaseTimeStampToStringStamp, fetcher, ROOT_URL } from "../../../src/utils";
 import useSWR from 'swr'
 import { Form } from ".";
 import { useRouter } from "next/router";
 import BaoLayout from "../../../src/components/bao/BaoLayout";
+import Link from "next/link";
 
 export async function getServerSideProps({ params }) {
-    const res = await fetch(params.id && `${server}/api/products/${params.id}`)
+    const res = await fetch(params.id && `${ROOT_URL}/api/products/${params.id}`)
     return {
         props: { data: await res.json() }
     }
@@ -43,6 +44,12 @@ export default function ProductDetail(props) {
         <BaoLayout>
             <ProductDetailBlock>
                 <ProductInformationBlock>
+                    <Row>
+                        <KeyText>이미지</KeyText>
+                        <ValueText>
+                            <img src={productDetail.image} width="200" height="200" />
+                        </ValueText>
+                    </Row>
                     <Row>
                         <KeyText>id</KeyText>
                         <ValueText>{productDetail.id}</ValueText>
@@ -85,11 +92,9 @@ export default function ProductDetail(props) {
                     </Row>
                     <Row>
                         <KeyText>주소</KeyText>
-                        <ValueText>{productDetail.url}</ValueText>
-                    </Row>
-                    <Row>
-                        <KeyText>이미지</KeyText>
-                        <ValueText>{productDetail.image}</ValueText>
+                        <ValueText>
+                            <Link href="productDetail.url"><a>링크</a></Link>
+                        </ValueText>
                     </Row>
                     <Row>
                         <KeyText>가격</KeyText>

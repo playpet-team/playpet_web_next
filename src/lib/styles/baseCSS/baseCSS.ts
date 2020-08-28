@@ -1,6 +1,5 @@
 import { css } from '@emotion/core';
 import normalize from './normalize';
-import metroSans from './metroSans';
 
 const baseCSS = css`
   * {
@@ -8,7 +7,6 @@ const baseCSS = css`
     box-sizing: border-box;
   }
 
-  ${metroSans};
   ${normalize};
 `;
 

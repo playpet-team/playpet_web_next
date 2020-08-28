@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { server } from "../../src/utils";
+import { ROOT_URL } from "../../src/utils";
 
 export async function getServerSideProps({ params }) {
-    const res = await fetch(params.id && `${server}/api/products/${params.id}`)
+    const res = await fetch(params.id && `${ROOT_URL}/api/products/${params.id}`)
     return {
         props: { data: await res.json() }
     }

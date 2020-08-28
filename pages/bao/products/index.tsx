@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react"
 import styled from "@emotion/styled"
-import { firebaseTimeStampToStringStamp, fetcher, server } from "../../../src/utils"
+import { firebaseTimeStampToStringStamp, fetcher, ROOT_URL } from "../../../src/utils"
 import { TextField, Button } from "@material-ui/core"
 import { RowBlock, LinkWrapper } from "../../../src/styles"
 import ProductFormModal from "../../../src/components/bao/ProductFormModal"
@@ -8,20 +8,28 @@ import Link from "next/link"
 import BaoLayout from "../../../src/components/bao/BaoLayout"
 import useSWR from 'swr'
 
-export async function getServerSideProps() {
-    const res = await fetch(`${server}/api/products`)
-    return {
-        props: { data: await res.json() }
-    }
-}
+// export async function getServerSideProps() {
+//     try {
+//         const res = await fetch(`${ROOT_URL}/api/products`)
+//         return {
+//             props: { data: await res.json() }
+//         }
+//     } catch (e) {
+//         console.error('Products-', e)
+//         return {
+//             props: {
+//                 data: null
+//             }
+//         }
+//     }
+// }
 
-export default function Products(props) {
+export default function Products() {
     const [products, setProducts] = useState<any>([])
     const [visibleModal, setVisibleModal] = useState(false)
     const [inputProduct, setInputProduct] = useState('')
     const [form, setForm] = useState(initialForm)
-
-    const { data } = useSWR('/api/products', fetcher, { initialData: props.data })
+    const { data } = useSWR('/api/products', fetcher)
 
     useEffect(() => {
         if (data) {

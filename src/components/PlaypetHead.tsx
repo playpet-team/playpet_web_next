@@ -12,7 +12,7 @@ export default function PlaypetHead({
                 <meta charSet="utf-8" />
                 <meta property="og:url" content="https://playpet.me" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <title>{title}</title>
                 <meta name="robots" content="index, follow" />
                 <meta name="title" content={title} />
@@ -35,18 +35,18 @@ export default function PlaypetHead({
     )
 }
 
-const ORGANIZATION = (description) => `
+const ORGANIZATION = ({ description }) => `
     {
         "@context": "http://schema.org",
         "@type": "Organization",
         "url": "https://playpet.me",
         "name": "플레이펫",
         "alternateName": "playpet",
-        "description": ${description}",
+        "description": "${description}",
         "logo": "https://firebasestorage.googleapis.com/v0/b/playpet-5b432.appspot.com/o/web%2Fassets%2Flogos%2Flogo_b.png?alt=media&token=f0f0f7b7-d1f6-4a1d-9ac9-9c2775442387",
         "sameAs": [
             "https://www.instagram.com/playpet.me",
-            "https://www.facebook.com/plapet.me",
+            "https://www.facebook.com/plapet.me"
         ]
 }`
 

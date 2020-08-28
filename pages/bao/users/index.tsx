@@ -20,7 +20,7 @@ export default function Users() {
         }
     }, [data])
 
-    const goSearchUser = useCallback(() => router.push(`/bao/user/${inputUser}`), [inputUser])
+    const goSearchUser = useCallback(() => router.push(`/bao/users/${inputUser}`), [inputUser])
 
     return (
         <BaoLayout>
@@ -56,7 +56,7 @@ export default function Users() {
                     return (
                         <Link
                             key={user.uid || index}
-                            href={`user/${user.uid}`}
+                            href={`users/${user.uid}`}
                         >
                             <LinkWrapper>
                                 <RowBlock>

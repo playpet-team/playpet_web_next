@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import Layout from "../src/components/Layout"
-import Footer from "../src/components/Footer"
+import { renderStylesToString } from 'emotion-server'
 
 export default function Landing() {
   return (
@@ -10,7 +10,6 @@ export default function Landing() {
           <LogoImg src="/logo/playpet_logo_w.png" />
         </BackgroundSection>
       </LandingBlock>
-      <Footer />
     </Layout>
   )
 }
