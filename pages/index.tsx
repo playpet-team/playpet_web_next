@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
 import Layout from "../src/components/Layout"
-import { renderStylesToString } from 'emotion-server'
 
 export default function Landing() {
   return (
@@ -34,13 +33,4 @@ const BackgroundSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* &:after {
-    content: "playpet";
-    display: flex;
-    font-size: 60px;
-    font-weight: 700;
-    color: #eee;
-    height: 100%;
-  } */
 `
