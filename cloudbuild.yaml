@@ -1,8 +1,13 @@
 steps:
-- name: "gcr.io/cloud-builders/npm"
-  args: ["install"]
-- name: "gcr.io/cloud-builders/npm"
-  args: ["run", "build"]
+# Install dependencies
+- name: node
+  entrypoint: yarn
+  args: ['install']
+# Run tests
+- name: node
+  entrypoint: yarn
+  args: ['build']
+# Run custom commands
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
-timeout: "1600s"
+timeout: "600s"
