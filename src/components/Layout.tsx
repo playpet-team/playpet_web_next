@@ -2,38 +2,40 @@
 import React from 'react';
 import { Global, jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { baseCSS } from '../lib/styles';
+// import { baseCSS } from '../lib/styles';
 import useAnalytics from '../hooks/useAnalytics';
-
-const MainBlock = styled.main<{ clearOnTop: boolean }>`
-  min-height: 100vh;
-  overflow: hidden;
-`;
+import PlaypetHead from './PlaypetHead';
+import Footer from './Footer';
 
 export interface LayoutProps {
     clearOnTop?: boolean;
     children: React.ReactNode;
     // whiteTextHeader?: boolean;
     // darkMode?: boolean;
-    // noFooter?: boolean;
+    hasFooter?: boolean;
 }
-
 function Layout({
     clearOnTop,
     children,
     // whiteTextHeader,
     // darkMode,
-    // noFooter,
+    hasFooter = true,
 }: LayoutProps) {
     useAnalytics();
     return (
         <React.Fragment>
-            <Global styles={baseCSS} />
+            <PlaypetHead />
+            {/* <Global styles={baseCSS} /> */}
             {/* <Header clearOnTop={clearOnTop} whiteText={whiteTextHeader} darkMode={darkMode} /> */}
             <MainBlock clearOnTop={clearOnTop}>{children}</MainBlock>
-            {/* {!noFooter && <Footer />} */}
+            {hasFooter && <Footer />}
         </React.Fragment>
     );
 }
 
 export default Layout;
+
+const MainBlock = styled.main<{ clearOnTop: boolean }>`
+    min-height: 100vh;
+    overflow: hidden;
+`;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import styled from "@emotion/styled";
-import { server } from "../../src/utils";
+import { ROOT_URL } from "../../src/utils";
 import ReactPlayer from 'react-player'
 import { css } from "@emotion/core";
 
 export async function getServerSideProps({ params }) {
-    const res = await fetch(params.id && `${server}/api/playground/${params.id}`)
+    const res = await fetch(params.id && `${ROOT_URL}/api/products/${params.id}`)
     return {
         props: { data: await res.json() }
     }
