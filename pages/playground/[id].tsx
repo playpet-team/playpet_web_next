@@ -44,7 +44,7 @@ export default function PlaygroundCard(props) {
                             playing={isPlaying}
                             // muted={isMute}
                             loop
-                            url='https://firebasestorage.googleapis.com/v0/b/playpet-5b432.appspot.com/o/playground%2FNAb9vSVCllVv76aVNLcshIc8oj12_1598518709?alt=media&token=cf69d2d0-7a64-4322-b44d-2343c127ed0c'
+                            url={contents[0].url}
                         />
                         <VideoContent
                             onClick={toggleContent}
