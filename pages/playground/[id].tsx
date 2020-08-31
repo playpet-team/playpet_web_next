@@ -1,51 +1,50 @@
-import React, { useEffect, useState, useRef, useMemo, useCallback } from "react";
-import styled from "@emotion/styled";
-import { ROOT_URL } from "../../src/utils";
+import React, { useEffect, useState, useRef, useMemo, useCallback } from "react"
+import styled from "@emotion/styled"
+import { ROOT_URL } from "../../src/utils"
 import ReactPlayer from 'react-player'
-import { css } from "@emotion/core";
+import { css } from "@emotion/core"
 
 export async function getServerSideProps({ params }) {
-    const res = await fetch(params.id && `${ROOT_URL}/api/products/${params.id}`)
+    const res = await fetch(params.id && `${ROOT_URL}/api/playground/${params.id}`)
     return {
         props: { data: await res.json() }
     }
 }
 
 export default function PlaygroundCard(props) {
-    const [isMute, setIsMute] = useState(false)
+    // const [isMute, setIsMute] = useState(false)
     const [openContent, setOpenContent] = useState(false)
     const [isPlaying, setIsPlaying] = useState(true)
     const videoEl = useRef(null)
 
-    const toggleMute = useCallback((e) => {
-        e.stopPropagation();
-        setIsMute(!isMute);
-    }, [isMute, videoEl]);
+    // const toggleMute = useCallback((e) => {
+    //     e.stopPropagation()
+    //     setIsMute(!isMute)
+    // }, [isMute, videoEl])
 
     const toggleContent = useCallback(() => {
-        const toggleContent = !openContent;
-        setOpenContent(toggleContent);
-        setIsPlaying(!toggleContent);
-    }, [openContent, isPlaying]);
+        const toggleContent = !openContent
+        setOpenContent(toggleContent)
+        setIsPlaying(!toggleContent)
+    }, [openContent, isPlaying])
 
     const { contents, title } = useMemo(() => {
-        return props.data;
-    }, [props]);
+        return props.data
+    }, [props])
 
     return (
         <PlaygroundCardBlock>
             <CardWrapper>
                 <Card>
                     <VideoWrapper>
-                        <Video
+                        <ReactPlayer
                             ref={videoEl}
                             width='100%'
                             height='100%'
                             playing={isPlaying}
-                            muted={isMute}
+                            // muted={isMute}
                             loop
-                            poster={contents[0].videoThumbnails}
-                            url={contents[0].url}
+                            url='https://firebasestorage.googleapis.com/v0/b/playpet-5b432.appspot.com/o/playground%2FNAb9vSVCllVv76aVNLcshIc8oj12_1598518709?alt=media&token=cf69d2d0-7a64-4322-b44d-2343c127ed0c'
                         />
                         <VideoContent
                             onClick={toggleContent}
@@ -61,19 +60,17 @@ export default function PlaygroundCard(props) {
                                             src={'/icon/thumbDown_white.svg'}
                                         /> */}
                                     </ReactionIconWrapper>
-                                    <ControlIconWrapper>
+                                    {/* <ControlIconWrapper>
                                         <Icon
                                             src={`/icon/volume${isMute ? 'Up' : 'Off'}_white.svg`}
                                             onClick={toggleMute}
                                         />
-                                    </ControlIconWrapper>
+                                    </ControlIconWrapper> */}
                                 </ControlBar>
                                 <Title>
                                     {title}
                                 </Title>
-                                <ContentBackground
-                                    openContent={openContent}
-                                ></ContentBackground>
+                                <ContentBackground openContent={openContent}></ContentBackground>
                             </ContentWrapper>
                         </VideoContent>
                     </VideoWrapper>
@@ -81,7 +78,7 @@ export default function PlaygroundCard(props) {
             </CardWrapper>
         </PlaygroundCardBlock>
     )
-};
+}
 
 const PlaygroundCardBlock = styled.div`
     flex-direction: column;
@@ -90,7 +87,7 @@ const PlaygroundCardBlock = styled.div`
     flex: 1;
     align-items: center;
     background-color: #303441;
-`;
+`
 
 const CardWrapper = styled.div`
     width: 100vw;
@@ -142,13 +139,13 @@ const Title = styled.div`
     z-index: 10;
 `
 
-const Video = styled(ReactPlayer)`
-`
+// const Video = styled(ReactPlayer)`
+// `
 
 const ContentWrapper = styled.div`
     position: relative;
     padding: 16px;
-    height: 100%
+    height: 100%;
 `
 
 const VideoContent = styled.div<{ openContent: Boolean }>`

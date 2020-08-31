@@ -1,6 +1,7 @@
 import { firestore } from './../'
 
 export default function personHandler({ query: { id } }, res) {
+    console.log('id', id);
     firestore
         .collection('playground')
         .doc(id)
