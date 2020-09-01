@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { removeSpace } from '../utils'
 
 export default function PlaypetHead({
-    title = 'Playpet (플레이펫 - 반려동물 미디어 쇼핑몰)',
-    description = '반려인의 리뷰 영상을 한 곳에!',
-    keywords = '반려동물, 반려동물 쇼핑몰, 반려동물 미디어 커머스, 댕댕이 쇼핑몰',
+    title = 'Playpet (플레이펫 - 재미가 가득한 반려동물 영상 쇼핑몰)',
+    description = '내가 키우는 반려동물 일상을 짧은 영상 하나로 행복이 가득한 하루를 완성해 보세요! 불필요한 제품만 가득 쌓여있는 반려용품 쇼핑몰은 이제 그만! 반려인들에게 가장 필요한 반려용품만 모아놨습니다.',
+    keywords = '반려동물, 애완동물, 반려동물 쇼핑몰, 반려동물 영상 쇼핑몰, 댕댕이 쇼핑몰, 애견쇼핑몰, 강아지용품, 고양이용품, 강아지간식, 강아지장난감, 반려견, 반려묘, 고양이사료',
 }) {
     return (
         <div>

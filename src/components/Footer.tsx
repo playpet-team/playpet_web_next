@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
+// import FacebookIcon from '@material-ui/icons/Facebook';
+// import InstagramIcon from '@material-ui/icons/Instagram';
+import { Facebook, Instagram } from '@material-ui/icons';
+
 
 export default function Footer() {
     return (
@@ -14,11 +18,12 @@ export default function Footer() {
             <ProvisionSection>
                 <Link target="_blank" href="https://docs.google.com/document/d/1kWXTsC_KWR3SNG1T8eCVXTN8O9XY2bz_yeZVmMO5kd4/edit?usp=sharing">이용약관</Link>
                 <Link target="_blank" href="https://docs.google.com/document/d/1y9a-1p2gRYxVgXUX2VWyRM_BKRnMcrVGqxbu1JTT0Mw/edit?usp=sharing">개인정보 처리방침</Link>
-                {/* <SocialBlock>
-                    페북 아이콘
-                    <br />
-                    인스타 아이콘
-                </SocialBlock> */}
+                <Link target="_blank" href="https://www.facebook.com/plapet.me">
+                    <Facebook fontSize="large" />
+                </Link>
+                <Link target="_blank" href="https://www.instagram.com/playpet.me">
+                    <Instagram fontSize="large" />
+                </Link>
             </ProvisionSection>
         </FooterBlock>
     )
@@ -33,6 +38,7 @@ const FooterBlock = styled.footer`
     padding: 40px 80px;
     font-size: 13px;
     color: #4B5064;
+    margin-bottom: 60px;
 
     @media only screen and (max-width: 1024px) {
         flex-direction: column;
