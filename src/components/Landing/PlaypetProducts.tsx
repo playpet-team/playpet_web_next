@@ -20,7 +20,7 @@ export default function PlaypetProducts() {
             <Text
                 size={18}
                 align='center'
-                margin='0 0 24'
+                margin='0 0 48'
             >
                 불필요한 제품만 가득 쌓여있는 반려용품 쇼핑몰은 이제 그만!<br />
                 반려인들에게 가장 필요한 반려용품만 모아놨습니다.
@@ -33,7 +33,7 @@ export default function PlaypetProducts() {
             <Text
                 size={16}
                 align='center'
-                margin='0 0 24'
+                margin='0 0 48'
             >
                 <Text size={18} align='center' weight={500}>위생용품</Text>
                 일상에 있어서 반려인들에게 가장 필요한 용품만 선별하였습니다.
@@ -46,7 +46,7 @@ export default function PlaypetProducts() {
             <Text
                 size={16}
                 align='center'
-                margin='0 0 24'
+                margin='0 0 48'
             >
                 <Text size={18} align='center' weight={500}>장난감</Text>
                 가장 인기있고 장난감만 모여있습니다.
@@ -59,7 +59,7 @@ export default function PlaypetProducts() {
             <Text
                 size={16}
                 align='center'
-                margin='0 0 24'
+                margin='0 0 48'
             >
                 <Text size={18} align='center' weight={500}>수제간식</Text>
                 알 수 없는 식재료와 공장에서 만든 간식은 취급 하지 않습니다.

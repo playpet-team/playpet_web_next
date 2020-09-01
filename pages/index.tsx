@@ -6,8 +6,10 @@ import PlaypetProducts from "../src/components/Landing/PlaypetProducts"
 import NoMoreFake from "../src/components/Landing/NoMoreFake"
 import BottomContent from "../src/components/Landing/BottomContent"
 import AppDownload from "../src/components/AppDownload"
+import usePageBottom from "../src/hooks/useScrollBottom"
 
 export default function Landing() {
+    const bottom = usePageBottom()
     return (
         <Layout>
             <LandingBlock>
@@ -16,7 +18,7 @@ export default function Landing() {
                 <PlaypetProducts />
                 <NoMoreFake />
                 <BottomContent />
-                <AppDownload show isFixed />
+                <AppDownload show={!bottom} isFixed />
             </LandingBlock>
         </Layout>
     )

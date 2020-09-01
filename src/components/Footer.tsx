@@ -38,7 +38,6 @@ const FooterBlock = styled.footer`
     padding: 40px 80px;
     font-size: 13px;
     color: #4B5064;
-    margin-bottom: 60px;
 
     @media only screen and (max-width: 1024px) {
         flex-direction: column;

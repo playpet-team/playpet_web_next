@@ -10,7 +10,7 @@ export default function SectionLayout({
     children,
     background = 'rgba(255, 255, 255, 1)',
     baseTextColor = '#333',
-    paddingBottom
+    paddingBottom,
 }: Layout) {
     return (
         <SectionLayoutBlock

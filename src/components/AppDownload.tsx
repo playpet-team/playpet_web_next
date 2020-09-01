@@ -21,11 +21,12 @@ const AppDownloadBlock = styled.div<AppDownloadConfig>`
     font-size: 24px;
     padding: 24px;
     width: 100%;
-    justify-content: center;
+    text-align: center;
     background-color: ${colors.yellowKey};
-    display: ${({ show }) => show ? 'flex' : 'none'};
+    transition: bottom 300ms ease-out;
+    /* display: ${({ show }) => show ? 'flex' : 'none'}; */
     position: ${({ isFixed }) => isFixed ? 'fixed' : 'relative'};
-    bottom: 0;
+    bottom: ${({ show }) => show ? 0 : -100}px;
     left: 0;
 `
 
