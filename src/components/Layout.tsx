@@ -4,7 +4,7 @@ import { Global, jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 // import { baseCSS } from '../lib/styles';
 import useAnalytics from '../hooks/useAnalytics';
-import PlaypetHead from './PlaypetHead';
+import SEO from './PlaypetHead';
 import Footer from './Footer';
 
 export interface LayoutProps {
@@ -24,7 +24,6 @@ function Layout({
     useAnalytics();
     return (
         <React.Fragment>
-            <PlaypetHead />
             {/* <Global styles={baseCSS} /> */}
             {/* <Header clearOnTop={clearOnTop} whiteText={whiteTextHeader} darkMode={darkMode} /> */}
             <MainBlock clearOnTop={clearOnTop}>{children}</MainBlock>

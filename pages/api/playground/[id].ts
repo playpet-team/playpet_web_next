@@ -1,15 +1,18 @@
+import { firebaseTimeStampToStringStamp } from './../../../src/utils/index';
 import { firestore } from './../'
 
 export default function personHandler({ query: { id } }, res) {
-    console.log('id', id);
     firestore
         .collection('playground')
         .doc(id)
         .get()
         .then(card => {
             if (card.exists) {
+                const data = card.data()
                 res.status(200).json({
-                    ...card.data(),
+                    ...data,
+                    createdAt: firebaseTimeStampToStringStamp(data.createdAt),
+                    updatedAt: firebaseTimeStampToStringStamp(data.updatedAt),
                     id: card.id,
                 })
             } else {

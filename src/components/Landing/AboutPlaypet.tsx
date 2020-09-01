@@ -10,7 +10,6 @@ export default function AboutPlaypet() {
     const [ref, inView] = useInView({
         triggerOnce: true,
     })
-    console.log('inView', inView)
 
     return (
         <SectionLayout

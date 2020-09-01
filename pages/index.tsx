@@ -7,11 +7,13 @@ import NoMoreFake from "../src/components/Landing/NoMoreFake"
 import BottomContent from "../src/components/Landing/BottomContent"
 import AppDownload from "../src/components/AppDownload"
 import usePageBottom from "../src/hooks/useScrollBottom"
+import SEO from "../src/components/PlaypetHead"
 
 export default function Landing() {
     const bottom = usePageBottom()
     return (
         <Layout>
+            <SEO />
             <LandingBlock>
                 <Hero />
                 <AboutPlaypet />

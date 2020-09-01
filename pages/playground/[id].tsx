@@ -3,6 +3,8 @@ import styled from "@emotion/styled"
 import { ROOT_URL } from "../../src/utils"
 import ReactPlayer from 'react-player'
 import { css } from "@emotion/core"
+import Layout from "../../src/components/Layout"
+import SEO from "../../src/components/PlaypetHead"
 
 export async function getServerSideProps({ params }) {
     const res = await fetch(params.id && `${ROOT_URL}/api/playground/${params.id}`)
@@ -28,55 +30,65 @@ export default function PlaygroundCard(props) {
         setIsPlaying(!toggleContent)
     }, [openContent, isPlaying])
 
-    const { contents, title } = useMemo(() => {
+    const { contents, title, updatedAt } = useMemo(() => {
         return props.data
     }, [props])
 
     return (
-        <PlaygroundCardBlock>
-            <CardWrapper>
-                <Card>
-                    <VideoWrapper>
-                        <ReactPlayer
-                            ref={videoEl}
-                            width='100%'
-                            height='100%'
-                            playing={isPlaying}
-                            // muted={isMute}
-                            loop
-                            url={contents[0].url}
-                        />
-                        <VideoContent
-                            onClick={toggleContent}
-                            openContent={openContent}
-                        >
-                            <ContentWrapper>
-                                <ControlBar>
-                                    <ReactionIconWrapper>
-                                        <Icon
-                                            src={'/icon/thumbUp_white.svg'}
-                                        />
-                                        {/* <Icon
+        <Layout>
+            <SEO
+                title={title}
+            />
+            <PlaygroundCardBlock>
+                <CardWrapper>
+                    <Card>
+                        <VideoWrapper>
+                            <meta itemProp="thumbnailUrl" content={contents[0].videoThumbnail} />
+                            <meta itemProp="contentURL" content={contents[0].url} />
+                            <meta itemProp="uploadDate" content={updatedAt} />
+                            <meta itemProp="width" content={contents[0].width} />
+                            <meta itemProp="height" content={contents[0].height} />
+                            <ReactPlayer
+                                ref={videoEl}
+                                width='100%'
+                                height='100%'
+                                playing={isPlaying}
+                                // muted={isMute}
+                                loop
+                                url={contents[0].url}
+                            />
+                            <VideoContent
+                                onClick={toggleContent}
+                                openContent={openContent}
+                            >
+                                <ContentWrapper>
+                                    <ControlBar>
+                                        <ReactionIconWrapper>
+                                            <Icon
+                                                src={'/icon/thumbUp_white.svg'}
+                                            />
+                                            {/* <Icon
                                             src={'/icon/thumbDown_white.svg'}
                                         /> */}
-                                    </ReactionIconWrapper>
-                                    {/* <ControlIconWrapper>
+                                        </ReactionIconWrapper>
+                                        {/* <ControlIconWrapper>
                                         <Icon
                                             src={`/icon/volume${isMute ? 'Up' : 'Off'}_white.svg`}
                                             onClick={toggleMute}
                                         />
                                     </ControlIconWrapper> */}
-                                </ControlBar>
-                                <Title>
-                                    {title}
-                                </Title>
-                                <ContentBackground openContent={openContent}></ContentBackground>
-                            </ContentWrapper>
-                        </VideoContent>
-                    </VideoWrapper>
-                </Card>
-            </CardWrapper>
-        </PlaygroundCardBlock>
+                                    </ControlBar>
+                                    <Title>
+                                        {title}
+                                    </Title>
+                                    <ContentBackground openContent={openContent}></ContentBackground>
+                                </ContentWrapper>
+                            </VideoContent>
+                        </VideoWrapper>
+                    </Card>
+                </CardWrapper>
+            </PlaygroundCardBlock>
+        </Layout>
     )
 }
 
@@ -132,7 +144,8 @@ const Icon = styled.img`
     cursor: pointer;
 `
 
-const Title = styled.div`
+const Title = styled.h1`
+    font-size: 17px;
     margin-top: 8px;
     color: white;
     position: relative;

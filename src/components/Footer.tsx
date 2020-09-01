@@ -18,12 +18,14 @@ export default function Footer() {
             <ProvisionSection>
                 <Link target="_blank" href="https://docs.google.com/document/d/1kWXTsC_KWR3SNG1T8eCVXTN8O9XY2bz_yeZVmMO5kd4/edit?usp=sharing">이용약관</Link>
                 <Link target="_blank" href="https://docs.google.com/document/d/1y9a-1p2gRYxVgXUX2VWyRM_BKRnMcrVGqxbu1JTT0Mw/edit?usp=sharing">개인정보 처리방침</Link>
-                <Link target="_blank" href="https://www.facebook.com/plapet.me">
-                    <Facebook fontSize="large" />
-                </Link>
-                <Link target="_blank" href="https://www.instagram.com/playpet.me">
-                    <Instagram fontSize="large" />
-                </Link>
+                <SocialBlock>
+                    <a target="_blank" href="https://www.facebook.com/playpet.me/">
+                        <Facebook fontSize="large" htmlColor="#666" />
+                    </a>
+                    <a target="_blank" href="https://www.instagram.com/playpet.me">
+                        <Instagram fontSize="large" htmlColor="#666" />
+                    </a>
+                </SocialBlock>
             </ProvisionSection>
         </FooterBlock>
     )
@@ -43,9 +45,9 @@ const FooterBlock = styled.footer`
         flex-direction: column;
         padding: 24px;
     }
-`;
+`
 
-const BusinessSection = styled.section``;
+const BusinessSection = styled.section``
 const ProvisionSection = styled.section`
     display: flex;
     flex-direction: column;
@@ -53,17 +55,13 @@ const ProvisionSection = styled.section`
     @media only screen and (max-width: 1024px) {
         margin-top: 24px;
     }
-`;
+`
 const Text = styled.div`
     padding-bottom: 12px;
-`;
+`
 const Link = styled.a`
     margin-bottom: 12px;
     color: #4B5064;
-`;
+`
 
-const SocialBlock = styled.div`
-    @media only screen and (max-width: 1024px) {
-        display: none;
-    }
-`;
+const SocialBlock = styled.div``
