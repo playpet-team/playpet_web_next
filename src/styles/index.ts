@@ -1,6 +1,6 @@
-import { css } from "@emotion/core";
-import styled from "@emotion/styled";
-import { colors } from "../lib/styles";
+import { css } from "@emotion/core"
+import styled from "@emotion/styled"
+import { colors } from "../lib/styles"
 
 export const RowBlock = styled.div`
     /* padding: 8px; */
@@ -29,22 +29,28 @@ export const LinkWrapper = styled.a`
 `
 
 export interface TextProps {
+    family?: 'GmarketSansMedium' | 'Noto Sans KR' | '';
     color?: string;
-    padding?: number;
+    padding?: string;
+    margin?: string;
     weight?: number;
     size?: number;
     align?: 'left' | 'center' | 'right'
 }
 export const Text = styled.div<TextProps>`
+    font-family: ${({ family }) => family};
     font-weight: ${({ weight }) => weight};
     color: ${({ color }) => color};
-    padding: ${({ padding }) => padding};
+    padding: ${({ padding }) => padding}px;
+    margin: ${({ margin }) => margin}px;
     font-size: ${({ size }) => size}px;
     text-align: ${({ align }) => align};
 `
 Text.defaultProps = {
+    family: 'Noto Sans KR',
     color: colors.black,
-    padding: 0,
+    padding: '0',
+    margin: '0',
     weight: 400,
     size: 12,
     align: 'left',

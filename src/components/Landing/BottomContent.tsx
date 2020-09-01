@@ -8,6 +8,7 @@ export default function BottomContent() {
         <SectionLayout>
             <h2>
                 <Text
+                    family='GmarketSansMedium'
                     size={32}
                     color={colors.black}
                     weight={600}

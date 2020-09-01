@@ -21,6 +21,7 @@ const AppDownloadBlock = styled.div<AppDownloadConfig>`
     font-size: 24px;
     padding: 24px;
     width: 100%;
+    justify-content: center;
     background-color: ${colors.yellowKey};
     display: ${({ show }) => show ? 'flex' : 'none'};
     position: ${({ isFixed }) => isFixed ? 'fixed' : 'relative'};

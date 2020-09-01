@@ -5,7 +5,6 @@ import { useMediaQuery } from "@material-ui/core";
 
 export default function Hero() {
     const mobile = useMediaQuery(breakpoints.medium)
-    console.log('mobile', mobile)
     return (
         <HeroBlock>
             <BackgroundSection data-source="https://www.pxfuel.com/en/free-photo-qanng">
@@ -14,6 +13,7 @@ export default function Hero() {
                     <DividerBlock height={mobile ? 24 : 120} />
                     <h1>
                         <Text
+                            family='GmarketSansMedium'
                             size={mobile ? 48 : 78}
                             color={colors.white}
                             weight={800}
