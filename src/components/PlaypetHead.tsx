@@ -49,7 +49,7 @@ const ORGANIZATION = ({ description }) => `
         "logo": "https://firebasestorage.googleapis.com/v0/b/playpet-5b432.appspot.com/o/web%2Fassets%2Flogos%2Flogo_b.png?alt=media&token=f0f0f7b7-d1f6-4a1d-9ac9-9c2775442387",
         "sameAs": [
             "https://www.instagram.com/playpet.me",
-            "https://www.facebook.com/plapet.me"
+            "https://www.facebook.com/playpet.me"
         ]
 }`
 
