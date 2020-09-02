@@ -4,7 +4,8 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import useAnalytics from '../hooks/useAnalytics';
 import Footer from './Footer';
-
+import { clientFirebase } from '../utils';
+clientFirebase()
 export interface LayoutProps {
     clearOnTop?: boolean;
     children: React.ReactNode;
@@ -19,7 +20,8 @@ function Layout({
     // darkMode,
     hasFooter = true,
 }: LayoutProps) {
-    useAnalytics();
+    useAnalytics()
+
     return (
         <React.Fragment>
             {/* <Global styles={baseCSS} /> */}
