@@ -15,14 +15,14 @@ export default function useAnalytics() {
 
 export function firebaseInit() {
     const firebaseConfig = {
-        apiKey: "AIzaSyCczK8wxmdEFMyWL9Nwm4jXOrk31_kg_fw",
-        authDomain: "playpet-5b432.firebaseapp.com",
-        databaseURL: "https://playpet-5b432.firebaseio.com",
-        projectId: "playpet-5b432",
-        storageBucket: "playpet-5b432.appspot.com",
-        messagingSenderId: "386527552204",
-        appId: "1:386527552204:web:84b4421b5fd7db5582d869",
-        measurementId: "G-3MRGE501JY"
+        apiKey: "AIzaSyApkc_JUsxriexexbZhcONv5ISDXAeI3IQ",
+        authDomain: "playpet-production.firebaseapp.com",
+        databaseURL: "https://playpet-production.firebaseio.com",
+        projectId: "playpet-production",
+        storageBucket: "playpet-production.appspot.com",
+        messagingSenderId: "952410130595",
+        appId: "1:952410130595:web:4c709b536de4cff36c5716",
+        measurementId: "G-24830T021H"
       };
       firebase.initializeApp(firebaseConfig);
 }
