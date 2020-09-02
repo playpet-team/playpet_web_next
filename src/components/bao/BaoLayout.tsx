@@ -3,26 +3,32 @@ import styled from '@emotion/styled'
 import Aside from "./Aside"
 import { useMediaQuery } from "@material-ui/core"
 import Head from 'next/head'
+import useSignIn from '../../hooks/useSignin'
 
 export interface BaoLayoutProps {
     clearOnTop?: boolean
     children: React.ReactNode
 }
 
-
 function BaoLayout({
     clearOnTop,
     children,
 }: BaoLayoutProps) {
     const desktop = useMediaQuery('(min-width:1024px)')
+    const user = useSignIn()
 
     return (
         <BaoLayoutBlock desktop={desktop ? 1 : 0}>
             <Head>
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
-            <Aside />
-            <Main clearOnTop={clearOnTop}>{children}</Main>
+            {user ?
+                <>
+                    <Aside />
+                    <Main clearOnTop={clearOnTop}>{children}</Main>
+                </>
+                : <div>로그인</div>
+            }
         </BaoLayoutBlock>
     )
 }
