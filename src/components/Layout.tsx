@@ -1,10 +1,8 @@
 /** @jsx jsx */
 import React from 'react';
-import { Global, jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-// import { baseCSS } from '../lib/styles';
 import useAnalytics from '../hooks/useAnalytics';
-import SEO from './PlaypetHead';
 import Footer from './Footer';
 
 export interface LayoutProps {

@@ -5,9 +5,10 @@ require('firebase/analytics')
 
 export default function useAnalytics() {
     useEffect(() => {
-        if (!isServer() && !firebase.app.length) {
+        if (!isServer()) {
             firebaseInit()
             firebase.analytics()
+            console.log('hahaha')
         }
     }, [])
 }
