@@ -21,8 +21,9 @@ export default function useSignIn() {
         async function googleSignin() {
             const provider = new auth.GoogleAuthProvider()
             await firebase().auth().setPersistence(auth.Auth.Persistence.LOCAL)
-            const user = await firebase().auth().signInWithPopup(provider)
-            await firebase().auth().signInWithCredential(user.credential)
+            // const user = await firebase().auth().signInWithPopup(provider)
+            const user = await firebase().auth().signInWithRedirect(provider)
+            // await firebase().auth().signInWithCredential(user.credential)
         }
     }, [])
 
