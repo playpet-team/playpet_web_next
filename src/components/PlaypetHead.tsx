@@ -24,7 +24,7 @@ export default function SEO({
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
-                <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/playpet-5b432.appspot.com/o/web%2Fassets%2Fimages%2FiShot2020-08-26PM04.02.50.jpg?alt=media&token=1ae9a3f1-b132-4a74-8a27-49980526133f" />
+                <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/web%2Fassets%2Fimages%2Fplaypet-og-img.jpg?alt=media&token=da139299-667a-495b-8d16-873d61e45fbf" />
                 <link rel="canonical" href={ROOT_URL + route.asPath} />
                 <meta property="og:site_name" content="플레이펫" />
                 <meta property="og:locale" content="ko_KR" />
