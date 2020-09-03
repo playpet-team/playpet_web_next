@@ -1,30 +1,43 @@
-import React, { useState, useRef, useMemo, useCallback } from "react"
+import React, { useState, useRef, useMemo, useCallback, useEffect } from "react"
 import styled from "@emotion/styled"
 import ReactPlayer from 'react-player'
 import { css } from "@emotion/core"
 import Layout from "../../src/components/Layout"
 import SEO from "../../src/components/PlaypetHead"
+import useSWR from "swr"
+import { fetcher } from "../../src/utils"
+import { useRouter } from "next/router"
 
-export default function PlaygroundCard(props) {
-    // const [isMute, setIsMute] = useState(false)
+export default function PlaygroundCard() {
+    const [cards, setCard] = useState<any>({});
+    const { query } = useRouter()
+    const { data } = useSWR(() => query.id && `/api/playground/${query.id}`, fetcher)
     const [openContent, setOpenContent] = useState(false)
     const [isPlaying, setIsPlaying] = useState(true)
     const videoEl = useRef(null)
+
+    useEffect(() => {
+        if (data) {
+            setCard(data)
+        }
+    }, [data])
 
     // const toggleMute = useCallback((e) => {
     //     e.stopPropagation()
     //     setIsMute(!isMute)
     // }, [isMute, videoEl])
 
-    const toggleContent = useCallback(() => {
-        const toggleContent = !openContent
-        setOpenContent(toggleContent)
-        setIsPlaying(!toggleContent)
-    }, [openContent, isPlaying])
+    // const toggleContent = useCallback(() => {
+    //     const toggleContent = !openContent
+    //     setOpenContent(toggleContent)
+    //     setIsPlaying(!toggleContent)
+    // }, [openContent, isPlaying])
 
-    const { contents, title, updatedAt } = useMemo(() => {
-        return props.data
-    }, [props])
+    const { contents = [], title = '', updatedAt = '' } = cards
+
+    if (!contents.length) {
+        return null
+    }
 
     return (
         <Layout>
@@ -50,7 +63,6 @@ export default function PlaygroundCard(props) {
                                 url={contents[0].url}
                             />
                             <VideoContent
-                                onClick={toggleContent}
                                 openContent={openContent}
                             >
                                 <ContentWrapper>

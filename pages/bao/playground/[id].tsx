@@ -4,7 +4,7 @@ import { fetcher } from "../../../src/utils";
 import useSWR from 'swr'
 import { useRouter } from "next/router";
 import BaoLayout from "../../../src/components/bao/BaoLayout";
-import Link from "next/link";
+// import Link from "next/link";
 import { Row, KeyText, ValueText } from "../../../src/styles/bao";
 
 export default function CardDetail(props) {
@@ -55,7 +55,7 @@ export default function CardDetail(props) {
                     </Row>
                     <Row>
                         <KeyText>media</KeyText>
-                        <ValueText>{card.contents.map(content => (
+                        <ValueText>{(card.contents || []).map(content => (
                             <video controls={true} key={card.id} width="300" height="300"><source src={content.url} /></video>
                         ))}</ValueText>
                     </Row>
