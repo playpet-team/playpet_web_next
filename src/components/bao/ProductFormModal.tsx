@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useCallback } from "react";
-import styled from "@emotion/styled";
-import { Modal, TextField, Button, useMediaQuery } from "@material-ui/core";
-import CloseIcon from '@material-ui/icons/Close';
-import { Form } from '../../../pages/bao/products';
+import React, { useEffect, useState, useCallback } from "react"
+import styled from "@emotion/styled"
+import { Modal, TextField, Button, useMediaQuery } from "@material-ui/core"
+import CloseIcon from '@material-ui/icons/Close'
+import { Form } from '../../../pages/bao/products'
 
 const MAPPING_FIELDS: any = {
     id: { label: '', disabled: true, required: false, },
     uid: { label: '', disabled: true, required: false, },
-    status: { label: '', disabled: true, required: true, },
+    status: { type: 'select', default: ['acitve', 'deactive'], label: 'active | deactive', disabled: false, required: false, },
     title: { label: '제목', disabled: false, required: true, },
     description: { label: '설명 (최대 30자 정도)', disabled: false, required: true, },
     petType: { label: 'all | dog | cat', disabled: false, required: true, },
-    ratings: { label: '0~5', disabled: false, required: false, },
+    ratings: { type: 'select', default: [1, 2, 3, 4, 5], label: '1~5', disabled: false, required: false, },
     mallName: { label: '쇼핑몰 이름', disabled: false, required: true, },
     originalCategoery: { label: '쇼핑몰에서의 카테고리', disabled: false, required: true, },
     tags: { label: '검색 태그 (콤마로 띄어쓰기 없이)', disabled: false, required: true, },
@@ -27,13 +27,13 @@ const MAPPING_FIELDS: any = {
     createdAt: { label: '입력 날자', disabled: true, required: false, },
     updatedAt: { label: '입력 날자', disabled: true, required: false, },
     expiredAt: { label: '만료날짜', disabled: true, required: false, },
-};
+}
 interface Modal {
-    formType?: 'add' | 'edit';
-    form: Form | any;
-    visibleModal: boolean;
-    setVisibleModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setFormField: Function;
+    formType?: 'add' | 'edit'
+    form: Form | any
+    visibleModal: boolean
+    setVisibleModal: React.Dispatch<React.SetStateAction<boolean>>
+    setFormField: Function
 }
 export default function ProductFormModal({
     formType = 'add',
@@ -42,30 +42,42 @@ export default function ProductFormModal({
     setVisibleModal,
     setFormField,
 }: Modal) {
-    const desktop = useMediaQuery('(min-width:1024px)');
-    const [errorField, setErrorField] = useState<string[]>([]);
+    const desktop = useMediaQuery('(min-width:1024px)')
+    const [errorField, setErrorField] = useState<string[]>([])
 
-    const addForm = () => {
+    const addForm = useCallback(async () => {
+        await fetch('/api/products/form', {
+            method: 'POST',
+            body: JSON.stringify(form),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+    }, [])
 
-    };
-
-    const checkValidation = () => {
-        const requiredFields = Object.keys(MAPPING_FIELDS).filter((field: any) => MAPPING_FIELDS[field].required);
+    const checkValidation = useCallback(() => {
+        const requiredFields = Object.keys(MAPPING_FIELDS).filter((field: any) => MAPPING_FIELDS[field].required)
+        console.log("requiredFields", requiredFields)
         const errorFields = requiredFields.filter(field => {
-            const value = form[field];
+            const value = form[field]
             if (field === 'petType') {
-                return !['all', 'dog', 'cat'].includes(value);
+                return !['all', 'dog', 'cat'].includes(value)
             }
-            return !value;
-        });
-        setErrorField(errorFields);
-    };
+            return !value
+        })
+        setErrorField(errorFields)
+        return errorFields
+    }, [])
 
-    const handleSubmit = () => {
-        checkValidation();
-        addForm();
-        setVisibleModal(false);
-    }
+    const handleSubmit = useCallback(() => {
+        const errors = checkValidation()
+        console.log("errors.length", errors.length)
+        if (errors.length) {
+            return alert('뭔가 덜적었다')
+        }
+        addForm()
+        setVisibleModal(false)
+    }, [])
 
     return (
         <Modal
@@ -93,15 +105,6 @@ export default function ProductFormModal({
                             style={{
                                 marginBottom: 24,
                             }}
-                        // inputProps={{
-                        //     style: { fontSize: 35, }
-                        // }}
-                        // FormHelperTextProps={{
-                        //     style: { fontSize: 35, }
-                        // }}
-                        // InputLabelProps={{
-                        //     style: { fontSize: 40, }
-                        // }}
                         />
                     )
                 })}
@@ -114,7 +117,7 @@ export default function ProductFormModal({
             </ModalContainer>
         </Modal>
     )
-};
+}
 
 const ModalContainer = styled.div<{ desktop: number; }>`
     position: absolute;

@@ -6,13 +6,7 @@ import { Form } from ".";
 import { useRouter } from "next/router";
 import BaoLayout from "../../../src/components/bao/BaoLayout";
 import Link from "next/link";
-
-export async function getServerSideProps({ params }) {
-    const res = await fetch(params.id && `${ROOT_URL}/api/products/${params.id}`)
-    return {
-        props: { data: await res.json() }
-    }
-}
+import { Row, KeyText, ValueText } from "../../../src/styles/bao";
 
 export default function ProductDetail(props) {
     const { query } = useRouter()
@@ -137,17 +131,3 @@ const ProductDetailBlock = styled.div`
 `;
 
 const ProductInformationBlock = styled.div``;
-
-const Row = styled.div`
-    display: flex;
-    padding: 8px 0;
-`;
-
-const KeyText = styled.div`
-    width: 180px;
-    border-right: 1px solid rgba(0,0,0,0.12);
-`;
-
-const ValueText = styled.div`
-    margin-left: 16px;
-`;

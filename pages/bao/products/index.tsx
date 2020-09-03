@@ -2,27 +2,11 @@ import React, { useEffect, useState, useCallback } from "react"
 import styled from "@emotion/styled"
 import { firebaseTimeStampToStringStamp, fetcher, ROOT_URL } from "../../../src/utils"
 import { TextField, Button } from "@material-ui/core"
-import { RowBlock, LinkWrapper } from "../../../src/styles"
 import ProductFormModal from "../../../src/components/bao/ProductFormModal"
 import Link from "next/link"
 import BaoLayout from "../../../src/components/bao/BaoLayout"
 import useSWR from 'swr'
-
-// export async function getServerSideProps() {
-//     try {
-//         const res = await fetch(`${ROOT_URL}/api/products`)
-//         return {
-//             props: { data: await res.json() }
-//         }
-//     } catch (e) {
-//         console.error('Products-', e)
-//         return {
-//             props: {
-//                 data: null
-//             }
-//         }
-//     }
-// }
+import { RowBlock, LinkWrapper } from "../../../src/styles/bao"
 
 export default function Products() {
     const [products, setProducts] = useState<any>([])

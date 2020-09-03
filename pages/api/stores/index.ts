@@ -1,7 +1,7 @@
 import { firestore } from './../'
 
 export default function handler(req, res) {
-    if (req.methd === 'POST') {
+    if (req.method === 'POST') {
         return
     }
     firestore

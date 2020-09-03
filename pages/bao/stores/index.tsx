@@ -2,9 +2,9 @@ import React, { useEffect, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import { firebaseTimeStampToStringStamp } from "../../../src/utils";
 import { TextField, Button } from "@material-ui/core";
-import { RowBlock, LinkWrapper } from '../../../src/styles';
 import Link from "next/link";
 import BaoLayout from "../../../src/components/bao/BaoLayout";
+import { RowBlock, LinkWrapper } from "../../../src/styles/bao";
 
 export default function Stores() {
     const [stores, setStores] = useState<any[]>([]);

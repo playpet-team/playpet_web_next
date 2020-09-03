@@ -1,17 +1,9 @@
-import React, { useEffect, useState, useRef, useMemo, useCallback } from "react"
+import React, { useState, useRef, useMemo, useCallback } from "react"
 import styled from "@emotion/styled"
-import { ROOT_URL } from "../../src/utils"
 import ReactPlayer from 'react-player'
 import { css } from "@emotion/core"
 import Layout from "../../src/components/Layout"
 import SEO from "../../src/components/PlaypetHead"
-
-export async function getServerSideProps({ params }) {
-    const res = await fetch(params.id && `${ROOT_URL}/api/playground/${params.id}`)
-    return {
-        props: { data: await res.json() }
-    }
-}
 
 export default function PlaygroundCard(props) {
     // const [isMute, setIsMute] = useState(false)

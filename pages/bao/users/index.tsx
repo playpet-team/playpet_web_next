@@ -2,11 +2,18 @@ import React, { useEffect, useState, useCallback } from 'react'
 import styled from '@emotion/styled'
 import { firebaseTimeStampToStringStamp, fetcher } from '../../../src/utils'
 import { TextField, Button } from '@material-ui/core'
-import { RowBlock, LinkWrapper } from '../../../src/styles'
 import BaoLayout from '../../../src/components/bao/BaoLayout'
 import Link from 'next/link'
 import useSWR from 'swr'
 import { useRouter } from 'next/router'
+import { RowBlock, LinkWrapper } from '../../../src/styles/bao'
+
+// export async function getServerSideProps({ params }) {
+//     const res = await fetch(params.id && `${ROOT_URL}/api/users/${params.uid}`)
+//     return {
+//         props: { data: await res.json() }
+//     }
+// }
 
 export default function Users() {
     const [users, setUsers] = useState<any[]>([])

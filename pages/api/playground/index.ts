@@ -5,9 +5,9 @@ export default function handler(req, res) {
         return
     }
     firestore
-        .collection('users')
+        .collection('playground')
         .get()
-        .then(users => {
-            res.status(200).json(users.docs.map((user: any) => user.data()))
+        .then(cards => {
+            res.status(200).json(cards.docs.map((card: any) => card.data()))
         })
 }

@@ -8,6 +8,7 @@ const ASIDES = [
     'Users',
     'Stores',
     'Products',
+    'Playground',
     'Notices',
 ];
 export default function Aside() {
