@@ -11,7 +11,7 @@ export default function useSignIn() {
             return
         }
         firebase().auth().onAuthStateChanged((user => {
-            if (user) {
+            if (user && ADMIN_EMAIL.includes(user.email)) {
                 setUser(true)
             } else {
                 googleSignin()
@@ -22,10 +22,12 @@ export default function useSignIn() {
             const provider = new auth.GoogleAuthProvider()
             await firebase().auth().setPersistence(auth.Auth.Persistence.LOCAL)
             // const user = await firebase().auth().signInWithPopup(provider)
-            const user = await firebase().auth().signInWithRedirect(provider)
+            await firebase().auth().signInWithRedirect(provider)
             // await firebase().auth().signInWithCredential(user.credential)
         }
     }, [])
 
     return user
 }
+
+const ADMIN_EMAIL = ['bk@playpet.me', 'paul@playpet.me', 'joshua@playpet.me', 'key@playpet.me']

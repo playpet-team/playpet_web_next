@@ -22,27 +22,27 @@ export default function NoMoreFake() {
                     color={colors.white}
                     weight={600}
                     align='center'
+                    margin='0 0 16'
                 >
                     더 이상 속지마세요
                 </Text>
             </h2>
-            <DividerBlock height={16} />
             <Text
                 size={18}
                 color={colors.white}
                 align='center'
+                margin='0 0 16'
             >
                 조작된 사진과 별점리뷰는 더 이상 그만!
             </Text>
-            <DividerBlock height={16} />
             <Text
                 size={18}
                 color={colors.white}
                 align='center'
+                margin='0 0 40'
             >
                 반려인들이 공유한 영상으로 직접 확인하고 구매하세요.
             </Text>
-            <DividerBlock height={40} />
             <ScreenshotBlock ref={ref} inView={inView}>
                 <img
                     src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Fabout_screenshot_1.jpg?alt=media&token=a9b0b135-4b31-496f-aed9-e9cd71f23179"
