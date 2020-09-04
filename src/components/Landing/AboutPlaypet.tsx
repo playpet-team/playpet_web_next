@@ -81,8 +81,8 @@ export const ScreenshotBlock = styled.div<{ inView?: boolean }>`
         border-top-left-radius: 60px;
         border-top-right-radius: 60px;
         opacity: 0;
-        transform: translateY(-40px);
-        transition: opacity 600ms ease-out, transform 600ms ease-out;
+        transform: translateY(-70px);
+        transition: opacity 800ms ease-out, transform 600ms ease-out;
 
         ${({ inView }) => inView && css`
             transform: translateY(0);

@@ -19,6 +19,7 @@ export const Text = styled.div<TextProps>`
     margin: ${({ margin }) => margin}px;
     font-size: ${({ size }) => size}px;
     text-align: ${({ align }) => align};
+    cursor: default;
 `
 Text.defaultProps = {
     family: 'Noto Sans KR',
