@@ -1,4 +1,4 @@
-import { auth, firestore } from './../'
+import { auth, firestore, Sentry } from './../'
 
 export default async function personHandler({ body: {
     uid,
@@ -22,7 +22,7 @@ export default async function personHandler({ body: {
             status: 'SUCCESS'
         })
     } catch (e) {
-        console.error(`withdraw: ${e}`)
+        Sentry.captureException(e)
         return res.status(404).json({
             status: 'FAIL',
             message: '회원정보를 찾을수 없습니다. 잠시후 다시 시도해주세요'
@@ -32,13 +32,17 @@ export default async function personHandler({ body: {
 
 const updateLeftAt = async (uid: string) => {
     const now = firestore.Timestamp.now()
-    return await firestore().collection('users').doc(uid).set({
-        isLeave: true,
-        leaveAt: now,
-        updatedAt: now,
-    },
-        { merge: true }
-    )
+    try {
+        return await firestore().collection('users').doc(uid).set({
+            isLeave: true,
+            leaveAt: now,
+            updatedAt: now,
+        },
+            { merge: true }
+        )
+    } catch (e) {
+        Sentry.captureException(e)
+    }
 }
 
 // export const withdraw = functions.https.onCall(async (_data, { auth }) => {

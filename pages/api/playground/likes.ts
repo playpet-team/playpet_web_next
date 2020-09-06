@@ -1,4 +1,4 @@
-import { firestore } from '..'
+import { firestore, Sentry } from '..'
 import { getCurrentTime } from '../../../src/utils/firebaseadmin'
 
 export default async function personHandler({ body: {
@@ -44,12 +44,12 @@ export default async function personHandler({ body: {
         )
         await Promise.all(promiseArr)
         console.log('4')
-        return res.status(200).json({
+        res.status(200).json({
             status: 'SUCCESS',
         })
-    } catch (error) {
-        console.error('manageCardLikes-error-', error)
-        return res.status(404).json({
+    } catch (e) {
+        Sentry.captureException(e)
+        res.status(404).json({
             status: 'FAIL',
             message: '카드 정보를 찾을수 없습니다. 잠시 후 다시 시도해주세요'
         })

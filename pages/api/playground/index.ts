@@ -1,13 +1,17 @@
-import { firestore } from './../'
+import { firestore, Sentry } from './../'
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     if (req.method === 'POST') {
         return
     }
-    firestore()
-        .collection('playground')
-        .get()
-        .then(cards => {
-            res.status(200).json(cards.docs.map((card: any) => card.data()))
-        })
+    try {
+        const cards = await firestore()
+            .collection('playground')
+            .get()
+
+        res.status(200).json(cards.docs.map((card: any) => card.data()))
+    } catch (e) {
+        Sentry.captureException(e)
+        res.status(404)
+    }
 }

@@ -1,4 +1,4 @@
-import { firestore, auth } from '..'
+import { firestore, auth, Sentry } from '..'
 import { getCurrentTime } from '../../../src/utils/firebaseadmin'
 
 export default async function personHandler({ body: {
@@ -81,8 +81,8 @@ const createUserCollection = async ({ uid, method }: createUserParams) => {
             updatedAt: getCurrentTime(),
         })
         return { result: 'signUp', status: 'SUCCESS' }
-    } catch (error) {
-        console.error('createUserCollection--error--', error)
+    } catch (e) {
+        Sentry.captureException(e)
         return { result: 'error', status: 'SUCCESS' }
     }
 }

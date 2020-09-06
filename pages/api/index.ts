@@ -1,7 +1,15 @@
 import * as admin from 'firebase-admin'
 import { isProduction } from '../../src/utils';
+import * as SentryNode from '@sentry/node';
 
-export function adminFirebaseInit() {
+export const firestore = admin.firestore
+export const auth = admin.auth
+export const Sentry = SentryNode
+
+adminFirebaseInit()
+sentryInit()
+
+function adminFirebaseInit() {
     try {
         // 이미 initial 되있다면 하지않는다
         // if (!admin.app.length) {
@@ -31,10 +39,16 @@ export function adminFirebaseInit() {
         if (!/already exists/.test(error.message)) {
             console.log('error-------error', error);
             console.error("Firebase admin initialization error", error);
+            SentryNode.captureException(error)
         }
     }
 }
-adminFirebaseInit()
-export const firestore = admin.firestore
-// export const firestoreInstance = admin.firestore
-export const auth = admin.auth
+
+function sentryInit() {
+    SentryNode.init({
+        dsn: "https://c75644eaf6214d52a4f0deebfacd00bf@o444254.ingest.sentry.io/5418946",
+        tracesSampleRate: 1.0,
+        environment: !isProduction ? 'development' : 'production',
+        debug: !isProduction,
+    });
+}

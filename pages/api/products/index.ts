@@ -1,18 +1,22 @@
-import { firestore } from './../'
+import { firestore, Sentry } from './../'
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     if (req.method === 'POST') {
         return
     }
-    firestore()
-        .collection('products')
-        .get()
-        .then(products => {
-            res.status(200).json(products.docs.map((user: any) => {
-                return {
-                    ...user.data(),
-                    id: user.id,
-                }
-            }))
-        })
+    try {
+        const products = await firestore()
+            .collection('products')
+            .get()
+
+        res.status(200).json(products.docs.map((user: any) => {
+            return {
+                ...user.data(),
+                id: user.id,
+            }
+        }))
+    } catch (e) {
+        Sentry.captureException(e)
+        res.status(404)
+    }
 }
