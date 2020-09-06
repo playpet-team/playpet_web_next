@@ -6,7 +6,7 @@ import { css } from "@emotion/core";
 interface AppDownloadConfig {
     show: boolean
     isFixed?: boolean
-    position: 'top' | 'bottom'
+    position?: 'top' | 'bottom'
 }
 
 export default function AppDownload({
