@@ -2,7 +2,7 @@ import { firebaseTimeStampToStringStamp } from './../../../src/utils/index';
 import { firestore } from './../'
 
 export default function personHandler({ query: { id } }, res) {
-    firestore
+    firestore()
         .collection('playground')
         .doc(id)
         .get()

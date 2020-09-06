@@ -4,7 +4,7 @@ export default function handler(req, res) {
     if (req.method === 'POST') {
         return
     }
-    firestore
+    firestore()
         .collection('products')
         .get()
         .then(products => {

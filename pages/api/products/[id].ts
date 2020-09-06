@@ -1,7 +1,7 @@
 import { firestore } from './../'
 
 export default function personHandler({ query: { id } }, res) {
-    firestore
+    firestore()
         .collection('products')
         .doc(id)
         .get()

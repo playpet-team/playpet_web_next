@@ -5,7 +5,7 @@ export default async function handler(req, res) {
         return res.status(404)
         
     }
-    const response = await firestore
+    const response = await firestore()
         .collection('products')
         .add(req.body)
     
