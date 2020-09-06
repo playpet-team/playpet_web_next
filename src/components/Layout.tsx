@@ -12,6 +12,7 @@ export interface LayoutProps {
     // whiteTextHeader?: boolean;
     // darkMode?: boolean;
     hasFooter?: boolean;
+    minimumFooter?: boolean;
 }
 function Layout({
     clearOnTop,
@@ -19,6 +20,7 @@ function Layout({
     // whiteTextHeader,
     // darkMode,
     hasFooter = true,
+    minimumFooter = false,
 }: LayoutProps) {
     useAnalytics()
 
@@ -27,7 +29,7 @@ function Layout({
             {/* <Global styles={baseCSS} /> */}
             {/* <Header clearOnTop={clearOnTop} whiteText={whiteTextHeader} darkMode={darkMode} /> */}
             <MainBlock clearOnTop={clearOnTop}>{children}</MainBlock>
-            {hasFooter && <Footer />}
+            {hasFooter && <Footer minimumFooter={minimumFooter} />}
         </React.Fragment>
     );
 }

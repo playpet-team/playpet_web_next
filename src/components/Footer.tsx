@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
-// import FacebookIcon from '@material-ui/icons/Facebook';
-// import InstagramIcon from '@material-ui/icons/Instagram';
-import { Facebook, Instagram } from '@material-ui/icons';
+import { Facebook, Instagram, ArrowDownward } from '@material-ui/icons';
+import { isMobile } from "react-device-detect";
 
+export default function Footer({ minimumFooter = false }) {
+    console.log("minimumFooter", minimumFooter)
+    const [minimum, setMinimum] = useState(minimumFooter)
 
-export default function Footer() {
+    if (minimum) {
+        return (
+            <FooterBlock onClick={() => setMinimum(!minimum)}>
+                <Text>플레이펫컴퍼니</Text>
+            </FooterBlock>
+        )
+    }
     return (
-        <FooterBlock>
+        <FooterBlock onClick={() => setMinimum(!minimum)}>
             <BusinessSection>
                 <Text>플레이펫컴퍼니&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표 : 김관우</Text>
                 <Text>사업자등록번호 : 868-18-01356&nbsp;&nbsp;&nbsp;</Text>
@@ -37,7 +45,7 @@ const FooterBlock = styled.footer`
     justify-content: space-around;
     background-color: #f5f6f7;
     flex: 1;
-    padding: 40px 80px;
+    padding: ${isMobile ? '40px 80px' : '20px'};
     font-size: 13px;
     color: #4B5064;
 

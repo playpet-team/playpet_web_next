@@ -1,15 +1,18 @@
 import styled from "@emotion/styled"
 import { colors } from "../lib/styles"
 import { isMobile } from "react-device-detect";
+import { css } from "@emotion/core";
 
 interface AppDownloadConfig {
     show: boolean
     isFixed?: boolean
+    position: 'top' | 'bottom'
 }
 
 export default function AppDownload({
     show = true,
-    isFixed = true
+    isFixed = true,
+    position = 'bottom'
 }: AppDownloadConfig) {
     if (!isMobile) {
         return null;
@@ -18,6 +21,7 @@ export default function AppDownload({
         <AppDownloadBlock
             show={show}
             isFixed={isFixed}
+            position={position}
         >
             <DownloadLink href="https://playpetme.page.link/d6o5">
                 <img
@@ -38,9 +42,21 @@ const AppDownloadBlock = styled.div<AppDownloadConfig>`
     background-color: ${colors.yellowKey};
     transition: bottom 300ms ease-out;
     position: ${({ isFixed }) => isFixed ? 'fixed' : 'relative'};
-    bottom: ${({ show }) => show ? 0 : -100}px;
+    /* bottom: ${({ show }) => show ? 0 : -100}px; */
+    ${({ position, show }) => positionByType(position, show)}
     left: 0;
 `
+
+const positionByType = (position: 'top' | 'bottom', show: boolean) => {
+    switch (position) {
+        case 'top': {
+            return css`top: ${show ? 0 : -100}px;`
+        }
+        case 'bottom': {
+            return css`bottom: ${show ? 0 : -100}px;`
+        }
+    }
+}
 
 const DownloadLink = styled.a`
     color: #333;

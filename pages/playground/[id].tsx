@@ -7,6 +7,7 @@ import SEO from "../../src/components/PlaypetHead"
 import useSWR from "swr"
 import { fetcher } from "../../src/utils"
 import { useRouter } from "next/router"
+import AppDownload from "../../src/components/AppDownload"
 
 export default function PlaygroundCard() {
     const [cards, setCard] = useState<any>({});
@@ -14,6 +15,7 @@ export default function PlaygroundCard() {
     const { data } = useSWR(() => query.id && `/api/playground/${query.id}`, fetcher)
     const [openContent, setOpenContent] = useState(false)
     const [isPlaying, setIsPlaying] = useState(true)
+    const [isMute, setIsMute] = useState(true)
     const videoEl = useRef(null)
 
     useEffect(() => {
@@ -22,16 +24,16 @@ export default function PlaygroundCard() {
         }
     }, [data])
 
-    // const toggleMute = useCallback((e) => {
-    //     e.stopPropagation()
-    //     setIsMute(!isMute)
-    // }, [isMute, videoEl])
+    const toggleMute = useCallback((e) => {
+        e.stopPropagation()
+        setIsMute(!isMute)
+    }, [isMute, videoEl])
 
-    // const toggleContent = useCallback(() => {
-    //     const toggleContent = !openContent
-    //     setOpenContent(toggleContent)
-    //     setIsPlaying(!toggleContent)
-    // }, [openContent, isPlaying])
+    const toggleContent = useCallback(() => {
+        const toggleContent = !openContent
+        setOpenContent(toggleContent)
+        setIsPlaying(!toggleContent)
+    }, [openContent, isPlaying])
 
     const { contents = [], title = '', updatedAt = '' } = cards
 
@@ -40,57 +42,55 @@ export default function PlaygroundCard() {
     }
 
     return (
-        <Layout>
+        <Layout minimumFooter={true}>
             <SEO
-                title={title}
+                description={title}
             />
             <PlaygroundCardBlock>
-                <CardWrapper>
-                    <Card>
-                        <VideoWrapper>
-                            <meta itemProp="thumbnailUrl" content={contents[0].videoThumbnail} />
-                            <meta itemProp="contentURL" content={contents[0].url} />
-                            <meta itemProp="uploadDate" content={updatedAt} />
-                            <meta itemProp="width" content={contents[0].width} />
-                            <meta itemProp="height" content={contents[0].height} />
-                            <ReactPlayer
-                                ref={videoEl}
-                                width='100%'
-                                height='100%'
-                                playing={isPlaying}
-                                // muted={isMute}
-                                loop
-                                url={contents[0].url}
-                            />
-                            <VideoContent
-                                openContent={openContent}
-                            >
-                                <ContentWrapper>
-                                    <ControlBar>
-                                        <ReactionIconWrapper>
-                                            <Icon
-                                                src={'/icon/thumbUp_white.svg'}
-                                            />
-                                            {/* <Icon
+                <PlaygroundCardBackgroundBlur thumbnail={contents[0].videoThumbnail} />
+                <Card>
+                    <VideoWrapper>
+                        <meta itemProp="thumbnailUrl" content={contents[0].videoThumbnail} />
+                        <meta itemProp="contentURL" content={contents[0].url} />
+                        <meta itemProp="uploadDate" content={updatedAt} />
+                        <meta itemProp="width" content={contents[0].width} />
+                        <meta itemProp="height" content={contents[0].height} />
+                        <ReactPlayer
+                            ref={videoEl}
+                            width='100%'
+                            height='100%'
+                            playing={isPlaying}
+                            muted={isMute}
+                            loop
+                            url={contents[0].url}
+                        />
+                        <VideoContent openContent={openContent}>
+                            <ContentWrapper>
+                                <ControlBar>
+                                    <ReactionIconWrapper>
+                                        {/* <Icon
+                                            src={'/icon/thumbUp_white.svg'}
+                                        /> */}
+                                        {/* <Icon
                                             src={'/icon/thumbDown_white.svg'}
                                         /> */}
-                                        </ReactionIconWrapper>
-                                        {/* <ControlIconWrapper>
+                                    </ReactionIconWrapper>
+                                    <ControlIconWrapper>
                                         <Icon
                                             src={`/icon/volume${isMute ? 'Up' : 'Off'}_white.svg`}
                                             onClick={toggleMute}
                                         />
-                                    </ControlIconWrapper> */}
-                                    </ControlBar>
-                                    <Title>
-                                        {title}
-                                    </Title>
-                                    <ContentBackground openContent={openContent}></ContentBackground>
-                                </ContentWrapper>
-                            </VideoContent>
-                        </VideoWrapper>
-                    </Card>
-                </CardWrapper>
+                                    </ControlIconWrapper>
+                                </ControlBar>
+                                <Title>
+                                    {title}
+                                </Title>
+                                <ContentBackground openContent={openContent}></ContentBackground>
+                            </ContentWrapper>
+                        </VideoContent>
+                    </VideoWrapper>
+                </Card>
+                <AppDownload show isFixed position="top" />
             </PlaygroundCardBlock>
         </Layout>
     )
@@ -102,15 +102,18 @@ const PlaygroundCardBlock = styled.div`
     height: 100vh;
     flex: 1;
     align-items: center;
-    background-color: #303441;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
 `
 
-const CardWrapper = styled.div`
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    background-color: #fff;
+const PlaygroundCardBackgroundBlur = styled.div<{ thumbnail: string }>`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: scale(1.02);
+    filter: blur(3px) brightness(0.5);
+    background-image: url(${({ thumbnail }) => thumbnail});
 `
 
 const Card = styled.div`
