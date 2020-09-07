@@ -8,25 +8,20 @@ export default async function personHandler({ body: {
     method,
 }}, res) {
     try {
-        console.log('gogo--------', email, username, photo, method)
         let uid = ''
         const isExistUser = await firestore().collection('users')
             .where('email', '==', email)
             .where('isLeave', '==', false)
             .get()
-        console.log('isExistUser-----------', !isExistUser.empty)
 
         if (!isExistUser.empty) {
-            console.log('111')
             const userData = isExistUser.docs[0].data()
             const token = await getCustomToken(userData.uid)
-            console.log('token---', token)
             return res.status(200).json({
                 newUser: false,
                 token,
             })
         }
-        console.log('2222')
         const result = await auth().createUser({
             email,
             displayName: username,
@@ -37,14 +32,15 @@ export default async function personHandler({ body: {
             uid,
             method,
         })
-
+        
         if (!uid) {
             return res.status(404).json({ message: '유저를 생성할수 없습니다' })
         }
-    
+        
+        const token = await getCustomToken(uid)
         return res.status(200).json({
             newUser: true,
-            token: getCustomToken(uid),
+            token,
         })
     } catch (e) {
         console.error('createUser-', e)
@@ -87,4 +83,11 @@ const createUserCollection = async ({ uid, method }: createUserParams) => {
     }
 }
 
-const getCustomToken = async (uid: string) => await auth().createCustomToken(uid)
+const getCustomToken = async (uid: string) => {
+    try {
+        return await auth().createCustomToken(uid)
+    } catch (e) {
+        Sentry.captureException(e)
+        return ''
+    }
+}
