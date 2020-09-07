@@ -8,12 +8,13 @@ export default async function personHandler({ body: {
     method,
 }}, res) {
     try {
-        let uid = ''
-        const isExistUser = await firestore().collection('users')
-            .where('email', '==', email)
-            .where('isLeave', '==', false)
-            .get()
+        const isExistUser = await findActiveUser(email)
 
+        if (isExistUser === null) {
+            return res.status(404).json({ message: '서버 오류입니다. 잠시후 다시 시도해주세요' })
+        }
+
+        
         if (!isExistUser.empty) {
             const userData = isExistUser.docs[0].data()
             const token = await getCustomToken(userData.uid)
@@ -22,12 +23,14 @@ export default async function personHandler({ body: {
                 token,
             })
         }
+
         const result = await auth().createUser({
             email,
             displayName: username,
             photoURL: photo,
         })
-        uid = result.uid
+        let { uid } = result
+
         await createUserCollection({
             uid,
             method,
@@ -89,5 +92,18 @@ const getCustomToken = async (uid: string) => {
     } catch (e) {
         Sentry.captureException(e)
         return ''
+    }
+}
+
+const findActiveUser = async (email: string) => {
+    try {
+        return await firestore().collection('users')
+            .where('email', '==', email)
+            .where('isLeave', '==', false)
+            .get()
+    } catch (e) {
+        Sentry.captureException(e)
+        return null
+
     }
 }
