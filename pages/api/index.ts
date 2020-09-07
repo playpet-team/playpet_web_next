@@ -12,6 +12,7 @@ sentryInit()
 function adminFirebaseInit() {
     try {
         // 이미 initial 되있다면 하지않는다
+        console.log("process.env.projectId------", process.env.projectId)
         admin.initializeApp({
             credential: admin.credential.cert({
                 projectId: process.env.projectId,
