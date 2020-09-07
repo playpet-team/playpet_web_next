@@ -1,3 +1,4 @@
+import { Collections } from './../../../src/utils/collections';
 import { firestore, Sentry } from './../'
 
 export default async function handler(req, res) {
@@ -6,7 +7,7 @@ export default async function handler(req, res) {
     }
     try {
         const products = await firestore()
-            .collection('products')
+            .collection(Collections.Products)
             .get()
 
         res.status(200).json(products.docs.map((user: any) => {

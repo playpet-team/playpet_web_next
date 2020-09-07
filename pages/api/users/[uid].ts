@@ -1,9 +1,10 @@
+import { Collections } from './../../../src/utils/collections';
 import { firestore, Sentry } from './../'
 
 export default async function personHandler({ query: { uid } }, res) {
     try {
         const user = await firestore()
-            .collection('users')
+            .collection(Collections.Users)
             .doc(uid)
             .get()
         res.status(200).json(user.data())

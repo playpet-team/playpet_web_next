@@ -1,10 +1,11 @@
+import { Collections } from './../../../src/utils/collections';
 import { firebaseTimeStampToStringStamp } from './../../../src/utils/index';
 import { firestore, Sentry } from './../'
 
 export default async function personHandler({ query: { id } }, res) {
     try {
         const card = await firestore()
-            .collection('playground')
+            .collection(Collections.Playground)
             .doc(id)
             .get()
         if (card.exists) {

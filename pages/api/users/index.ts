@@ -1,3 +1,4 @@
+import { Collections } from './../../../src/utils/collections';
 import { firestore } from './../'
 import * as Sentry from '@sentry/node';
 
@@ -7,7 +8,7 @@ export default async function handler(req, res) {
     }
     try {
         const users = await firestore()
-            .collection('users')
+            .collection(Collections.Users)
             .get()
         res.status(200).json(users.docs.map((user: any) => user.data()))
     } catch (e) {

@@ -1,3 +1,4 @@
+import { Collections } from './../../../src/utils/collections';
 import { firestore, Sentry } from '..'
 import { getCurrentTime } from '../../../src/utils/firebaseadmin'
 
@@ -11,9 +12,9 @@ export default async function personHandler({ body: {
                 message: '카드 정보를 찾을수 없습니다. 잠시 후 다시 시도해주세요'
             })
         }
-        const docExists = (await firestore().collection('userActions').doc(myUid).get()).exists
+        const docExists = (await firestore().collection(Collections.UserActions).doc(myUid).get()).exists
         if (docExists) {
-            await firestore().collection('userActions').doc(myUid).update({
+            await firestore().collection(Collections.UserActions).doc(myUid).update({
                 followings: methods === 'add' ?
                     firestore.FieldValue.arrayUnion(followingUid)
                     :
@@ -21,7 +22,7 @@ export default async function personHandler({ body: {
                 updatedAt: getCurrentTime(),
             })
         } else {
-            await firestore().collection('userActions').doc(myUid).set({
+            await firestore().collection(Collections.UserActions).doc(myUid).set({
                 followings: [followingUid],
                 updatedAt: getCurrentTime(),
                 createdAt: getCurrentTime(),

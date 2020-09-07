@@ -1,3 +1,4 @@
+import { Collections } from './../../../src/utils/collections';
 import { firestore, Sentry } from '..'
 
 export default async function handler(req, res) {
@@ -7,7 +8,7 @@ export default async function handler(req, res) {
     }
     try {
         const response = await firestore()
-            .collection('products')
+            .collection(Collections.Products)
             .add(req.body)
 
         if (response) {

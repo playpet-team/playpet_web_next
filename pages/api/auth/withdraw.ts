@@ -1,8 +1,13 @@
+import { Collections } from './../../../src/utils/collections';
 import { auth, firestore, Sentry } from './../'
 
 export default async function personHandler({ body: {
     uid,
-}}, res) {
+}}: {
+    body: {
+        uid: string
+    }
+}, res) {
     try {
         console.log('------------', uid)
         if (!uid) {
@@ -33,7 +38,7 @@ export default async function personHandler({ body: {
 const updateLeftAt = async (uid: string) => {
     const now = firestore.Timestamp.now()
     try {
-        return await firestore().collection('users').doc(uid).set({
+        return await firestore().collection(Collections.Users).doc(uid).set({
             isLeave: true,
             leaveAt: now,
             updatedAt: now,
