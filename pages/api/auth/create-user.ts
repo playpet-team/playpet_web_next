@@ -1,3 +1,4 @@
+import { Collections } from './../../../src/utils/collections';
 import { firestore, auth, Sentry } from '..'
 import { getCurrentTime } from '../../../src/utils/firebaseadmin'
 
@@ -6,21 +7,28 @@ export default async function personHandler({ body: {
     username,
     photo = '',
     method,
-}}, res) {
+}}: {
+    body: {
+        email: string;
+        username: string;
+        photo: string;
+        method: string;
+    }
+}, res) {
     try {
         const isExistUser = await findActiveUser(email)
-
+        
         if (isExistUser === null) {
             return res.status(404).json({ message: '서버 오류입니다. 잠시후 다시 시도해주세요' })
         }
-
         
         if (!isExistUser.empty) {
             const userData = isExistUser.docs[0].data()
-            const token = await getCustomToken(userData.uid)
+            const customToken = await createCustomToken(userData.uid)
             return res.status(200).json({
+                uid: userData.uid,
                 newUser: false,
-                token,
+                customToken,
             })
         }
 
@@ -30,7 +38,7 @@ export default async function personHandler({ body: {
             photoURL: photo,
         })
         let { uid } = result
-
+        
         await createUserCollection({
             uid,
             method,
@@ -40,10 +48,11 @@ export default async function personHandler({ body: {
             return res.status(404).json({ message: '유저를 생성할수 없습니다' })
         }
         
-        const token = await getCustomToken(uid)
+        const customToken = await createCustomToken(uid)
         return res.status(200).json({
+            uid,
             newUser: true,
-            token,
+            customToken,
         })
     } catch (e) {
         console.error('createUser-', e)
@@ -64,7 +73,7 @@ const createUserCollection = async ({ uid, method }: createUserParams) => {
             photoURL = '',
         } = await auth().getUser(uid)
 
-        await firestore().collection('users').doc(uid).set({
+        await firestore().collection(Collections.Users).doc(uid).set({
             uid,
             method,
             isLeave: false,
@@ -86,7 +95,7 @@ const createUserCollection = async ({ uid, method }: createUserParams) => {
     }
 }
 
-const getCustomToken = async (uid: string) => {
+export const createCustomToken = async (uid: string) => {
     try {
         return await auth().createCustomToken(uid)
     } catch (e) {
@@ -97,7 +106,7 @@ const getCustomToken = async (uid: string) => {
 
 const findActiveUser = async (email: string) => {
     try {
-        return await firestore().collection('users')
+        return await firestore().collection(Collections.Users)
             .where('email', '==', email)
             .where('isLeave', '==', false)
             .get()
