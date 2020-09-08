@@ -45,7 +45,7 @@ export default function ProductFormModal({
     const desktop = useMediaQuery('(min-width:1024px)')
     const [errorField, setErrorField] = useState<string[]>([])
 
-    const addForm = useCallback(async () => {
+    const addForm = async () => {
         await fetch('/api/products/form', {
             method: 'POST',
             body: JSON.stringify(form),
@@ -53,9 +53,9 @@ export default function ProductFormModal({
                 'Content-Type': 'application/json'
             },
         })
-    }, [])
+    }
 
-    const checkValidation = useCallback(() => {
+    const checkValidation = () => {
         const requiredFields = Object.keys(MAPPING_FIELDS).filter((field: any) => MAPPING_FIELDS[field].required)
         console.log("requiredFields", requiredFields)
         const errorFields = requiredFields.filter(field => {
@@ -67,9 +67,9 @@ export default function ProductFormModal({
         })
         setErrorField(errorFields)
         return errorFields
-    }, [])
+    }
 
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = () => {
         const errors = checkValidation()
         console.log("errors.length", errors.length)
         if (errors.length) {
@@ -77,7 +77,7 @@ export default function ProductFormModal({
         }
         addForm()
         setVisibleModal(false)
-    }, [])
+    }
 
     return (
         <Modal
