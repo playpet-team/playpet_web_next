@@ -13,10 +13,10 @@ export default async function personHandler({ body: {
         res.status(404)
     }
     try {
-        console.log("2")
+        console.log("2", cardId)
         const response = await axios({
             method: 'GET',
-            url: `https://storage.googleapis.com/playpet-5b432.appspot.com/playground/${cardId}`,
+            url: `https://storage.googleapis.com/${process.env.STORAGE_BUCKET}/playground/${cardId}`,
             responseType: 'stream'
         })
         console.log("2")
@@ -42,6 +42,7 @@ export default async function personHandler({ body: {
         
     } catch (e) {
         Sentry.captureException(e)
+        console.log("out", e)
         res.status(404)
     }
 }

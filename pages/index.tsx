@@ -11,6 +11,7 @@ import SEO from "../src/components/PlaypetHead"
 
 export default function Landing() {
     const bottom = usePageBottom()
+
     return (
         <Layout>
             <SEO />
