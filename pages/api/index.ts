@@ -32,6 +32,7 @@ function adminFirebaseInit() {
 }
 
 function sentryInit() {
+    console.log("sentry init")
     SentryNode.init({
         dsn: process.env.SENTRY_DSN,
         tracesSampleRate: 1.0,
