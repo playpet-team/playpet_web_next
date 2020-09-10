@@ -3,6 +3,7 @@ import { isProduction } from '../../src/utils';
 import * as SentryNode from '@sentry/node';
 
 export const firestore = admin.firestore
+export const storage = admin.storage
 export const auth = admin.auth
 export const Sentry = SentryNode
 
