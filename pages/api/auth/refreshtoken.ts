@@ -1,14 +1,17 @@
+import { NextApiResponse } from 'next';
+import { getCurrentTime } from './../../../src/utils/firebaseadmin';
 import { Collections } from './../../../src/utils/collections';
 import { createCustomToken } from './create-user';
-import { firestore, Sentry } from './../'
+import * as admin from 'firebase-admin'
+import * as Sentry from '@sentry/node';
+import { apiSetup } from '..';
+apiSetup()
 
 export default async function personHandler({ body: {
     uid,
-}}: {
-    body: {
-        uid: string
-    }
-}, res) {
+}}: { body: { uid: string; }},
+    res: NextApiResponse
+) {
     try {
         if (!uid) {
             return res.status(404).json({
@@ -19,9 +22,9 @@ export default async function personHandler({ body: {
         
         const customToken = await createCustomToken(uid)
         
-        await firestore().collection(Collections.AuthTokens).doc(uid).set({
+        await admin.firestore().collection(Collections.AuthTokens).doc(uid).set({
             customToken,
-            updatedAt: firestore.Timestamp.now()
+            updatedAt: getCurrentTime()
         })
        
         return res.status(200).json({

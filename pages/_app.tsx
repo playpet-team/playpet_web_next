@@ -2,7 +2,6 @@ import NextApp from 'next/app'
 import { CacheProvider, Global } from '@emotion/core'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-// Use only { cache } from 'emotion'. Don't use { css }.
 import { cache } from 'emotion'
 
 import baseCSS from '../src/styles/baseCSS'

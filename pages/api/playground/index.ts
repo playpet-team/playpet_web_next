@@ -1,12 +1,16 @@
+import { NextApiResponse, NextApiRequest } from 'next';
 import { Collections } from './../../../src/utils/collections';
-import { firestore, Sentry } from './../'
+import * as admin from 'firebase-admin'
+import * as Sentry from '@sentry/node';
+import { apiSetup } from '..';
+apiSetup()
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         return
     }
     try {
-        const cards = await firestore()
+        const cards = await admin.firestore()
             .collection(Collections.Playground)
             .get()
 

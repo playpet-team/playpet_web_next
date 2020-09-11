@@ -1,3 +1,3 @@
-import { firestore } from './../../pages/api';
+import * as admin from 'firebase-admin'
 
-export const getCurrentTime = () => firestore.FieldValue.serverTimestamp()
+export const getCurrentTime = () => admin.firestore.FieldValue.serverTimestamp()

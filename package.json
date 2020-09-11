@@ -34,13 +34,17 @@
     "react-intersection-observer": "^8.27.1",
     "react-player": "^2.6.1",
     "swr": "^0.3.0",
+    "transloadit": "^2.0.10",
+    "tslint": "^6.1.3",
     "typescript": "^3.9.7",
-    "vimeo": "^2.1.1",
-    "transloadit": "^2.0.10"
+    "vimeo": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",
     "@types/react": "^16.9.46",
-    "google-spreadsheet": "^3.0.13"
+    "google-spreadsheet": "^3.0.13",
+    "prettier": "^2.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0"
   }
 }

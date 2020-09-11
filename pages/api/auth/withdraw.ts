@@ -1,13 +1,14 @@
-import { Collections } from './../../../src/utils/collections';
-import { auth, firestore, Sentry } from './../'
+import { NextApiResponse } from 'next'
+import { Collections } from './../../../src/utils/collections'
+import * as admin from 'firebase-admin'
+import * as Sentry from '@sentry/node'
+import { apiSetup } from '..'
+apiSetup()
 
 export default async function personHandler({ body: {
     uid,
-}}: {
-    body: {
-        uid: string
-    }
-}, res) {
+}}: { body: { uid: string }
+}, res: NextApiResponse) {
     try {
         console.log('------------', uid)
         if (!uid) {
@@ -22,7 +23,7 @@ export default async function personHandler({ body: {
         //     status: 'SUCCESS'
         // })
         await updateLeftAt(uid)
-        await auth().deleteUser(uid)
+        await admin.auth().deleteUser(uid)
         return res.status(200).json({
             status: 'SUCCESS'
         })
@@ -36,9 +37,9 @@ export default async function personHandler({ body: {
 }
 
 const updateLeftAt = async (uid: string) => {
-    const now = firestore.Timestamp.now()
+    const now = admin.firestore.Timestamp.now()
     try {
-        return await firestore().collection(Collections.Users).doc(uid).set({
+        return await admin.firestore().collection(Collections.Users).doc(uid).set({
             isLeave: true,
             leaveAt: now,
             updatedAt: now,
@@ -50,14 +51,14 @@ const updateLeftAt = async (uid: string) => {
     }
 }
 
-// export const withdraw = functions.https.onCall(async (_data, { auth }) => {
+// export const withdraw = functions.https.onCall(async (_data, { admin.auth }) => {
 //     try {
-//         if (!auth || !auth.uid) {
+//         if (!admin.auth || !admin.auth.uid) {
 //             return { status: 'FAIL' }
 //         }
-//         const uid = auth.uid
+//         const uid = admin.auth.uid
 //         await updateLeftAt(uid)
-//         await admin.auth().deleteUser(uid)
+//         await admin.admin.auth().deleteUser(uid)
 //         return { status: 'SUCCESS' }
 //     } catch (e) {
 //         console.error(`withdraw: ${e}`)

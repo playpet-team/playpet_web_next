@@ -1,9 +1,13 @@
+import { NextApiResponse } from 'next';
 import { Collections } from './../../../src/utils/collections';
-import { firestore, Sentry } from './../'
+import * as admin from 'firebase-admin'
+import * as Sentry from '@sentry/node';
+import { apiSetup } from '..';
+apiSetup()
 
-export default async function personHandler({ query: { id } }, res) {
+export default async function personHandler({ query: { id } }: { query: { id: string; }}, res: NextApiResponse) {
     try {
-        const product = await firestore()
+        const product = await admin.firestore()
             .collection(Collections.Stores)
             .doc(id)
             .get()
