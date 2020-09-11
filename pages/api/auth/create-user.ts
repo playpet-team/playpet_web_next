@@ -25,13 +25,16 @@ export default async function personHandler({ body: {
         const isExistUser = await findActiveUser(email)
         
         if (isExistUser === null) {
+            Sentry.captureException('서버 오류입니다. 잠시후 다시 시도해주세요')
             return res.status(404).json({ message: '서버 오류입니다. 잠시후 다시 시도해주세요' })
         }
         
         if (!isExistUser.empty) {
             console.log("exest")
             const userData = isExistUser.docs[0].data()
+            console.log("exest2", userData)
             const customTokenForExistUser = await createCustomToken(userData.uid)
+            console.log("exest3", customTokenForExistUser)
             return res.status(200).json({
                 uid: userData.uid,
                 newUser: false,
@@ -53,6 +56,7 @@ export default async function personHandler({ body: {
         })
         
         if (!uid) {
+            Sentry.captureException('유저를 생성할수 없습니다')
             return res.status(404).json({ message: '유저를 생성할수 없습니다' })
         }
         

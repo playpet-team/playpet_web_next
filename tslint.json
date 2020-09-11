@@ -5,6 +5,7 @@
         false,
         "log",
         "error"
-    ]
+    ],
+    "no-var-requires": false
    }
 }

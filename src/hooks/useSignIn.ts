@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { useEffect } from 'react'
-import { auth } from 'firebase/app'
-import { isServer, clientFirebase as firebase } from '../utils';
+import { auth } from 'firebase/app';
+import { useEffect, useState } from 'react';
+import { clientFirebase as firebase, isServer } from '../utils';
 require('firebase/auth')
 
 export default function useSignIn() {
@@ -10,8 +9,8 @@ export default function useSignIn() {
         if (isServer()) {
             return
         }
-        firebase().auth().onAuthStateChanged((user => {
-            if (user && ADMIN_EMAIL.includes(user.email)) {
+        firebase().auth().onAuthStateChanged((changedUser => {
+            if (changedUser && ADMIN_EMAIL.includes(changedUser.email)) {
                 setUser(true)
             } else {
                 googleSignin()
