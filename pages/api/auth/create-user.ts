@@ -21,6 +21,7 @@ export default async function personHandler({ body: {
 }, res: NextApiResponse
 ) {
     try {
+        console.log('email--', email)
         const isExistUser = await findActiveUser(email)
         
         if (isExistUser === null) {
@@ -28,6 +29,7 @@ export default async function personHandler({ body: {
         }
         
         if (!isExistUser.empty) {
+            console.log("exest")
             const userData = isExistUser.docs[0].data()
             const customTokenForExistUser = await createCustomToken(userData.uid)
             return res.status(200).json({
@@ -36,6 +38,7 @@ export default async function personHandler({ body: {
                 customTokenForExistUser,
             })
         }
+        console.log("new")
 
         const result = await admin.auth().createUser({
             email,
