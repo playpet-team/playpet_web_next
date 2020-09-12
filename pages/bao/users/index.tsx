@@ -1,19 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react'
 import styled from '@emotion/styled'
-import { firebaseTimeStampToStringStamp, fetcher } from '../../../src/utils'
-import { TextField, Button } from '@material-ui/core'
-import BaoLayout from '../../../src/components/bao/BaoLayout'
+import { Button, TextField } from '@material-ui/core'
 import Link from 'next/link'
-import useSWR from 'swr'
 import { useRouter } from 'next/router'
-import { RowBlock, LinkWrapper } from '../../../src/styles/bao'
-
-// export async function getServerSideProps({ params }) {
-//     const res = await fetch(params.id && `${ROOT_URL}/api/users/${params.uid}`)
-//     return {
-//         props: { data: await res.json() }
-//     }
-// }
+import React, { useCallback, useEffect, useState } from 'react'
+import useSWR from 'swr'
+import BaoLayout from '../../../src/components/bao/BaoLayout'
+import { LinkWrapper, RowBlock } from '../../../src/styles/bao'
+import { fetcher, firebaseTimeStampToStringStamp } from '../../../src/utils'
 
 export default function Users() {
     const [users, setUsers] = useState<any[]>([])

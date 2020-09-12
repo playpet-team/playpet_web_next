@@ -1,6 +1,6 @@
-import Document, { Head, Main, NextScript, DocumentContext } from 'next/document'
-import { extractCritical } from 'emotion-server'
 import { ServerStyleSheets } from '@material-ui/core/styles';
+import { extractCritical } from 'emotion-server';
+import Document, { DocumentContext, Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {

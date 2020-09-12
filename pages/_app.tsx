@@ -1,10 +1,8 @@
-import NextApp from 'next/app'
-import { CacheProvider, Global } from '@emotion/core'
+import { CacheProvider, Global } from '@emotion/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
-import { cache } from 'emotion'
-
-import baseCSS from '../src/styles/baseCSS'
+import { cache } from 'emotion';
+import NextApp from 'next/app';
+import baseCSS from '../src/styles/baseCSS';
 
 export default class App extends NextApp {
     componentDidMount() {
