@@ -1,13 +1,13 @@
-import React, { useState, useRef, useMemo, useCallback, useEffect } from "react"
-import styled from "@emotion/styled"
-import ReactPlayer from 'react-player'
 import { css } from "@emotion/core"
+import styled from "@emotion/styled"
+import { useRouter } from "next/router"
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import ReactPlayer from 'react-player'
+import useSWR from "swr"
+import AppDownload from "../../src/components/AppDownload"
 import Layout from "../../src/components/Layout"
 import SEO from "../../src/components/PlaypetHead"
-import useSWR from "swr"
 import { fetcher } from "../../src/utils"
-import { useRouter } from "next/router"
-import AppDownload from "../../src/components/AppDownload"
 
 export default function PlaygroundCard() {
     const [cards, setCard] = useState<any>({});
@@ -158,9 +158,6 @@ const Title = styled.h1`
     position: relative;
     z-index: 10;
 `
-
-// const Video = styled(ReactPlayer)`
-// `
 
 const ContentWrapper = styled.div`
     position: relative;
