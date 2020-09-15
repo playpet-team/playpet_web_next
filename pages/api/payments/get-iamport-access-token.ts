@@ -5,6 +5,9 @@ import { apiSetup } from '..'
 apiSetup()
 
 export default async function personHandler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method === 'GET') {
+        res.status(404)
+    }
     try {
         console.log('000000000')
         const getToken = await axios({
@@ -18,10 +21,10 @@ export default async function personHandler(req: NextApiRequest, res: NextApiRes
         })
         const { access_token } = getToken.data.response 
 
-        return res.status(200).json({ access_token, })
+        res.status(200).json({ access_token, })
     } catch (e) {
         Sentry.captureException(e)
-        return res.status(404)
+        res.status(404)
     }
 }
 

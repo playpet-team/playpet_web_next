@@ -4,14 +4,17 @@ import { NextApiResponse } from 'next'
 import { apiSetup } from '..'
 apiSetup()
 
-export default async function personHandler({ body: {
-    card_number = 5365100185654338,
-    expiry = 202207,
-    birth = 870919,
-    pwd_2digit = 14,
-    customer_uid = 'testuid',
-    access_token = '',
-}}: {
+export default async function personHandler({
+    body: {
+        card_number = 5365100185654338,
+        expiry = 202207,
+        birth = 870919,
+        pwd_2digit = 14,
+        customer_uid = 'testuid',
+        access_token = '',
+    },
+    method,
+}: {
     body: {
         card_number: number
         expiry: number
@@ -20,8 +23,12 @@ export default async function personHandler({ body: {
         customer_uid: string
         access_token: string
     }
+    method: string
 }, res: NextApiResponse
 ) {
+    if (method === 'GET') {
+        res.status(404)
+    }
     try {
         const { data } = await axios({
             url: isAvailableCard(customer_uid),
@@ -34,10 +41,10 @@ export default async function personHandler({ body: {
                 pwd_2digit,
             }
         })
-        return res.status(200).json({ data, })
+        res.status(200).json({ data, })
     } catch (e) {
         Sentry.captureException(e)
-        return res.status(404)
+        res.status(404)
     }
 }
 

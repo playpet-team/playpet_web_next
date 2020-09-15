@@ -4,16 +4,23 @@ import { NextApiResponse } from 'next'
 import { apiSetup } from '..'
 apiSetup()
 
-export default async function personHandler({ body: {
-    access_token = '',
-    customer_uid = 'testuid', // 카드(빌링키)와 1:1로 대응하는 값
-}}: {
+export default async function personHandler({
+    body: {
+        access_token = '',
+        customer_uid = 'testuid', // 카드(빌링키)와 1:1로 대응하는 값
+    },
+    method
+}: {
     body: {
         access_token: string
         customer_uid: string
     }
+    method: string
 }, res: NextApiResponse
 ) {
+    if (method === 'GET') {
+        res.status(404)
+    }
     try {
         const { data } = await axios({
             url: PAYMENT_URL,
@@ -28,10 +35,10 @@ export default async function personHandler({ body: {
         })
 
         console.log('paymentResult--------', data)
-        return res.status(200).json({ data, })
+        res.status(200).json({ data, })
     } catch (e) {
         Sentry.captureException(e)
-        return res.status(404)
+        res.status(404)
     }
 }
 
