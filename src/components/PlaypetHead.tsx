@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import { removeSpace, ROOT_URL } from '../utils'
 import { useRouter } from 'next/router'
+import { removeSpace, ROOT_URL } from '../utils'
 
 export default function SEO({
     title = '🐶Playpet-재미가 가득한 반려동물 영상 쇼핑몰 플레이펫',
@@ -28,7 +28,7 @@ export default function SEO({
                 <link rel="canonical" href={ROOT_URL + route.asPath} />
                 <meta property="og:site_name" content="플레이펫" />
                 <meta property="og:locale" content="ko_KR" />
-                <link rel="icon" href="/logo/playpet.ico" />
+                <link rel="shortcut icon" href="https://playpet.me/logo/playpet.ico" />
                 <meta name="naver-site-verification" content="6627b9d77d737924f4326cc7692eb0c27e9b1cec" />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: removeSpace(ORGANIZATION({ description })) }}>
                 </script>
