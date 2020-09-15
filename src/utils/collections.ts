@@ -10,5 +10,5 @@ export enum Collections {
     Products = 'products',
     Stores = 'stores',
     Notifications = 'notifications',
-    BusinessModel = 'business-model',
+    BusinessModel = 'businessModel',
 }

@@ -14,8 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             .collection(Collections.BusinessModel)
             .get()
 
-        console.log("111")
-
         res.status(200).json(cards.docs.map((card: any) => {
             return ({
                 ...card.data(),
