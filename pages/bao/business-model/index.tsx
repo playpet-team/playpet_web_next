@@ -32,7 +32,7 @@ export default function Playground() {
                     <div>updatedBy</div>
                     
                 </RowBlock>
-                {models.map((model, index) => {
+                {models.map(model => {
                     if (!model.id) {
                         return null;
                     }
