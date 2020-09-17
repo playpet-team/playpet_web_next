@@ -9,7 +9,6 @@ export default async function personHandler(req: NextApiRequest, res: NextApiRes
         res.status(404)
     }
     try {
-        console.log('000000000')
         const getToken = await axios({
             url: IAMPORT_GET_TOKEN_URL,
             method: 'post', // POST method
@@ -19,7 +18,9 @@ export default async function personHandler(req: NextApiRequest, res: NextApiRes
                 imp_secret: process.env.IMP_SECRET,
             },
         })
+        console.log(10)
         const { access_token } = getToken.data.response 
+        // 47019c2fb0b7d1f89f1178156493c4a83b542afd
 
         res.status(200).json({ access_token, })
     } catch (e) {

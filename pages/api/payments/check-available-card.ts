@@ -11,7 +11,7 @@ export default async function personHandler({
         birth = 870919,
         pwd_2digit = 14,
         customer_uid = 'testuid',
-        access_token = '',
+        access_token = '47019c2fb0b7d1f89f1178156493c4a83b542afd',
     },
     method,
 }: {
@@ -41,6 +41,7 @@ export default async function personHandler({
                 pwd_2digit,
             }
         })
+        console.log("data---", data)
         res.status(200).json({ data, })
     } catch (e) {
         Sentry.captureException(e)

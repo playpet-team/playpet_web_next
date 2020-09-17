@@ -6,7 +6,7 @@ apiSetup()
 
 export default async function personHandler({
     body: {
-        access_token = '',
+        access_token = '47019c2fb0b7d1f89f1178156493c4a83b542afd',
         customer_uid = 'testuid', // 카드(빌링키)와 1:1로 대응하는 값
     },
     method
@@ -22,6 +22,7 @@ export default async function personHandler({
         res.status(404)
     }
     try {
+        console.log('0000000000')
         const { data } = await axios({
             url: PAYMENT_URL,
             method: 'post',
@@ -37,6 +38,7 @@ export default async function personHandler({
         console.log('paymentResult--------', data)
         res.status(200).json({ data, })
     } catch (e) {
+        console.error('paymentResult--------', e)
         Sentry.captureException(e)
         res.status(404)
     }
