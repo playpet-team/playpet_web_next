@@ -4,7 +4,6 @@ import { Facebook, Instagram, ArrowDownward } from '@material-ui/icons';
 import { isMobile } from "react-device-detect";
 
 export default function Footer({ minimumFooter = false }) {
-    console.log("minimumFooter", minimumFooter)
     const [minimum, setMinimum] = useState(minimumFooter)
 
     if (minimum) {

@@ -1,9 +1,8 @@
-import styled from "@emotion/styled"
-import SectionLayout from "./SectionLayout"
-import { DividerBlock, Text } from "../../styles"
-import { colors } from "../../lib/styles"
-import { ScreenshotBlock } from "./AboutPlaypet"
 import { useInView } from 'react-intersection-observer'
+import { colors } from "../../lib/styles"
+import { Text } from "../../styles"
+import { ScreenshotBlock } from "./AboutPlaypet"
+import SectionLayout from "./SectionLayout"
 
 export default function NoMoreFake() {
     const [ref, inView] = useInView({

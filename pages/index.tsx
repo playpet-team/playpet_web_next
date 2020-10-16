@@ -27,12 +27,15 @@ export default function Landing() {
             <SEO />
             <LandingBlock>
                 <Hero />
-                <AboutPlaypet />
+                {/* <AboutPlaypet />
                 <PlaypetProducts />
-                <NoMoreFake />
+                <NoMoreFake /> */}
                 {/* <ExplorePlayground data={data} /> */}
-                <BottomContent />
-                <AppDownload show={!bottom} isFixed />
+                {/* <BottomContent /> */}
+                {/* <AppDownload
+                    show={!bottom}
+                    isFixed
+                /> */}
             </LandingBlock>
         </Layout>
     )

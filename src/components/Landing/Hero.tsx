@@ -15,12 +15,12 @@ export default function Hero() {
                         <Text
                             family='GmarketSansMedium'
                             size={mobile ? 48 : 78}
-                            color={colors.white}
+                            color='transparent'
                             weight={800}
                             align='center'
                         >
-                            재미가 가득한<br />반려동물<br />영상 쇼핑몰
-                    </Text>
+                            playpet
+                        </Text>
                     </h1>
                 </Content>
             </BackgroundSection>
@@ -40,6 +40,7 @@ export const LogoImg = styled.img`
 
 const BackgroundSection = styled.section`
     background-image: url("https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/web%2Fassets%2Fimages%2Fbackground-section.jpg?alt=media&token=f6a43608-bb93-4b5b-86c8-ce8df8b07398");
+    background-position: center center;
     background-size: cover;
     height: 100vh;
     width: 100%;
