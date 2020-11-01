@@ -5,20 +5,20 @@ import { useMediaQuery } from "@material-ui/core"
 import Head from 'next/head'
 import useSignIn from '../../hooks/useSignIn'
 
-export interface BaoLayoutProps {
+export interface WalwalLayoutProps {
     clearOnTop?: boolean
     children: React.ReactNode
 }
 
-function BaoLayout({
+function WalwalLayout({
     clearOnTop,
     children,
-}: BaoLayoutProps) {
+}: WalwalLayoutProps) {
     const desktop = useMediaQuery('(min-width:1024px)')
     const user = useSignIn()
 
     return (
-        <BaoLayoutBlock desktop={desktop ? 1 : 0}>
+        <WalwalLayoutBlock desktop={desktop ? 1 : 0}>
             <Head>
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
@@ -29,11 +29,11 @@ function BaoLayout({
                 </>
                 : <div>로그인</div>
             }
-        </BaoLayoutBlock>
+        </WalwalLayoutBlock>
     )
 }
 
-const BaoLayoutBlock = styled.div<{ desktop: number; }>`
+const WalwalLayoutBlock = styled.div<{ desktop: number; }>`
     display: flex;
     flex: 1;
     height: 100vh;
@@ -46,4 +46,4 @@ const Main = styled.main<{ clearOnTop: boolean }>`
     overflow: hidden;
 `
 
-export default BaoLayout
+export default WalwalLayout

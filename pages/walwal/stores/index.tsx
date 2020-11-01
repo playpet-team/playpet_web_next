@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 import { firebaseTimeStampToStringStamp } from "../../../src/utils";
 import { TextField, Button } from "@material-ui/core";
 import Link from "next/link";
-import BaoLayout from "../../../src/components/bao/BaoLayout";
-import { RowBlock, LinkWrapper } from "../../../src/styles/bao";
+import WalwalLayout from "../../../src/components/walwal/WalwalLayout";
+import { RowBlock, LinkWrapper } from "../../../src/styles/walwal";
 
 export default function Stores() {
     const [stores, setStores] = useState<any[]>([]);
@@ -23,7 +23,7 @@ export default function Stores() {
     }, [inputStore]);
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <StoresBlock>
                 <StoreSearch>
                     <TextField
@@ -76,7 +76,7 @@ export default function Stores() {
                     )
                 })}
             </StoresBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 };
 

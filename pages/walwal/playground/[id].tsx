@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 import { fetcher } from "../../../src/utils";
 import useSWR from 'swr'
 import { useRouter } from "next/router";
-import BaoLayout from "../../../src/components/bao/BaoLayout";
+import WalwalLayout from "../../../src/components/walwal/WalwalLayout";
 // import Link from "next/link";
-import { Row, KeyText, ValueText } from "../../../src/styles/bao";
+import { Row, KeyText, ValueText } from "../../../src/styles/walwal";
 
 export default function CardDetail(props) {
     const { query } = useRouter()
@@ -34,7 +34,7 @@ export default function CardDetail(props) {
     // };
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <CardDetailBlock>
                 <CardInformationBlock>
                     <Row>
@@ -77,7 +77,7 @@ export default function CardDetail(props) {
                     </Row>
                 </CardInformationBlock>
             </CardDetailBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 };
 

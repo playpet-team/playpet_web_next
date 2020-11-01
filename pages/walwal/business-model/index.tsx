@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-import BaoLayout from "../../../src/components/bao/BaoLayout";
-import { RowBlock } from "../../../src/styles/bao";
+import WalwalLayout from "../../../src/components/walwal/WalwalLayout";
+import { RowBlock } from "../../../src/styles/walwal";
 import { fetcher, firebaseTimeStampToStringStamp } from "../../../src/utils";
 
 export default function Playground() {
@@ -17,7 +17,7 @@ export default function Playground() {
     }, [data])
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <PlaygroundsBlock>
                 <RowBlock>
                     <div>id</div>
@@ -52,7 +52,7 @@ export default function Playground() {
                     )
                 })}
             </PlaygroundsBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 };
 

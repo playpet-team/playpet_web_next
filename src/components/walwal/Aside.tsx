@@ -4,13 +4,14 @@ import { useRouter } from 'next/router';
 import React, { useState } from "react";
 
 const ASIDES = [
-    'Bao',
+    'Walwal',
     'Users',
-    'Stores',
+    // 'Stores',
     'Products',
     // 'Playground',
-    'Business-model',
-    'Notices',
+    // 'Business-model',
+    'Notice',
+    'Freeboard',
 ];
 export default function Aside() {
     const [selectedSideItem, setSelectedSideItem] = useState<string>(ASIDES[0]);
@@ -24,11 +25,11 @@ export default function Aside() {
                     button
                     onClick={() => {
                         setSelectedSideItem(item);
-                        if (item === 'Bao') {
-                            router.push('/bao');
+                        if (item === 'Walwal') {
+                            router.push('/walwal');
                             return;
                         }
-                        router.push(`/bao/${item.toLowerCase()}`);
+                        router.push(`/walwal/${item.toLowerCase()}`);
                     }}
                     selected={item === selectedSideItem}
                 >

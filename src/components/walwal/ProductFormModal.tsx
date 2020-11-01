@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react"
 import styled from "@emotion/styled"
 import { Modal, TextField, Button, useMediaQuery } from "@material-ui/core"
 import CloseIcon from '@material-ui/icons/Close'
-import { Form } from '../../../pages/bao/products'
+import { Form } from '../../../pages/walwal/products'
 
 const MAPPING_FIELDS: any = {
     id: { label: '', disabled: true, required: false, },

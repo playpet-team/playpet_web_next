@@ -3,8 +3,8 @@ import { Button, TextField } from "@material-ui/core";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 import useSWR from "swr";
-import BaoLayout from "../../../src/components/bao/BaoLayout";
-import { LinkWrapper, RowBlock } from "../../../src/styles/bao";
+import WalwalLayout from "../../../src/components/walwal/WalwalLayout";
+import { LinkWrapper, RowBlock } from "../../../src/styles/walwal";
 import { fetcher, firebaseTimeStampToStringStamp } from "../../../src/utils";
 
 export default function Playground() {
@@ -22,7 +22,7 @@ export default function Playground() {
     }, [inputId]);
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <PlaygroundsBlock>
                 <PlaygroundsSearch>
                     <TextField
@@ -73,7 +73,7 @@ export default function Playground() {
                     )
                 })}
             </PlaygroundsBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 };
 

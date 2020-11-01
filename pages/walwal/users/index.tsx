@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
-import BaoLayout from '../../../src/components/bao/BaoLayout'
-import { LinkWrapper, RowBlock } from '../../../src/styles/bao'
+import WalwalLayout from '../../../src/components/walwal/WalwalLayout'
+import { LinkWrapper, RowBlock } from '../../../src/styles/walwal'
 import { fetcher, firebaseTimeStampToStringStamp } from '../../../src/utils'
 
 export default function Users() {
@@ -20,10 +20,10 @@ export default function Users() {
         }
     }, [data])
 
-    const goSearchUser = useCallback(() => router.push(`/bao/users/${inputUser}`), [inputUser])
+    const goSearchUser = useCallback(() => router.push(`/walwal/users/${inputUser}`), [inputUser])
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <UsersBlock>
                 <UserSearch>
                     <TextField
@@ -74,7 +74,7 @@ export default function Users() {
                     )
                 })}
             </UsersBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 }
 

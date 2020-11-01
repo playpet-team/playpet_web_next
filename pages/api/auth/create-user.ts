@@ -21,7 +21,7 @@ export default async function personHandler({ body: {
 }, res: NextApiResponse
 ) {
     try {
-        console.log('email--', email)
+        console.log('email--', email, photo)
         const isExistUser = await findActiveUser(email)
         
         if (isExistUser === null) {
@@ -48,6 +48,7 @@ export default async function personHandler({ body: {
             displayName: username,
             photoURL: photo,
         })
+        console.log('new result', result);
         const { uid } = result
         
         await createUserCollection({
@@ -68,6 +69,7 @@ export default async function personHandler({ body: {
         })
     } catch (e) {
         Sentry.captureException(e)
+        console.log("ereerere-", e);
         return res.status(404).json({ message: '유저를 생성할수 없습니다' })
     }
 }

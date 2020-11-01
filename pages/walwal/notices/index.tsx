@@ -1,12 +1,12 @@
 import React from 'react'
-import BaoLayout from '../../../src/components/bao/BaoLayout'
+import WalwalLayout from '../../../src/components/walwal/WalwalLayout'
 
 
 export default function Notices() {
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <div>아직업음</div>
-        </BaoLayout>
+        </WalwalLayout>
     )
 }

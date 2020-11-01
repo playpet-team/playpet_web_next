@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import { useRouter } from 'next/router'
 import { firebaseTimeStampToStringStamp, fetcher } from "../../../src/utils"
 import useSWR from 'swr'
-import BaoLayout from "../../../src/components/bao/BaoLayout"
+import WalwalLayout from "../../../src/components/walwal/WalwalLayout"
 
 export default function UserDetail() {
     const { query } = useRouter()
@@ -20,7 +20,7 @@ export default function UserDetail() {
     }, [data])
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <UserDetailBlock>
                 <UserInformationBlock>
                     {!userDetail.uid && <div>유저가 없습니다</div>}
@@ -74,7 +74,7 @@ export default function UserDetail() {
                     </Row>
                 </UserInformationBlock>
             </UserDetailBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 }
 

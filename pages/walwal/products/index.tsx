@@ -2,11 +2,11 @@ import React, { useEffect, useState, useCallback } from "react"
 import styled from "@emotion/styled"
 import { firebaseTimeStampToStringStamp, fetcher, ROOT_URL } from "../../../src/utils"
 import { TextField, Button } from "@material-ui/core"
-import ProductFormModal from "../../../src/components/bao/ProductFormModal"
+import ProductFormModal from "../../../src/components/walwal/ProductFormModal"
 import Link from "next/link"
-import BaoLayout from "../../../src/components/bao/BaoLayout"
+import WalwalLayout from "../../../src/components/walwal/WalwalLayout"
 import useSWR from 'swr'
-import { RowBlock, LinkWrapper } from "../../../src/styles/bao"
+import { RowBlock, LinkWrapper } from "../../../src/styles/walwal"
 
 export default function Products() {
     const [products, setProducts] = useState<any>([])
@@ -38,7 +38,7 @@ export default function Products() {
     }, [inputProduct])
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <ProductsBlock>
                 <ProductSearch>
                     <TextField
@@ -92,7 +92,7 @@ export default function Products() {
                     setFormField={setFormField}
                 />
             </ProductsBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 }
 

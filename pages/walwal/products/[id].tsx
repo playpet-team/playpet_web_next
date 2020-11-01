@@ -4,9 +4,9 @@ import { firebaseTimeStampToStringStamp, fetcher, ROOT_URL } from "../../../src/
 import useSWR from 'swr'
 import { Form } from ".";
 import { useRouter } from "next/router";
-import BaoLayout from "../../../src/components/bao/BaoLayout";
+import WalwalLayout from "../../../src/components/walwal/WalwalLayout";
 import Link from "next/link";
-import { Row, KeyText, ValueText } from "../../../src/styles/bao";
+import { Row, KeyText, ValueText } from "../../../src/styles/walwal";
 
 export default function ProductDetail(props) {
     const { query } = useRouter()
@@ -35,7 +35,7 @@ export default function ProductDetail(props) {
     };
 
     return (
-        <BaoLayout>
+        <WalwalLayout>
             <ProductDetailBlock>
                 <ProductInformationBlock>
                     <Row>
@@ -120,7 +120,7 @@ export default function ProductDetail(props) {
                     </Row>
                 </ProductInformationBlock>
             </ProductDetailBlock>
-        </BaoLayout>
+        </WalwalLayout>
     )
 };
 
