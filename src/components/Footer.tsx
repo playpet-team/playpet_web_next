@@ -4,17 +4,17 @@ import { Facebook, Instagram, ArrowDownward } from '@material-ui/icons';
 import { isMobile } from "react-device-detect";
 
 export default function Footer({ minimumFooter = false }) {
-    const [minimum, setMinimum] = useState(minimumFooter)
+    // const [minimum, setMinimum] = useState(minimumFooter)
 
-    if (minimum) {
-        return (
-            <FooterBlock onClick={() => setMinimum(!minimum)}>
-                <Text>플레이펫컴퍼니</Text>
-            </FooterBlock>
-        )
-    }
+    // if (minimum) {
+    //     return (
+    //         <FooterBlock>
+    //             <Text>플레이펫컴퍼니</Text>
+    //         </FooterBlock>
+    //     )
+    // }
     return (
-        <FooterBlock onClick={() => setMinimum(!minimum)}>
+        <FooterBlock>
             <BusinessSection>
                 <Text>(주)플레이밸류&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표 : 김관우</Text>
                 <Text>사업자등록번호 : 304-81-33682&nbsp;&nbsp;&nbsp;</Text>
