@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Facebook, Instagram, ArrowDownward } from '@material-ui/icons';
 import { isMobile } from "react-device-detect";
 
-export default function Footer({ minimumFooter = false }) {
+export default function Footer() {
     // const [minimum, setMinimum] = useState(minimumFooter)
 
     // if (minimum) {
