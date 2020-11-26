@@ -42,7 +42,7 @@ export default function PlaygroundCard() {
     }
 
     return (
-        <Layout minimumFooter={true}>
+        <Layout>
             <SEO
                 description={title}
             />
