@@ -7,7 +7,7 @@ import {google} from 'googleapis';
 import * as Sentry from '@sentry/node';
 import { apiSetup } from '..';
 
-const TOKEN_PATH = 'public/credentials/spread-sheet/credentials.json';
+const TOKEN_PATH = 'public/credentials/spread-sheet/playpet-production-61cc85fa202f.json';
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 apiSetup()
