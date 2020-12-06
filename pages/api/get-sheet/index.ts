@@ -28,7 +28,7 @@ const checkValueType = (value) => {
 
 const splitStringToArray = (value: string) => value.split(',').map(v => v.trim())
 
-export default async function personHandler(req: NextApiRequest, res: NextApiResponse) {
+export default async function personHandler(_: NextApiRequest, res: NextApiResponse) {
     try {
         const doc = new GoogleSpreadsheet('1E-rN6CG6xuGVYsU1ynPWTeAEkJELg7gw47ybzs0DK0I')
         await doc.useServiceAccountAuth({
