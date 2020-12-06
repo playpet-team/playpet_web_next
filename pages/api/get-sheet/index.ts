@@ -28,8 +28,11 @@ const checkValueType = (value) => {
 
 const splitStringToArray = (value: string) => value.split(',').map(v => v.trim())
 
-export default async function personHandler(_: NextApiRequest, res: NextApiResponse) {
+export default async function personHandler(req: NextApiRequest, res: NextApiResponse) {
     try {
+        if (req.method === 'GET') {
+            res.status(404)
+        }
         const doc = new GoogleSpreadsheet('1E-rN6CG6xuGVYsU1ynPWTeAEkJELg7gw47ybzs0DK0I')
         await doc.useServiceAccountAuth({
             client_email: process.env.SPREAD_CLIENT_EMAIL,
