@@ -39,7 +39,7 @@ export default async function personHandler(req: NextApiRequest, res: NextApiRes
             private_key: process.env.SPREAD_PRIVATE_KEY.replace(/\\n/g, '\n'),
         })
         await doc.loadInfo()
-        const sheet = doc.sheetsByIndex[!isProduction ? 1 : 0]
+        const sheet = doc.sheetsByIndex[isProduction ? 1 : 0]
         const rows = await sheet.getRows()
 
         const feeds = rows.map(row => {
