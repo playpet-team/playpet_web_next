@@ -1,136 +1,70 @@
-import { NextApiResponse } from 'next';
-import { getCurrentTime } from '../../../src/utils/firebaseadmin';
-import * as admin from 'firebase-admin'
-import fs from 'fs';
-import readline from 'readline';
-import {google} from 'googleapis';
-import * as Sentry from '@sentry/node';
-import { apiSetup } from '..';
-
-const TOKEN_PATH = 'public/credentials/spread-sheet/playpet-production-61cc85fa202f.json';
-// If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+import { isProduction } from './../../../src/utils/index';
+import { NextApiRequest, NextApiResponse } from 'next'
+import * as Sentry from '@sentry/node'
+import { GoogleSpreadsheet } from 'google-spreadsheet'
+import { apiSetup } from '..'
 apiSetup()
 
-export default async function personHandler({
-    // query: { type } }: { query: { type: string; }
-}, res: NextApiResponse) {
+const arrayHeaders = ['pet', 'size', 'packingUnit', 'rawMaterial', 'function']
+
+const BOOLEAN_FALSE = ['FALSE', 'false', 'X']
+const BOOLEAN_TRUE = ['TRUE', 'true', 'O']
+
+const isBoolean = (value) => {
+    if (BOOLEAN_FALSE.includes(value)) {
+        return false
+    }
+    if (BOOLEAN_TRUE.includes(value)) {
+        return true
+    }
+    return null
+}
+const checkValueType = (value) => {
+    if (typeof isBoolean(value) === 'boolean') {
+        return isBoolean(value)
+    }
+    return value
+}
+
+const splitStringToArray = (value: string) => value.split(',').map(v => v.trim())
+
+export default async function personHandler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        // console.log("type---", type);
-        // if (!type) {
-        //     return res.status(404).json({
-        //         status: 'FAIL',
-        //         message: '시트를 선택하지 않았습니다'
-        //     })
-        // }
+        const doc = new GoogleSpreadsheet('1E-rN6CG6xuGVYsU1ynPWTeAEkJELg7gw47ybzs0DK0I')
+        await doc.useServiceAccountAuth({
+            client_email: process.env.SPREAD_CLIENT_EMAIL,
+            private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCwd3g7r3tsh0ei\nD3mYRaKc0QXyQSF5GAkzmtwsl/w1c/dn6wD/HWoDOu2ZaTx3CF6s2zaCvlRKySQ/\nfAM57pdSkxWqN5PNJ8Nr8yvgbINNw2NeB15pFrASkABv2djA6prOaZ67ojJg+UEm\n613c/cyWqv8Roeke8zQ3f49THdSkdIl0olWJ7MZ3rFENoITgLGLiqsms3HBnrNtN\n22y/UzUJ+E+QDfcf6e/CzaOHd6WvEt8te05jk9Ce4qJ1sjL1RxaMwAHUTVziDeBs\neIA47u5iap6DZdk6+5L6yf8cHpUe0aHNQnNIYHeosgqkhZzx+8B1WVKTCx4qVVyV\nKhcfHIrPAgMBAAECggEAKM/oob0rCWWcHpH/qETqn+QDwQxpJm11q1a0dyfLb71b\nSdBjEZ2G6CpXyzQ4hLsN0mJ8j+5e5lDwrjILOPnCS5my2AQ0ja0VmEDMNAJEt9Zp\ng9SmdB2IKTLetv+mDq/zj6uDx5dymVTsSYkD01lrWKlBhp1wofTTbcZ1ql5q0IG0\n1+nVgdcJGZg96Zk0/ayOhPscmtloyJjld8OlCaF/7vxNq9ikZ1DxoHXWED0IwDP3\nGR+V2csE1/yf7kxYUCpavdd2P2Y5VM9x/xKAWUCE/E+l9imXVhts6FaausQ+jZZi\nKGzR4tC8Pm0zA/WznUd4BnR3uhdmZtMloY4VYEqVSQKBgQDgSKn/fHFvguDCNXtR\njyqTQ8dZXi/C6PMdOTGBTVZDK5hYBLWF5WLV32p/Z88Mwj88R+JCLGLdPnkeWQ9m\nghGq6+rE11ZbaXZ67Ad18R3ezY3/eR/Y+uiPjddNbcieUS2kVw/iNtV8kh0CFbRG\nIHJSNI5DVPrZzJ+GmCVqLzzkcwKBgQDJa8TDo8aVyvhTEt6S6kpZjSBiaFjPCckP\nfuYz+5BiS+KIFd77oANgvAao/sFkU3RWp4hpX7IDL3lpLH2qEgv5Zg1/NzodIthg\nCZzhEsjdgX7LF5cZCGjDWW56mMjk9BmU7vXo60KKAfgReRokSMcsygg2+ZKqYI4w\nCIq/pQkFNQKBgBoeXC20gEFMLIBxWfsVgQ/FROHTZhx8pFMy5eD48KLB4OvfIISH\nQgtGCVDs9d+2f0a12FN8d8bsD47JMFHvs78D2kMyEIx0q6eE9Rl3CtN3fKHTqTHL\nhmmxSvFpZ4OIUJhiyya82/+1xEsJ3ASOosGP/UE6FDxo5+r0rObAuYahAoGAb5qo\nHuLrUOpy58znyK3K3o3E6OH6e1Vns49TzG/SU7TKYy8DK5dA5+OnKRJnY8ieCLmx\navmcMAmpEy6UvpxbSChUyC14pNY+4A/Tfh6jb6Cl+bArh7JSIhO2lHV9subSGeTC\nGvnoF4H5yuy4IGy298lF/fgRXRg9EL5a6s9uDRUCgYEA23dVAexs3hnMpPh6UIZn\n4M8CtMX6Cp4va/OkRHx+yLk6rog2Dsj9cFqwsfR3YJ6j6C/eEC+ud6Y7KRCC6aPH\n3PCPAtgo3bp5os3EbgTm1+0EycSH0WqNiYhNIDzbocjfUVwwQ0sYJpReGSvbfNDx\ndxsCRmCueun5otRDEpc4DYA=\n-----END PRIVATE KEY-----\n",
+        })
+        await doc.loadInfo()
+        const sheet = doc.sheetsByIndex[isProduction ? 1 : 0]
+        const rows = await sheet.getRows()
 
-        
+        const feeds = rows.map(row => {
+            // sheet의 header 를 돌면서 value 를 object 에 추가해준 뒤, array map 으로 넘긴다
+            const headers = row._sheet.headerValues
+            
+            const feed: { [key: string]: any } = {}
+            headers.forEach(header => {
+                const isArrayHeader = arrayHeaders.includes(header)
+                const value = checkValueType(row[header])
 
-        
-        // The file token.json stores the user's access and refresh tokens, and is
-        // created automatically when the authorization flow completes for the first
-        // time.
-        
-
-        // Load client secrets from a local file.
-        fs.readFile(TOKEN_PATH, (err, content) => {
-        if (err) return console.log('Error loading client secret file:', err);
-        // Authorize a client with credentials, then call the Google Sheets API.
-        authorize(JSON.parse(content.toString()), getSheet);
-        });
-
-        
-
-
-
-
-
+                feed[header] = isArrayHeader ? splitStringToArray(value) : value
+            })
+            return feed
+        })
+        console.log('--------', feeds)
         
         return res.status(200).json({
             status: 'SUCCESS',
+            feeds,
         })
     } catch (e) {
+        console.log('$e', e)
         Sentry.captureException(e)
         return res.status(404).json({
             status: 'FAIL',
-            message: ''
+            message: '',
+            feeds: [],
         })
     }
-}
-
-/**
- * Prints the names and majors of students in a sample spreadsheet:
- * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
- */
-function getSheet(auth) {
-    const sheets = google.sheets({version: 'v4', auth});
-    sheets.spreadsheets.values.get({
-        spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-        range: 'Class Data!A2:E',
-    }, (err, res) => {
-        if (err) return console.log('The API returned an error: ' + err);
-        const rows = res.data.values;
-        if (rows.length) {
-        console.log('Name, Major:');
-        // Print columns A and E, which correspond to indices 0 and 4.
-        rows.map((row) => {
-            console.log(`${row[0]}, ${row[4]}`);
-        });
-        } else {
-        console.log('No data found.');
-        }
-    })
-}
-
-/**
- * Create an OAuth2 client with the given credentials, and then execute the
- * given callback function.
- * @param {Object} credentials The authorization client credentials.
- * @param {function} callback The callback to call with the authorized client.
- */
-function authorize(credentials, callback) {
-    console.log("credentials---", credentials);
-    const { client_secret, client_id, redirect_uris } = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(
-        client_id, client_secret, redirect_uris[0]);
-
-    // Check if we have previously stored a token.
-    fs.readFile(TOKEN_PATH, (err, token) => {
-        if (err) return getNewToken(oAuth2Client, callback);
-        oAuth2Client.setCredentials(JSON.parse(token.toString()));
-        callback(oAuth2Client);
-    });
-}
-    
-/**
- * Get and store new token after prompting for user authorization, and then
- * execute the given callback with the authorized OAuth2 client.
- * @param {google.auth.OAuth2} oAuth2Client The OAuth2 client to get token for.
- * @param {getEventsCallback} callback The callback for the authorized client.
- */
-function getNewToken(oAuth2Client, callback) {
-    
-    const authUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: SCOPES,
-    });
-    console.log('Authorize this app by visiting this url:', authUrl);
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
-    rl.question('Enter the code from that page here: ', (code) => {
-        rl.close();
-        oAuth2Client.getToken(code, (err, token) => {
-        if (err) return console.error('Error while trying to retrieve access token', err);
-        oAuth2Client.setCredentials(token);
-        // Store the token to disk for later program executions
-        fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-            if (err) return console.error(err);
-            console.log('Token stored to', TOKEN_PATH);
-        });
-        callback(oAuth2Client);
-        });
-    });
 }
