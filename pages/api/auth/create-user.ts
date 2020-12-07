@@ -95,6 +95,7 @@ const createUserCollection = async ({ uid, method }: CreateUserParams) => {
             email,
             phoneNumber,
             profilePhoto: photoURL,
+            agreeTerms: false,
             leaveAt: '',
             gender: '',
             birthDate: '',
