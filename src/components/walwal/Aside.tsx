@@ -10,7 +10,7 @@ const ASIDES = [
     'Products',
     // 'Playground',
     // 'Business-model',
-    'Notice',
+    'Notices',
     'Freeboard',
 ];
 export default function Aside() {

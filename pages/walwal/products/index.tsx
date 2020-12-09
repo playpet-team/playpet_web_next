@@ -59,7 +59,7 @@ export default function Products() {
                     onClick={() => setVisibleModal(true)}
                 >
                     등록
-            </Button>
+                </Button>
                 <RowBlock>
                     <div>title</div>
                     <div>price</div>

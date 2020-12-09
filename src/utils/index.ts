@@ -10,6 +10,7 @@ export const ROOT_URL = isProduction ? 'https://playpet.me' : 'http://localhost:
 export const removeSpace = (val: string = '') => val.replace(/(\s*)/g, '')
 
 export const clientFirebase = () => {
+    console.log("!isServer()@@@", !isServer())
     if (!isServer()) {
         return firebase.apps[0] || firebaseInit()
     }
@@ -35,6 +36,7 @@ export const clientFirebase = () => {
             appId: "1:386527552204:web:84b4421b5fd7db5582d869",
             measurementId: "G-3MRGE501JY"
         }
+        console.log('222222')
         return firebase.initializeApp(isProduction ? productionConfig : devConfig, 'playpet-client')
     }
 }
