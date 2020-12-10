@@ -21,9 +21,6 @@ export default async function personHandler({ body: {
     method: string
 }, res: NextApiResponse
 ) {
-    console.log(`title,
-    description,
-    link,`, title, description, link, type)
     if (method === 'GET') {
         res.status(404)
     }
@@ -35,10 +32,12 @@ export default async function personHandler({ body: {
                 description,
                 link,
                 type,
+                status: 'active',
                 createdAt: getCurrentTime(),
                 updatedAt: getCurrentTime()
             })
+        res.status(200)
     } catch (e) {
-        console.log('eeee--------', e)
+        res.status(404)
     }
 }

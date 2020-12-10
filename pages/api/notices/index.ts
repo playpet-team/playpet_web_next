@@ -6,14 +6,10 @@ import * as Sentry from '@sentry/node';
 import { apiSetup } from '..';
 apiSetup()
 
-export default async function handler({ query: { type = 'notice' } }:
-    { query: { type: 'notice' } },
-res: NextApiResponse) {
+export default async function handler(_: NextApiRequest, res: NextApiResponse) {
     try {
-        console.log("type-@@@@@@@@--------", type)
         const notices = await admin.firestore()
             .collection(Collections.Notices)
-            .where('type', '==', type)
             .get()
         console.log("notices.empty--", notices.empty)
         if (!notices.empty) {

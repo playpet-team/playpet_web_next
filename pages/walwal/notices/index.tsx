@@ -3,11 +3,12 @@ import styled from "@emotion/styled"
 import WalwalLayout from '../../../src/components/walwal/WalwalLayout'
 import { RowBlock } from '../../../src/styles/walwal'
 import { Collections } from '../../../src/utils/collections'
-import { Button, Modal, TextField } from '@material-ui/core'
+import { Button, Modal, TextField, Select, MenuItem } from '@material-ui/core'
 import { useForm } from 'react-hook-form'
 import useSWR from 'swr'
 import { clientFirebase, fetcher } from '../../../src/utils'
 import Axios from 'axios'
+import { useRouter } from 'next/router'
 
 const noticeKeys = ['title', 'description', 'link', 'type']
 
@@ -27,9 +28,8 @@ const noticeKeys = ['title', 'description', 'link', 'type']
 //     }
 // }
 export default function Notices() {
-    const { data } = useSWR('/api/notices/notice', fetcher)
+    const { data } = useSWR('/api/notices', fetcher)
     const [visibleModal , setVisibleModal] = useState(false)
-    console.log("data@@@@@@@", data, visibleModal)
 
     return (
         <WalwalLayout>
@@ -45,9 +45,9 @@ export default function Notices() {
                 </RowBlock>
             </NoticesBlock>
             <NoticesBlock>
-                {data && data.map((notice, index) =>
-                    <RowBlock key={index}>
-                        {noticeKeys.map((key) => <div key={notice[key]}>{notice[key]}</div>)}
+                {data && data.map((notice, noticeIndex) =>
+                    <RowBlock key={noticeIndex}>
+                        {noticeKeys.map((key, index) => <div key={`${notice[key]}-${index}`}>{notice[key]}</div>)}
                     </RowBlock>
                 )}
             </NoticesBlock>
@@ -74,20 +74,17 @@ function AddNoticeModal({ visibleModal, setVisibleModal, noticeKeys, noticeType 
     noticeType: 'notice' | 'qna'
 }) {
     const { register, handleSubmit } = useForm();
+    const router = useRouter()
 
     const onSubmit = async (data) => {
-        console.log(data)
-        const response = await Axios({
+        Axios({
             method: 'POST',
-            data: {
-                ...data,
-                type: noticeType,
-            },
+            data,
             url: '/api/notices/add-notice',
         })
         setVisibleModal(false)
+        router.reload()
 
-        console.log("response@@@", response)
     };
 
     return (
@@ -101,16 +98,30 @@ function AddNoticeModal({ visibleModal, setVisibleModal, noticeKeys, noticeType 
             <AddNoticeModalBlock>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <InputBlock>
-                        {noticeKeys.map((key, index) => 
-                            <Input
-                                key={index}
-                                name={key}
-                                defaultValue={key === 'type' ? noticeType : ''}
-                                placeholder={key}
-                                disabled={key === 'type'}
-                                ref={register}
-                            />
-                        )}
+                        {noticeKeys.map((key, index) => {
+                            if (key === 'type') {
+                                return (
+                                    <select
+                                        ref={register}
+                                        key={index}
+                                        name={key}
+                                    >
+                                        <option value='notice'>공지사항</option>
+                                        <option value='qna'>QnA</option>
+                                    </select>
+                                )    
+                            }
+                            return (
+                                <Input
+                                    key={index}
+                                    name={key}
+                                    defaultValue={key === 'type' ? noticeType : ''}
+                                    placeholder={key}
+                                    disabled={key === 'type'}
+                                    ref={register}
+                                />
+                            )
+                        })}
                     </InputBlock>
                     <Button
                         color="primary"
