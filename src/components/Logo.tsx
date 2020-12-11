@@ -44,7 +44,7 @@ const logoByType = (type) => {
 const getCodeByColor = (color) => {
     switch (color) {
         case 'blueKey': {
-            return colors.blueKey
+            return colors.primary
         }
         case 'black': {
             return colors.black

@@ -8,6 +8,7 @@ const ASIDES = [
     'Users',
     // 'Stores',
     'Products',
+    'Pet-Information',
     // 'Playground',
     // 'Business-model',
     'Notices',

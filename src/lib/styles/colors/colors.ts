@@ -2,7 +2,7 @@ const colors = {
     darkGray: '#333',
     black: '#000000',
     white: '#fff',
-    blueKey: '#0558d1',
+    primary: '#0558d1',
     yellowKey: 'rgb(255, 212, 0)',
 };
 

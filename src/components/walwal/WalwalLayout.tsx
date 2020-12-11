@@ -42,8 +42,8 @@ const WalwalLayoutBlock = styled.div<{ desktop: number; }>`
 
 const Main = styled.main<{ clearOnTop: boolean }>`
     flex: 1;
-    min-height: 100vh;
-    overflow: hidden;
+    /* min-height: 100vh; */
+    /* overflow: hidden; */
 `
 
 export default WalwalLayout

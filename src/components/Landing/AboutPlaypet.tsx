@@ -13,7 +13,7 @@ export default function AboutPlaypet() {
 
     return (
         <SectionLayout
-            background={colors.blueKey}
+            background={colors.primary}
             baseTextColor='#fff'
             paddingBottom={0}
         >
