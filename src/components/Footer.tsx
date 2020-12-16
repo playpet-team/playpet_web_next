@@ -19,6 +19,7 @@ export default function Footer() {
                 <Text>(주)플레이밸류&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표 : 김관우</Text>
                 <Text>사업자등록번호 : 304-81-33682&nbsp;&nbsp;&nbsp;</Text>
                 <Text>통신판매번호 : 제2020-서울서초-4087호</Text>
+                <Text>사업모델 특허출원 : 10-2020-0168871</Text>
                 <Text>주소 : 서울특별시 서초구 서초대로77길 17, 스파크플러스 강남4호점 13층, 1306호</Text>
                 <Text>고객센터 : support@playpet.me&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;010-9235-0736</Text>
             </BusinessSection>
