@@ -1,9 +1,9 @@
 import { useInView } from "react-intersection-observer";
 import { colors } from "../../lib/styles";
-import { Text } from "../../styles";
+import { DividerBlock, Text } from "../../styles";
 import SectionLayout from "./SectionLayout";
 
-function AlrightEating() {
+function WeKeepAlrightEating() {
     const [ref, inView] = useInView({
         triggerOnce: true,
     })
@@ -17,27 +17,48 @@ function AlrightEating() {
                 <Text
                     family='GmarketSansMedium'
                     size={32}
-                    color={colors.black}
                     weight={600}
                     align='center'
                     margin='0 0 16'
                 >
-                    정량배식을 안하면
+                    사료 정량 배식
                     <br />
-                    비만으로 생기는 질병
+                    지켜드리겠습니다
                 </Text>
             </h2>
             <Text
                 size={18}
-                color={colors.black}
                 align='center'
                 margin='0 0 16'
             >
-                수의사 88%는 과다 급식이 비만의 원인이지만
+                간단한 반려동물 정보와 사료만 등록하면
                 <br />
-                보호자들이 사료급식 가이드라인을
+                계산 된 권장 급여량 가이드 알림부터
                 <br />
-                따르지 않는다고 하였습니다.
+                태그 메시지로 건강 팁 챙기세요.
+            </Text>
+            <DividerBlock height={30} />
+            <h2>
+                <Text
+                    family='GmarketSansMedium'
+                    size={32}
+                    weight={600}
+                    align='center'
+                    margin='0 0 16'
+                >
+                    간단한 반려동물 정보로
+                    <br />
+                    비만여부 확인
+                </Text>
+            </h2>
+            <Text
+                size={18}
+                align='center'
+                margin='0 0 16'
+            >
+                등록한 반려동물 정보를 통해 체중만 입력하면
+                <br />
+                견/묘 종에 맞춰진 현재 비만여부 확인 가능합니다.
             </Text>
             {/* <ScreenshotBlock ref={ref} inView={inView}>
                 <img
@@ -53,4 +74,4 @@ function AlrightEating() {
     )
 }
 
-export default AlrightEating
+export default WeKeepAlrightEating

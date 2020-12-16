@@ -6,7 +6,7 @@ import { breakpoints } from "../../lib/styles"
 import { useInView } from 'react-intersection-observer'
 import { css } from "@emotion/core"
 
-export default function AboutPlaypet() {
+function HardToManagement() {
     const [ref, inView] = useInView({
         triggerOnce: true,
     })
@@ -25,7 +25,9 @@ export default function AboutPlaypet() {
                     weight={600}
                     align='center'
                 >
-                    반려동물과 함께하는 숏비디오
+                    바쁜 일상 속에
+                    <br />
+                    사료 관리의 어려움
                 </Text>
             </h2>
             <DividerBlock height={16} />
@@ -34,39 +36,22 @@ export default function AboutPlaypet() {
                 color={colors.white}
                 align='center'
             >
-                평범한 반려동물 일상을<br />
-                특별한 의미를 더하는 순간,
+                사료구매를 가끔 깜빡할 때가 있어요...!
             </Text>
-            <DividerBlock height={16} />
             <Text
                 size={18}
                 color={colors.white}
                 align='center'
             >
-                내가 키우는 반려동물 일상을<br />짧은 영상 하나로 행복이<br />가득한 하루를 완성해 보세요!
+                매번급하게 매장이나 빠른배송 신청할 때마다
+                <br />
+                우리 아이에게 항상 미안하더라고요..
             </Text>
-            <DividerBlock height={16} />
-            <Text
-                size={18}
-                color={colors.white}
-                align='center'
-            >
-                시작하기 {'>'}
-            </Text>
-            <DividerBlock height={40} />
-            <ScreenshotBlock ref={ref} inView={inView}>
-                <img
-                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Fabout_screenshot_1.jpg?alt=media&token=a9b0b135-4b31-496f-aed9-e9cd71f23179"
-                    alt="이번에 산 터그장난감 아가가 너무 좋아하네요!"
-                />
-                <img
-                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Fabout_screenshot_2.jpg?alt=media&token=0e245a37-9bbd-453a-9164-9b0783b4b4e1"
-                    alt="우리 메이 드디어 손 가능!"
-                />
-            </ScreenshotBlock>
         </SectionLayout>
     )
 }
+
+export default HardToManagement
 
 export const ScreenshotBlock = styled.div<{ inView?: boolean }>`
     display: flex;

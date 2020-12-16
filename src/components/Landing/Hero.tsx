@@ -14,14 +14,29 @@ export default function Hero() {
                     <h1>
                         <Text
                             family='GmarketSansMedium'
-                            size={mobile ? 48 : 78}
-                            color='transparent'
+                            size={mobile ? 32 : 50}
+                            color={colors.white}
                             weight={800}
                             align='center'
                         >
-                            playpet
+                            우리집 반려동물
+                            <br />
+                            건강과 사료 관리가
+                            <br />
+                            쉬워진다!
                         </Text>
                     </h1>
+                    <DividerBlock height={24} />
+                    <h2>
+                        <Text
+                            size={28}
+                            color={colors.white}
+                        >
+                            사료 재고 관리부터 정량 배식까지,
+                            <br />
+                            이제는 책임감 있게 키울 수 있습니다.
+                        </Text>
+                    </h2>
                 </Content>
             </BackgroundSection>
         </HeroBlock>

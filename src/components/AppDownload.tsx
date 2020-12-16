@@ -4,14 +4,14 @@ import { isMobile } from "react-device-detect";
 import { css } from "@emotion/core";
 
 interface AppDownloadConfig {
-    show: boolean
+    show?: boolean
     isFixed?: boolean
     position?: 'top' | 'bottom'
 }
 
 export default function AppDownload({
     show = true,
-    isFixed = true,
+    isFixed = false,
     position = 'bottom'
 }: AppDownloadConfig) {
     if (!isMobile) {
