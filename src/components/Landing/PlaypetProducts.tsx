@@ -7,7 +7,7 @@ export default function PlaypetProducts() {
         <SectionLayout>
             <h2>
                 <Text
-                    family="GmarketSansMedium"
+                    family="Notosans Bold"
                     size={32}
                     weight={600}
                     align="center"

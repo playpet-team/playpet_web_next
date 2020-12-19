@@ -9,7 +9,7 @@ export default function BottomContent() {
         <SectionLayout background={colors.primary}>
             <h2>
                 <Text
-                    family="GmarketSansMedium"
+                    family="Notosans Bold"
                     size={mobile ? 32 : 44}
                     color={colors.white}
                     weight={600}

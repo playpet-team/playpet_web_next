@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { colors } from '../lib/styles';
 
 export interface TextProps {
-    family?: 'GmarketSansMedium' | 'Noto Sans KR' | '';
+    family?: 'Notosans Regular' | 'Notosans Bold' | '';
     color?: string;
     padding?: string;
     margin?: string;
@@ -22,7 +22,7 @@ export const Text = styled.div<TextProps>`
     cursor: default;
 `;
 Text.defaultProps = {
-    family: 'Noto Sans KR',
+    family: 'Notosans Regular',
     color: colors.black,
     padding: '0',
     margin: '0',

@@ -15,7 +15,7 @@ function NoMoreHurry() {
             <NoMoreHurryBlock>
                 <h2>
                     <Text
-                        family="GmarketSansMedium"
+                        family="Notosans Bold"
                         size={mobile ? 32 : 44}
                         weight={600}
                         align="center"

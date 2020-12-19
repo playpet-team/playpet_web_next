@@ -15,7 +15,7 @@ function WeKeepAlrightEating() {
             <WeKeepAlrightEatingBlock>
                 <h2>
                     <Text
-                        family="GmarketSansMedium"
+                        family="Notosans Bold"
                         size={mobile ? 32 : 44}
                         weight={600}
                         align="center"
@@ -40,7 +40,7 @@ function WeKeepAlrightEating() {
                 <DividerBlock height={30} />
                 <h2>
                     <Text
-                        family="GmarketSansMedium"
+                        family="Notosans Bold"
                         size={mobile ? 32 : 40}
                         weight={600}
                         align="center"
