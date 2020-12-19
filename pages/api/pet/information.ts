@@ -2,7 +2,6 @@ import * as Sentry from '@sentry/node';
 import * as admin from 'firebase-admin';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { apiSetup } from '..';
-import { CardModel } from '../../../src/components/Landing/ExplorePlayground';
 import { Collections } from './../../../src/utils/collections';
 apiSetup()
 

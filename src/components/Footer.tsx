@@ -45,14 +45,9 @@ const FooterBlock = styled.footer`
     justify-content: space-around;
     background-color: #f5f6f7;
     flex: 1;
-    padding: ${isMobile ? '40px 80px' : '20px'};
     font-size: 13px;
     color: #4B5064;
-
-    @media only screen and (max-width: 1024px) {
-        flex-direction: column;
-        padding: 24px;
-    }
+    padding: 24px 0;
 `
 
 const BusinessSection = styled.section``
@@ -65,7 +60,7 @@ const ProvisionSection = styled.section`
     }
 `
 const Text = styled.div`
-    padding-bottom: 12px;
+    padding-bottom: 8px;
 `
 const Link = styled.a`
     margin-bottom: 12px;

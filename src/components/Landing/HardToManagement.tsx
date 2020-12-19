@@ -5,53 +5,51 @@ import { Text, DividerBlock } from "../../styles"
 import { breakpoints } from "../../lib/styles"
 import { useInView } from 'react-intersection-observer'
 import { css } from "@emotion/core"
+import { useMediaQuery } from "@material-ui/core"
 
 function HardToManagement() {
     const [ref, inView] = useInView({
         triggerOnce: true,
     })
+    const mobile = useMediaQuery(breakpoints.medium)
 
     return (
         <SectionLayout
-            background={colors.primary}
+            background="#22344F"
             baseTextColor='#fff'
             paddingBottom={0}
         >
-            <h2>
-                <Text
-                    family='GmarketSansMedium'
-                    size={32}
-                    color={colors.white}
-                    weight={600}
-                    align='center'
-                >
-                    바쁜 일상 속에
-                    <br />
-                    사료 관리의 어려움
-                </Text>
-            </h2>
-            <DividerBlock height={16} />
-            <Text
-                size={18}
-                color={colors.white}
-                align='center'
-            >
-                사료구매를 가끔 깜빡할 때가 있어요...!
-            </Text>
-            <Text
-                size={18}
-                color={colors.white}
-                align='center'
-            >
-                매번급하게 매장이나 빠른배송 신청할 때마다
-                <br />
-                우리 아이에게 항상 미안하더라고요..
-            </Text>
+            <HardToManagementBlock>
+                <h2>
+                    <Text
+                        family='GmarketSansMedium'
+                        size={mobile ? 32 : 44}
+                        color={colors.white}
+                        weight={600}
+                        align='center'
+                    >
+                        바쁜 일상 속에
+                        <br />
+                        사료 관리의 어려움
+                    </Text>
+                </h2>
+                <DividerBlock height={24} />
+                <ForgotImg
+                    src="/images/landing/2page.png"
+                    alt="사료구매를 가끔 깜빡해요"
+                />
+            </HardToManagementBlock>
         </SectionLayout>
     )
 }
 
 export default HardToManagement
+
+const HardToManagementBlock = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 export const ScreenshotBlock = styled.div<{ inView?: boolean }>`
     display: flex;
@@ -79,4 +77,11 @@ export const ScreenshotBlock = styled.div<{ inView?: boolean }>`
             border-top-right-radius: 20px;
         }
     }
+`
+
+const ForgotImg = styled.img`
+    max-width: 560px;
+    width: 85%;
+    margin-top: 20px;
+    margin-bottom: 80px;
 `

@@ -1,16 +1,18 @@
 import styled from "@emotion/styled"
 import SectionLayout from "./SectionLayout"
 import { DividerBlock, Text } from "../../styles"
-import { colors } from "../../lib/styles"
+import { breakpoints, colors } from "../../lib/styles"
 import AppDownload from "../AppDownload"
+import { useMediaQuery } from "@material-ui/core"
 
 export default function BottomContent() {
+    const mobile = useMediaQuery(breakpoints.medium)
     return (
         <SectionLayout background={colors.primary}>
             <h2>
                 <Text
                     family='GmarketSansMedium'
-                    size={32}
+                    size={mobile ? 32 : 44}
                     color={colors.white}
                     weight={600}
                     align='center'
@@ -20,7 +22,7 @@ export default function BottomContent() {
                     문화부터 책임감까지
                 </Text>
                 <Text
-                    size={20}
+                    size={mobile ? 14 : 20}
                     color={colors.white}
                     align='center'
                 >
@@ -37,7 +39,6 @@ export default function BottomContent() {
                     문화로 플레이펫이 만들어 가겠습니다
                 </Text>
             </h2>
-            <AppDownload />
         </SectionLayout>
     )
 }

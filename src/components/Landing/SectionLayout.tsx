@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 
 interface Layout {
     background?: string
-    baseTextColor?: '#fff' | '#333'
+    baseTextColor?: string
     children: React.ReactNode
     paddingBottom?: number
 }
@@ -35,6 +35,6 @@ const SectionLayoutBlock = styled.section<Layout>`
     flex: 1;
     color: ${({ baseTextColor }) => baseTextColor};
     background: ${({ background }) => background};
-    padding: 40px 32px;
+    padding: 80px 32px;
     padding-bottom: ${({ paddingBottom }) => paddingBottom}px;
 `
