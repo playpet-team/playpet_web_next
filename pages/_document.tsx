@@ -1,6 +1,6 @@
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { extractCritical } from 'emotion-server';
-import Document, { DocumentContext, Head, Main, NextScript } from 'next/document';
+import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
@@ -29,13 +29,13 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-            <html>
+            <Html lang="ko">
                 <Head />
                 <body>
                     <Main />
                     <NextScript />
                 </body>
-            </html>
+            </Html>
         )
     }
 }
