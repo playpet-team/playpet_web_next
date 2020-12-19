@@ -1,74 +1,50 @@
-import styled from "@emotion/styled"
-import { Text, DividerBlock } from "../../styles";
-import { colors, breakpoints } from "../../lib/styles";
-import { useMediaQuery } from "@material-ui/core";
-import { css } from "@emotion/core";
-import { useInView } from "react-intersection-observer";
+import styled from '@emotion/styled';
+import { useMediaQuery } from '@material-ui/core';
+import { Text, DividerBlock } from '../../styles';
+import { breakpoints } from '../../lib/styles';
 
 export default function Hero() {
-    const [ref, inView] = useInView({
-        triggerOnce: true,
-    })
-    const mobile = useMediaQuery(breakpoints.medium)
+    const mobile = useMediaQuery(breakpoints.medium);
     return (
-        <HeroBlock ref={ref}>
-            <BackgroundSection data-source="iStock-1253685765">
+        <HeroBlock>
+            <BackgroundSection data-source="https://www.pxfuel.com/en/free-photo-qanng">
                 <Content>
-                    <DividerBlock height={mobile ? 24 : 48} />
+                    <LogoImg src="/logo/playpet_logo_w.png" />
+                    <DividerBlock height={mobile ? 24 : 120} />
                     <h1>
                         <Text
-                            family='GmarketSansMedium'
-                            size={mobile ? 32 : 44}
-                            color={colors.white}
+                            family="GmarketSansMedium"
+                            size={mobile ? 48 : 78}
+                            color="transparent"
                             weight={800}
-                            align='center'
+                            align="center"
                         >
-                            우리집 반려동물
-                            <br />
-                            건강과 사료 관리가
-                            <br />
-                            쉬워진다!
+                            playpet
                         </Text>
                     </h1>
-                    <DividerBlock height={24} />
-                    <h2>
-                        <Text
-                            size={mobile ? 14 : 20}
-                            color={colors.white}
-                        >
-                            사료 재고 관리부터 정량 배식까지,
-                            <br />
-                            이제는 책임감 있게 키울 수 있습니다.
-                        </Text>
-                    </h2>
-                    <AppHomeScreenImg
-                        inView={inView}
-                        src="/images/landing/1page.png"
-                        alt="앱 스크린"
-                    />
                 </Content>
             </BackgroundSection>
         </HeroBlock>
-    )
+    );
 }
 
 const HeroBlock = styled.div`
     flex: 1;
     justify-content: center;
     align-items: center;
-`
+`;
 
 export const LogoImg = styled.img`
     width: 150px;
-`
+`;
 
 const BackgroundSection = styled.section`
-    background-image: url("/images/landing/hero-overlay.jpg");
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/web%2Fassets%2Fimages%2Fbackground-section.jpg?alt=media&token=f6a43608-bb93-4b5b-86c8-ce8df8b07398');
     background-position: center center;
     background-size: cover;
     height: 100vh;
     width: 100%;
-`
+`;
 const Content = styled.article`
     padding-top: 24px;
     ${breakpoints.medium} {
@@ -78,20 +54,4 @@ const Content = styled.article`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-`
-
-const AppHomeScreenImg = styled.img<{inView: boolean}>`
-    position: absolute;
-    bottom: 0;
-    width: 75%;
-    max-width: 470px;
-
-    transform: translateY(140px);
-    transition: opacity 800ms ease-out, transform 600ms ease-out;
-    opacity: 0;
-
-    ${({ inView }) => inView && css`
-        transform: translateY(0);
-        opacity: 1;
-    `}
-`
+`;

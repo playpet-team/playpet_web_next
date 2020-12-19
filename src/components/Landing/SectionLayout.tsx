@@ -1,10 +1,11 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
+import { ReactNode } from 'react';
 
 interface Layout {
-    background?: string
-    baseTextColor?: string
-    children: React.ReactNode
-    paddingBottom?: number
+    background?: string;
+    baseTextColor?: string;
+    children: ReactNode;
+    paddingBottom?: number;
 }
 export default function SectionLayout({
     children,
@@ -18,16 +19,14 @@ export default function SectionLayout({
             baseTextColor={baseTextColor}
             paddingBottom={paddingBottom}
         >
-            <ControlWidth>
-                {children}
-            </ControlWidth>
+            <ControlWidth>{children}</ControlWidth>
         </SectionLayoutBlock>
-    )
+    );
 }
 
 const ControlWidth = styled.div`
     max-width: 1024px;
-`
+`;
 
 const SectionLayoutBlock = styled.section<Layout>`
     display: flex;
@@ -37,4 +36,4 @@ const SectionLayoutBlock = styled.section<Layout>`
     background: ${({ background }) => background};
     padding: 80px 32px;
     padding-bottom: ${({ paddingBottom }) => paddingBottom}px;
-`
+`;

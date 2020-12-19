@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import styled from "@emotion/styled"
-import WalwalLayout from '../../../src/components/walwal/WalwalLayout'
-import { RowBlock } from '../../../src/styles/walwal'
-import { Collections } from '../../../src/utils/collections'
-import { Button, Modal, TextField, Select, MenuItem } from '@material-ui/core'
-import { useForm } from 'react-hook-form'
-import useSWR from 'swr'
-import { clientFirebase, fetcher } from '../../../src/utils'
-import Axios from 'axios'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import Axios from 'axios';
+import { useRouter } from 'next/router';
+import { Button, Modal } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import useSWR from 'swr';
+import WalwalLayout from '../../../src/components/walwal/WalwalLayout';
+import { RowBlock } from '../../../src/styles/walwal';
+import { fetcher } from '../../../src/utils';
 
-const noticeKeys = ['title', 'description', 'link', 'type']
+const noticeKeys = ['title', 'description', 'link', 'type'];
 
 // export const getServerSideProps: GetServerSideProps = async () => {
 //     const notices = await admin.firestore()
@@ -28,63 +27,68 @@ const noticeKeys = ['title', 'description', 'link', 'type']
 //     }
 // }
 export default function Notices() {
-    const { data } = useSWR('/api/notices', fetcher)
-    const [visibleModal , setVisibleModal] = useState(false)
+    const { data } = useSWR('/api/notices', fetcher);
+    const [visibleModal, setVisibleModal] = useState(false);
 
     return (
         <WalwalLayout>
-            <Button
-                color="primary"
-                onClick={() => setVisibleModal(true)}
-            >
+            <Button color="primary" onClick={() => setVisibleModal(true)}>
                 등록
             </Button>
             <NoticesBlock>
                 <RowBlock>
-                    {noticeKeys.map((key, index) => <div key={index}>{key}</div>)}
+                    {noticeKeys.map((key, index) => (
+                        <div key={index}>{key}</div>
+                    ))}
                 </RowBlock>
             </NoticesBlock>
             <NoticesBlock>
-                {data && data.map((notice, noticeIndex) =>
-                    <RowBlock key={noticeIndex}>
-                        {noticeKeys.map((key, index) => <div key={`${notice[key]}-${index}`}>{notice[key]}</div>)}
-                    </RowBlock>
-                )}
+                {data &&
+                    data.map((notice, noticeIndex) => (
+                        <RowBlock key={noticeIndex}>
+                            {noticeKeys.map((key, index) => (
+                                <div key={`${notice[key]}-${index}`}>
+                                    {notice[key]}
+                                </div>
+                            ))}
+                        </RowBlock>
+                    ))}
             </NoticesBlock>
             <AddNoticeModal
                 visibleModal={visibleModal}
                 setVisibleModal={setVisibleModal}
-                noticeKeys={noticeKeys}
                 noticeType="notice"
             />
         </WalwalLayout>
-    )
+    );
 }
 
 const NoticesBlock = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;
-`
+`;
 
-function AddNoticeModal({ visibleModal, setVisibleModal, noticeKeys, noticeType = 'notice' }: {
-    visibleModal: boolean
-    setVisibleModal: React.Dispatch<React.SetStateAction<boolean>>
-    noticeKeys: string[]
-    noticeType: 'notice' | 'qna'
+function AddNoticeModal({
+    visibleModal,
+    setVisibleModal,
+    noticeType = 'notice',
+}: {
+    visibleModal: boolean;
+    setVisibleModal: React.Dispatch<React.SetStateAction<boolean>>;
+    noticeType: 'notice' | 'qna';
 }) {
     const { register, handleSubmit } = useForm();
-    const router = useRouter()
+    const router = useRouter();
 
     const onSubmit = async (data) => {
         Axios({
             method: 'POST',
             data,
             url: '/api/notices/add-notice',
-        })
-        setVisibleModal(false)
-        router.reload()
-
+        });
+        setVisibleModal(false);
+        router.reload();
     };
 
     return (
@@ -106,33 +110,32 @@ function AddNoticeModal({ visibleModal, setVisibleModal, noticeKeys, noticeType 
                                         key={index}
                                         name={key}
                                     >
-                                        <option value='notice'>공지사항</option>
-                                        <option value='qna'>QnA</option>
+                                        <option value="notice">공지사항</option>
+                                        <option value="qna">QnA</option>
                                     </select>
-                                )    
+                                );
                             }
                             return (
                                 <Input
                                     key={index}
                                     name={key}
-                                    defaultValue={key === 'type' ? noticeType : ''}
+                                    defaultValue={
+                                        key === 'type' ? noticeType : ''
+                                    }
                                     placeholder={key}
                                     disabled={key === 'type'}
                                     ref={register}
                                 />
-                            )
+                            );
                         })}
                     </InputBlock>
-                    <Button
-                        color="primary"
-                        type="submit"
-                    >
+                    <Button color="primary" type="submit">
                         등록!!!!!!!!!!!!
                     </Button>
                 </form>
             </AddNoticeModalBlock>
         </Modal>
-    )
+    );
 }
 
 const AddNoticeModalBlock = styled.div`
@@ -148,13 +151,13 @@ const AddNoticeModalBlock = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-`
+`;
 
 const InputBlock = styled.div`
     display: flex;
     flex-direction: column;
     padding: 24px;
-`
+`;
 
 const Input = styled.input`
     margin-bottom: 8px;

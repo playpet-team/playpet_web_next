@@ -1,82 +1,15 @@
-import { NextApiResponse, NextApiRequest } from 'next';
-import { Collections } from './../../../src/utils/collections';
-import { getCurrentTime } from '../../../src/utils/firebaseadmin'
-import * as admin from 'firebase-admin'
+import { NextApiResponse } from 'next';
+import * as admin from 'firebase-admin';
 import * as Sentry from '@sentry/node';
 import { apiSetup } from '..';
-apiSetup()
+import { Collections } from './../../../src/utils/collections';
+import { getCurrentTime } from '../../../src/utils/firebaseadmin';
 
-export default async function personHandler({ body: {
-    email,
-    username,
-    photo = '',
-    method,
-}}: {
-    body: {
-        email: string;
-        username: string;
-        photo: string;
-        method: string;
-    }
-}, res: NextApiResponse
-) {
-    try {
-        console.log('email--', email, photo)
-        const isExistUser = await findActiveUser(email)
-        
-        if (isExistUser === null) {
-            Sentry.captureException('서버 오류입니다. 잠시후 다시 시도해주세요')
-            return res.status(404).json({ message: '서버 오류입니다. 잠시후 다시 시도해주세요' })
-        }
-        
-        if (!isExistUser.empty) {
-            console.log("exest")
-            const userData = isExistUser.docs[0].data()
-            console.log("exest2", userData)
-            const customTokenForExistUser = await createCustomToken(userData.uid)
-            console.log("exest3", customTokenForExistUser)
-            return res.status(200).json({
-                uid: userData.uid,
-                newUser: false,
-                customTokenForExistUser,
-            })
-        }
-        console.log("new")
-
-        const result = await admin.auth().createUser({
-            email,
-            displayName: username,
-            photoURL: photo,
-        })
-        console.log('new result', result);
-        const { uid } = result
-        
-        await createUserCollection({
-            uid,
-            method,
-        })
-        
-        if (!uid) {
-            Sentry.captureException('유저를 생성할수 없습니다')
-            return res.status(404).json({ message: '유저를 생성할수 없습니다' })
-        }
-        
-        const customToken = await createCustomToken(uid)
-        return res.status(200).json({
-            uid,
-            newUser: true,
-            customToken,
-        })
-    } catch (e) {
-        Sentry.captureException(e)
-        console.log("ereerere-", e);
-        return res.status(404).json({ message: '유저를 생성할수 없습니다' })
-    }
-}
+apiSetup();
 
 interface CreateUserParams {
-    uid: string
-    method: string
+    uid: string;
+    method: string;
 }
 const createUserCollection = async ({ uid, method }: CreateUserParams) => {
     try {
@@ -85,7 +18,7 @@ const createUserCollection = async ({ uid, method }: CreateUserParams) => {
             displayName = '',
             phoneNumber = '',
             photoURL = '',
-        } = await admin.auth().getUser(uid)
+        } = await admin.auth().getUser(uid);
 
         await admin.firestore().collection(Collections.Users).doc(uid).set({
             uid,
@@ -102,32 +35,101 @@ const createUserCollection = async ({ uid, method }: CreateUserParams) => {
             lastLogin: getCurrentTime(),
             createdAt: getCurrentTime(),
             updatedAt: getCurrentTime(),
-        })
-        return { result: 'signUp', status: 'SUCCESS' }
+        });
+        return { result: 'signUp', status: 'SUCCESS' };
     } catch (e) {
-        Sentry.captureException(e)
-        return { result: 'error', status: 'SUCCESS' }
+        Sentry.captureException(e);
+        return { result: 'error', status: 'SUCCESS' };
     }
-}
+};
 
 export const createCustomToken = async (uid: string) => {
     try {
-        return await admin.auth().createCustomToken(uid)
+        return await admin.auth().createCustomToken(uid);
     } catch (e) {
-        Sentry.captureException(e)
-        return ''
+        Sentry.captureException(e);
+        return '';
     }
-}
+};
 
 const findActiveUser = async (email: string) => {
     try {
-        return await admin.firestore().collection(Collections.Users)
+        return await admin
+            .firestore()
+            .collection(Collections.Users)
             .where('email', '==', email)
             .where('isLeave', '==', false)
-            .get()
+            .get();
     } catch (e) {
-        Sentry.captureException(e)
-        return null
+        Sentry.captureException(e);
+        return null;
+    }
+};
 
+export default async function personHandler(
+    {
+        body: { email, username, photo = '', method },
+    }: {
+        body: {
+            email: string;
+            username: string;
+            photo: string;
+            method: string;
+        };
+    },
+    res: NextApiResponse,
+) {
+    try {
+        const isExistUser = await findActiveUser(email);
+
+        if (isExistUser === null) {
+            Sentry.captureException(
+                '서버 오류입니다. 잠시후 다시 시도해주세요',
+            );
+            return res
+                .status(404)
+                .json({ message: '서버 오류입니다. 잠시후 다시 시도해주세요' });
+        }
+
+        if (!isExistUser.empty) {
+            const userData = isExistUser.docs[0].data();
+            const customTokenForExistUser = await createCustomToken(
+                userData.uid,
+            );
+            return res.status(200).json({
+                uid: userData.uid,
+                newUser: false,
+                customTokenForExistUser,
+            });
+        }
+
+        const result = await admin.auth().createUser({
+            email,
+            displayName: username,
+            photoURL: photo,
+        });
+        const { uid } = result;
+
+        await createUserCollection({
+            uid,
+            method,
+        });
+
+        if (!uid) {
+            Sentry.captureException('유저를 생성할수 없습니다');
+            return res
+                .status(404)
+                .json({ message: '유저를 생성할수 없습니다' });
+        }
+
+        const customToken = await createCustomToken(uid);
+        return res.status(200).json({
+            uid,
+            newUser: true,
+            customToken,
+        });
+    } catch (e) {
+        Sentry.captureException(e);
+        return res.status(404).json({ message: '유저를 생성할수 없습니다' });
     }
 }

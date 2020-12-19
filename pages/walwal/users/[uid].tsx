@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react"
-import styled from "@emotion/styled"
-import { useRouter } from 'next/router'
-import { firebaseTimeStampToStringStamp, fetcher } from "../../../src/utils"
-import useSWR from 'swr'
-import WalwalLayout from "../../../src/components/walwal/WalwalLayout"
+import React, { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+import useSWR from 'swr';
+import { useRouter } from 'next/router';
+import { firebaseTimeStampToStringStamp, fetcher } from '../../../src/utils';
+import WalwalLayout from '../../../src/components/walwal/WalwalLayout';
 
 export default function UserDetail() {
-    const { query } = useRouter()
-    const [userDetail, setUserDetail] = useState<any>({})
+    const { query } = useRouter();
+    const [userDetail, setUserDetail] = useState<any>({});
     const { data } = useSWR(
         () => query.uid && `/api/users/${query.uid}`,
-        fetcher
-    )
+        fetcher,
+    );
 
     useEffect(() => {
         if (data) {
-            setUserDetail(data)
+            setUserDetail(data);
         }
-    }, [data])
+    }, [data]);
 
     return (
         <WalwalLayout>
@@ -26,7 +26,13 @@ export default function UserDetail() {
                     {!userDetail.uid && <div>유저가 없습니다</div>}
                     <Row>
                         <KeyText>profilePhoto</KeyText>
-                        <ValueText><img width="120px" src={userDetail.profilePhoto} alt="" /></ValueText>
+                        <ValueText>
+                            <img
+                                width="120px"
+                                src={userDetail.profilePhoto}
+                                alt=""
+                            />
+                        </ValueText>
                     </Row>
                     <Row>
                         <KeyText>uid</KeyText>
@@ -62,20 +68,35 @@ export default function UserDetail() {
                     </Row>
                     <Row>
                         <KeyText>updatedAt</KeyText>
-                        <ValueText>{userDetail.updatedAt && firebaseTimeStampToStringStamp(userDetail.updatedAt).format('YYYY-MM-DD')}</ValueText>
+                        <ValueText>
+                            {userDetail.updatedAt &&
+                                firebaseTimeStampToStringStamp(
+                                    userDetail.updatedAt,
+                                ).format('YYYY-MM-DD')}
+                        </ValueText>
                     </Row>
                     <Row>
                         <KeyText>lastLogin</KeyText>
-                        <ValueText>{userDetail.lastLogin && firebaseTimeStampToStringStamp(userDetail.lastLogin).format('YYYY-MM-DD')}</ValueText>
+                        <ValueText>
+                            {userDetail.lastLogin &&
+                                firebaseTimeStampToStringStamp(
+                                    userDetail.lastLogin,
+                                ).format('YYYY-MM-DD')}
+                        </ValueText>
                     </Row>
                     <Row>
                         <KeyText>createdAt</KeyText>
-                        <ValueText>{userDetail.createdAt && firebaseTimeStampToStringStamp(userDetail.createdAt).format('YYYY-MM-DD')}</ValueText>
+                        <ValueText>
+                            {userDetail.createdAt &&
+                                firebaseTimeStampToStringStamp(
+                                    userDetail.createdAt,
+                                ).format('YYYY-MM-DD')}
+                        </ValueText>
                     </Row>
                 </UserInformationBlock>
             </UserDetailBlock>
         </WalwalLayout>
-    )
+    );
 }
 
 const UserDetailBlock = styled.div`
@@ -93,7 +114,7 @@ const Row = styled.div`
 
 const KeyText = styled.div`
     width: 180px;
-    border-right: 1px solid rgba(0,0,0,0.12);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
 `;
 
 const ValueText = styled.div`

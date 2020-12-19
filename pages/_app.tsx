@@ -11,14 +11,15 @@ export default class App extends NextApp {
             jssStyles.parentNode.removeChild(jssStyles);
         }
     }
+
     render() {
-        const { Component, pageProps } = this.props
+        const { Component, pageProps } = this.props;
         return (
             <CacheProvider value={cache}>
                 <Global styles={baseCSS} />
                 <CssBaseline />
                 <Component {...pageProps} />
             </CacheProvider>
-        )
+        );
     }
 }

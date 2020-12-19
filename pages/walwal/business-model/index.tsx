@@ -1,20 +1,20 @@
-import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
-import useSWR from "swr";
-import WalwalLayout from "../../../src/components/walwal/WalwalLayout";
-import { RowBlock } from "../../../src/styles/walwal";
-import { fetcher, firebaseTimeStampToStringStamp } from "../../../src/utils";
+import styled from '@emotion/styled';
+import React, { useEffect, useState } from 'react';
+import useSWR from 'swr';
+import WalwalLayout from '../../../src/components/walwal/WalwalLayout';
+import { RowBlock } from '../../../src/styles/walwal';
+import { fetcher, firebaseTimeStampToStringStamp } from '../../../src/utils';
 
 export default function Playground() {
     const [models, setModels] = useState<any[]>([]);
-    const { data } = useSWR('/api/business-model', fetcher)
-    console.log("data", data)
+    const { data } = useSWR('/api/business-model', fetcher);
+    console.log('data', data);
 
     useEffect(() => {
         if (data) {
-            setModels(data)
+            setModels(data);
         }
-    }, [data])
+    }, [data]);
 
     return (
         <WalwalLayout>
@@ -30,17 +30,26 @@ export default function Playground() {
                     <div>price</div>
                     <div>updatedAt</div>
                     <div>updatedBy</div>
-                    
                 </RowBlock>
-                {models.map(model => {
+                {models.map((model) => {
                     if (!model.id) {
                         return null;
                     }
                     return (
                         <RowBlock>
                             <div>{model.id}</div>
-                            <div>{model.createdAt && firebaseTimeStampToStringStamp(model.createdAt).format('YYYY-MM-DD')}</div>
-                            <div>{model.updatedAt && firebaseTimeStampToStringStamp(model.updatedAt).format('YYYY-MM-DD')}</div>
+                            <div>
+                                {model.createdAt &&
+                                    firebaseTimeStampToStringStamp(
+                                        model.createdAt,
+                                    ).format('YYYY-MM-DD')}
+                            </div>
+                            <div>
+                                {model.updatedAt &&
+                                    firebaseTimeStampToStringStamp(
+                                        model.updatedAt,
+                                    ).format('YYYY-MM-DD')}
+                            </div>
                             <div>{model.discount}</div>
                             <div>{model.discountType}</div>
                             <div>{model.merchant_uid}</div>
@@ -49,20 +58,15 @@ export default function Playground() {
                             <div>{model.price}</div>
                             <div>{model.updatedBy}</div>
                         </RowBlock>
-                    )
+                    );
                 })}
             </PlaygroundsBlock>
         </WalwalLayout>
-    )
-};
+    );
+}
 
 const PlaygroundsBlock = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;
-`;
-
-const PlaygroundsSearch = styled.div`
-    display: flex;
-    align-items: center;
 `;

@@ -1,16 +1,24 @@
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { extractCritical } from 'emotion-server';
-import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+    DocumentContext,
+    Html,
+    Head,
+    Main,
+    NextScript,
+} from 'next/document';
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
         const sheets = new ServerStyleSheets();
         const originalRenderPage = ctx.renderPage;
-        ctx.renderPage = () => originalRenderPage({
-            enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-        });
-        const initialProps = await Document.getInitialProps(ctx)
-        const styles = extractCritical(initialProps.html)
+        ctx.renderPage = () =>
+            originalRenderPage({
+                enhanceApp: (App) => (props) =>
+                    sheets.collect(<App {...props} />),
+            });
+        const initialProps = await Document.getInitialProps(ctx);
+        const styles = extractCritical(initialProps.html);
 
         return {
             ...initialProps,
@@ -24,7 +32,7 @@ export default class MyDocument extends Document {
                     />
                 </>
             ),
-        }
+        };
     }
 
     render() {
@@ -36,6 +44,6 @@ export default class MyDocument extends Document {
                     <NextScript />
                 </body>
             </Html>
-        )
+        );
     }
 }

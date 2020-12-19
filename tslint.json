@@ -1,11 +1,12 @@
 {
-   "extends": ["tslint:recommended", "tslint-config-prettier"],
+   "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-plugin-prettier"],
    "rules": {
        "no-console": [
         false,
         "log",
         "error"
     ],
+    "prettier": true,
     "no-var-requires": false
    }
 }

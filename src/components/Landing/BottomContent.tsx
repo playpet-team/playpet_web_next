@@ -1,21 +1,19 @@
-import styled from "@emotion/styled"
-import SectionLayout from "./SectionLayout"
-import { DividerBlock, Text } from "../../styles"
-import { breakpoints, colors } from "../../lib/styles"
-import AppDownload from "../AppDownload"
-import { useMediaQuery } from "@material-ui/core"
+import { useMediaQuery } from '@material-ui/core';
+import SectionLayout from './SectionLayout';
+import { DividerBlock, Text } from '../../styles';
+import { breakpoints, colors } from '../../lib/styles';
 
 export default function BottomContent() {
-    const mobile = useMediaQuery(breakpoints.medium)
+    const mobile = useMediaQuery(breakpoints.medium);
     return (
         <SectionLayout background={colors.primary}>
             <h2>
                 <Text
-                    family='GmarketSansMedium'
+                    family="GmarketSansMedium"
                     size={mobile ? 32 : 44}
                     color={colors.white}
                     weight={600}
-                    align='center'
+                    align="center"
                 >
                     반려동물의 건강한
                     <br />
@@ -24,7 +22,7 @@ export default function BottomContent() {
                 <Text
                     size={mobile ? 14 : 20}
                     color={colors.white}
-                    align='center'
+                    align="center"
                 >
                     플레이펫 서비스는 사료 정량배식
                     <br />
@@ -40,5 +38,5 @@ export default function BottomContent() {
                 </Text>
             </h2>
         </SectionLayout>
-    )
+    );
 }

@@ -1,33 +1,30 @@
-import styled from '@emotion/styled'
-import { Button, TextField } from '@material-ui/core'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useState } from 'react'
-import useSWR from 'swr'
-import WalwalLayout from '../../../src/components/walwal/WalwalLayout'
-import { colors } from '../../../src/lib/styles'
-import { LinkWrapper, RowBlock } from '../../../src/styles/walwal'
-import { fetcher, firebaseTimeStampToStringStamp } from '../../../src/utils'
-
+import styled from '@emotion/styled';
+import { Button } from '@material-ui/core';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
+import WalwalLayout from '../../../src/components/walwal/WalwalLayout';
+import { colors } from '../../../src/lib/styles';
+import { RowBlock } from '../../../src/styles/walwal';
+import { fetcher } from '../../../src/utils';
 
 function PetInformation() {
     // const router = useRouter()
-    const [petInformation, setPetInformation] = useState<any[]>([])
-    const [petType, setPetType] = useState<'DOG' | 'CAT'>('DOG')
-    const { data } = useSWR(`/api/pet/information?petType=${petType}`, fetcher)
+    const [petInformation, setPetInformation] = useState<any[]>([]);
+    const [petType, setPetType] = useState<'DOG' | 'CAT'>('DOG');
+    const { data } = useSWR(`/api/pet/information?petType=${petType}`, fetcher);
 
     useEffect(() => {
         if (data) {
-            setPetInformation(data)
+            setPetInformation(data);
         }
-    }, [data])
+    }, [data]);
 
     return (
         <WalwalLayout>
             <Button
                 onClick={() => setPetType('DOG')}
                 style={{
-                    color: petType === 'DOG' ? colors.primary : '#333'
+                    color: petType === 'DOG' ? colors.primary : '#333',
                 }}
             >
                 강아지
@@ -35,7 +32,7 @@ function PetInformation() {
             <Button
                 onClick={() => setPetType('CAT')}
                 style={{
-                    color: petType === 'CAT' ? colors.primary : '#333'
+                    color: petType === 'CAT' ? colors.primary : '#333',
                 }}
             >
                 고양이
@@ -52,7 +49,7 @@ function PetInformation() {
                 </RowBlock>
                 {petInformation.map((pet) => {
                     if (!pet.id) {
-                        return null
+                        return null;
                     }
                     return (
                         <RowBlock>
@@ -64,22 +61,17 @@ function PetInformation() {
                             <div>{pet.weight.female}</div>
                             <div>{pet.type}</div>
                         </RowBlock>
-                    )
+                    );
                 })}
             </UsersBlock>
         </WalwalLayout>
-    )
+    );
 }
 
-export default PetInformation
+export default PetInformation;
 
 const UsersBlock = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;
-`;
-
-const UserSearch = styled.div`
-    display: flex;
-    align-items: center;
 `;

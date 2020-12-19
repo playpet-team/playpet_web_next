@@ -1,6 +1,6 @@
-import { css } from "@emotion/core"
-import styled from "@emotion/styled"
-import { colors } from "../lib/styles"
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { colors } from '../lib/styles';
 
 export interface TextProps {
     family?: 'GmarketSansMedium' | 'Noto Sans KR' | '';
@@ -9,7 +9,7 @@ export interface TextProps {
     margin?: string;
     weight?: number;
     size?: number;
-    align?: 'left' | 'center' | 'right'
+    align?: 'left' | 'center' | 'right';
 }
 export const Text = styled.div<TextProps>`
     font-family: ${({ family }) => family};
@@ -20,7 +20,7 @@ export const Text = styled.div<TextProps>`
     font-size: ${({ size }) => size}px;
     text-align: ${({ align }) => align};
     cursor: default;
-`
+`;
 Text.defaultProps = {
     family: 'Noto Sans KR',
     color: colors.black,
@@ -29,7 +29,7 @@ Text.defaultProps = {
     weight: 400,
     size: 12,
     align: 'left',
-}
+};
 
 interface DividerProps {
     padding?: string;
@@ -39,19 +39,29 @@ interface DividerProps {
     height?: number;
 }
 export const DividerBlock = styled.div<DividerProps>`
-    ${({ padding }) => padding && css`
-        padding: ${padding};
-    `}
-    ${({ marginTop }) => marginTop && css`
-        margin-top: ${marginTop}px;
-    `}
-    ${({ marginBottom }) => marginBottom && css`
-        margin-bottom: ${marginBottom}px;
-    `}
-    ${({ backgroundColor }) => backgroundColor && css`
-        background-color: ${backgroundColor};
-    `}
-    ${({ height }) => height && css`
-        height: ${height}px;
-    `}
+    ${({ padding }) =>
+        padding &&
+        css`
+            padding: ${padding};
+        `}
+    ${({ marginTop }) =>
+        marginTop &&
+        css`
+            margin-top: ${marginTop}px;
+        `}
+    ${({ marginBottom }) =>
+        marginBottom &&
+        css`
+            margin-bottom: ${marginBottom}px;
+        `}
+    ${({ backgroundColor }) =>
+        backgroundColor &&
+        css`
+            background-color: ${backgroundColor};
+        `}
+    ${({ height }) =>
+        height &&
+        css`
+            height: ${height}px;
+        `}
 `;

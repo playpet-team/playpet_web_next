@@ -1,5 +1,73 @@
+// .eslintrc.json
+
 {
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
     "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "airbnb",
         "plugin:prettier/recommended"
-    ]
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": ["react", "react-hooks", "prettier"],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "no-unused-expressions": 1,
+        "quotes": [2, "single"],
+        // "semi": [0, "always"],
+        // "@typescript-eslint/semi": 0,
+        "react/jsx-indent": ["error", 4],
+
+        "import/no-unresolved": 0,
+        "import/extensions": 0,
+        "import/prefer-default-export": 0,
+
+        "react-hooks/rules-of-hooks": 2,
+        "react-hooks/exhaustive-deps": 1,
+        "react/require-default-props": 0,
+        "react/jsx-props-no-spreading": 0,
+        "react/jsx-filename-extension": [
+            2,
+            { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+        ],
+        "react/jsx-max-props-per-line": [
+            0,
+            { "maximum": 1, "when": "multiline" }
+        ],
+        "react/no-array-index-key": 0,
+
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/no-use-before-define": 0,
+        "@typescript-eslint/no-unused-expressions": "OFF",
+        "react/jsx-indent-props": [1, 4],
+        "react/jsx-one-expression-per-line": [0],
+        "import/no-useless-path-segments": [0],
+        "@typescript-eslint/ban-ts-ignore": 0,
+        "@typescript-eslint/camelcase": 0,
+        "jsx-a11y/label-has-associated-control": [
+            2,
+            {
+                "required": {
+                    "every": ["nesting", "id"]
+                }
+            }
+        ]
+    }
 }

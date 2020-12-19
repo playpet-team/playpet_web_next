@@ -1,16 +1,11 @@
-import * as admin from 'firebase-admin'
-import { isProduction } from '../../src/utils';
+import * as admin from 'firebase-admin';
 import * as Sentry from '@sentry/node';
-
-export const apiSetup = () => {
-    adminFirebaseInit()
-    sentryInit()
-}
+import { isProduction } from '../../src/utils';
 
 export const adminFirebaseInit = () => {
     try {
         // 이미 initial 되있다면 하지않는다
-        console.log("process.env.projectId------", process.env.projectId)
+        console.log('process.env.projectId------', process.env.projectId);
         admin.initializeApp({
             credential: admin.credential.cert({
                 projectId: process.env.projectId,
@@ -18,14 +13,14 @@ export const adminFirebaseInit = () => {
                 clientEmail: process.env.clientEmail,
             }),
             databaseURL: process.env.databaseURL,
-        })
+        });
     } catch (error) {
         if (!/already exists/.test(error.message)) {
-            console.error("Firebase admin initialization error", error);
-            Sentry.captureException(error)
+            console.error('Firebase admin initialization error', error);
+            Sentry.captureException(error);
         }
     }
-}
+};
 
 export const sentryInit = () => {
     Sentry.init({
@@ -33,4 +28,9 @@ export const sentryInit = () => {
         environment: process.env.NODE_ENV,
         debug: !isProduction,
     });
-}
+};
+
+export const apiSetup = () => {
+    adminFirebaseInit();
+    sentryInit();
+};

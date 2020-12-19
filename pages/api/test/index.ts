@@ -1,14 +1,16 @@
-import { getCurrentTime } from './../../../src/utils/firebaseadmin';
-import { Collections } from './../../../src/utils/collections';
-import * as Sentry from '@sentry/node'
-import { NextApiRequest, NextApiResponse } from 'next'
-import { apiSetup } from '..'
-import * as admin from 'firebase-admin'
-apiSetup()
+// import * as admin from 'firebase-admin';
+import * as Sentry from '@sentry/node';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { apiSetup } from '..';
 
-export default async function personHandler(req: NextApiRequest, res: NextApiResponse) {
+apiSetup();
+
+export default async function personHandler(
+    req: NextApiRequest,
+    res: NextApiResponse,
+) {
     if (req.method === 'GET') {
-        res.status(404)
+        res.status(404);
     }
     try {
         // cats.forEach(async (pet) => {
@@ -21,10 +23,10 @@ export default async function personHandler(req: NextApiRequest, res: NextApiRes
         //         updatedAt: getCurrentTime(),
         //     })
         // })
-        res.status(200).json({ status: 'success', })
+        res.status(200).json({ status: 'success' });
     } catch (e) {
-        Sentry.captureException(e)
-        res.status(404)
+        Sentry.captureException(e);
+        res.status(404);
     }
 }
 

@@ -1,26 +1,29 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import { Collections } from './../../../src/utils/collections';
-import * as admin from 'firebase-admin'
+import * as admin from 'firebase-admin';
 import * as Sentry from '@sentry/node';
 import { apiSetup } from '..';
-apiSetup()
+import { Collections } from './../../../src/utils/collections';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+apiSetup();
+
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse,
+) {
     if (req.method !== 'POST') {
-        return res.status(404)
-        
+        res.status(404);
     }
     try {
-        const response = await admin.firestore()
+        const response = await admin
+            .firestore()
             .collection(Collections.Products)
-            .add(req.body)
+            .add(req.body);
 
         if (response) {
-            res.status(200)
+            res.status(200);
         }
     } catch (e) {
-        Sentry.captureException(e)
-        res.status(404)
+        Sentry.captureException(e);
+        res.status(404);
     }
-    
 }

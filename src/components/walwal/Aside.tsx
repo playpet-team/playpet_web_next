@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { List, ListItem, ListItemText, useMediaQuery } from "@material-ui/core";
+import styled from '@emotion/styled';
+import { List, ListItem, ListItemText, useMediaQuery } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const ASIDES = [
     'Walwal',
@@ -19,8 +19,8 @@ export default function Aside() {
     const desktop = useMediaQuery('(min-width:1024px)');
     const router = useRouter();
     return (
-        <ListBlock desktop={desktop ? 1 : 0}>
-            {ASIDES.map(item => (
+        <ListBlock desktop={desktop}>
+            {ASIDES.map((item) => (
                 <ListItem
                     key={item}
                     button
@@ -39,15 +39,17 @@ export default function Aside() {
                 </ListItem>
             ))}
         </ListBlock>
-    )
-};
+    );
+}
 
-const ListBlock = styled(List) <{ desktop: number; }>`
+interface IsDesktop {
+    desktop: boolean;
+}
+const ListBlock = styled(List)<IsDesktop>`
     width: 240px;
-    border-right: ${({ desktop }) => desktop ? '1px solid rgba(0, 0, 0, 0.12)' : 'none'};
+    border-right: ${({ desktop }) =>
+        desktop ? '1px solid rgba(0, 0, 0, 0.12)' : 'none'};
     display: flex;
-    height: ${({ desktop }) => desktop ? '100%' : 'auto'};
-    flex-direction: ${({ desktop }) => desktop ? 'column' : 'row'};
-    /* position: fixed; */
+    height: ${({ desktop }) => (desktop ? '100%' : 'auto')};
+    flex-direction: ${({ desktop }) => (desktop ? 'column' : 'row')};
 `;
-

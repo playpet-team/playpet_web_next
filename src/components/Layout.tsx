@@ -5,7 +5,9 @@ import styled from '@emotion/styled';
 import useAnalytics from '../hooks/useAnalytics';
 import Footer from './Footer';
 import { clientFirebase } from '../utils';
-clientFirebase()
+
+clientFirebase();
+
 export interface LayoutProps {
     clearOnTop?: boolean;
     children: React.ReactNode;
@@ -20,9 +22,9 @@ function Layout({
     // whiteTextHeader,
     // darkMode,
     hasFooter = true,
-    // minimumFooter = false,
-}: LayoutProps) {
-    useAnalytics()
+}: // minimumFooter = false,
+LayoutProps) {
+    useAnalytics();
 
     return (
         <React.Fragment>
@@ -36,7 +38,10 @@ function Layout({
 
 export default Layout;
 
-const MainBlock = styled.main<{ clearOnTop: boolean }>`
+interface ClearOnTop {
+    clearOnTop: boolean;
+}
+const MainBlock = styled.main<ClearOnTop>`
     min-height: 100vh;
     overflow: hidden;
 `;
