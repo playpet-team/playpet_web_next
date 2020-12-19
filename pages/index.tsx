@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { GetServerSideProps } from 'next';
 import AppDownload from '../src/components/AppDownload';
 import HardToManagement from '../src/components/Landing/HardToManagement';
 import Hero from '../src/components/Landing/Hero';
@@ -11,6 +12,11 @@ import SEO from '../src/components/PlaypetHead';
 import AlrightEating from '../src/components/Landing/AlrightEating';
 import WeKeepAlrightEating from '../src/components/Landing/WeKeepAlrightEating';
 
+export const getServerSideProps: GetServerSideProps = async () => {
+    return {
+        props: {},
+    };
+};
 export default function Landing() {
     // const bottom = usePageBottom()
     return (

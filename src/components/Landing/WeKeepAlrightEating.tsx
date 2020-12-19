@@ -34,7 +34,7 @@ function WeKeepAlrightEating() {
                     태그 메시지로 건강 팁 챙기세요.
                 </Text>
                 <AlrightEatingImg
-                    src="/images/landing/5page.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F5page.png?alt=media&token=e056983b-d330-49ae-9135-3bd6c7baf92a"
                     alt="정량배식"
                 />
                 <DividerBlock height={30} />
@@ -56,7 +56,10 @@ function WeKeepAlrightEating() {
                     <br />
                     견/묘 종에 맞춰진 현재 비만여부 확인 가능합니다.
                 </Text>
-                <OverFatImg src="/images/landing/5page.png" alt="정량배식" />
+                <OverFatImg
+                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F6page.png?alt=media&token=4eac527c-73df-43c8-a912-74cb5923aab9"
+                    alt="정량배식"
+                />
             </WeKeepAlrightEatingBlock>
         </SectionLayout>
     );

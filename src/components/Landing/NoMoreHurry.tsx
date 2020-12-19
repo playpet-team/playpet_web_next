@@ -36,7 +36,7 @@ function NoMoreHurry() {
                     <br />손 쉽게 재고 확인하고 필요할 때마다 구매하세요.
                 </Text>
                 <FillYourFeedImg
-                    src="/images/landing/3page.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F3page.png?alt=media&token=82f75c07-74d4-497a-b34f-fa00b7c0eab0"
                     alt="사료 채우기"
                 />
             </NoMoreHurryBlock>

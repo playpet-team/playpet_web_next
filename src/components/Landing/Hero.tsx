@@ -40,7 +40,7 @@ export default function Hero() {
                     </h2>
                     <AppHomeScreenImg
                         inView={inView}
-                        src="/images/landing/1page.png"
+                        src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F1page.png?alt=media&token=88df33c9-3d80-4e5a-a83b-56019ad9b8bc"
                         alt="앱 스크린"
                     />
                 </Content>
@@ -60,7 +60,7 @@ export const LogoImg = styled.img`
 `;
 
 const BackgroundSection = styled.section`
-    background-image: url('/images/landing/hero-overlay.jpg');
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2Fhero-overlay.jpg?alt=media&token=6307ee51-a8ea-4867-863f-6cc7c38258bb');
     background-position: center center;
     background-size: cover;
     height: 100vh;

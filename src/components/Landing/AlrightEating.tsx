@@ -36,7 +36,7 @@ function AlrightEating() {
                     따르지 않는다고 하였습니다.
                 </Text>
                 <SickYourPetImg
-                    src="/images/landing/4page.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F4page.png?alt=media&token=d48d9ae9-aaeb-4eff-bb04-7602c41a4319"
                     alt="아픈 우리아이"
                 />
             </AlrightEatingBlock>

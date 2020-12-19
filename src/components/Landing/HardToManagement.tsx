@@ -30,7 +30,7 @@ function HardToManagement() {
                 </h2>
                 <DividerBlock height={24} />
                 <ForgotImg
-                    src="/images/landing/2page.png"
+                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F2page.png?alt=media&token=2c9d718e-bde4-45fb-baeb-fdb368c4b52d"
                     alt="사료구매를 가끔 깜빡해요"
                 />
             </HardToManagementBlock>
