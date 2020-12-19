@@ -5,7 +5,7 @@ import { Text } from '../../styles';
 import SectionLayout from './SectionLayout';
 
 function AlrightEating() {
-    const mobile = useMediaQuery(breakpoints.medium);
+    const mobile = useMediaQuery(breakpoints.small);
     return (
         <SectionLayout background="#22344F" paddingBottom={0}>
             <AlrightEatingBlock>
@@ -54,7 +54,7 @@ const AlrightEatingBlock = styled.div`
 
 const SickYourPetImg = styled.img`
     max-width: 480px;
-    width: 70%;
+    width: 80%;
     margin-top: 50px;
     margin-bottom: 50px;
 `;

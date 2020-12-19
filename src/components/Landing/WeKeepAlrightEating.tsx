@@ -5,7 +5,7 @@ import { DividerBlock, Text } from '../../styles';
 import SectionLayout from './SectionLayout';
 
 function WeKeepAlrightEating() {
-    const mobile = useMediaQuery(breakpoints.medium);
+    const mobile = useMediaQuery(breakpoints.small);
     return (
         <SectionLayout
             background={colors.gray}
@@ -69,14 +69,14 @@ export default WeKeepAlrightEating;
 
 const AlrightEatingImg = styled.img`
     max-width: 600px;
-    width: 85%;
+    width: 90%;
     margin-top: 60px;
     margin-bottom: 60px;
 `;
 
 const OverFatImg = styled.img`
     max-width: 460px;
-    width: 80%;
+    width: 90%;
     margin-top: 60px;
     margin-bottom: 60px;
 `;

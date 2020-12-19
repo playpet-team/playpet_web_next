@@ -9,7 +9,7 @@ export default function Hero() {
     const [ref, inView] = useInView({
         triggerOnce: true,
     });
-    const mobile = useMediaQuery(breakpoints.medium);
+    const mobile = useMediaQuery(breakpoints.small);
     return (
         <HeroBlock ref={ref}>
             <BackgroundSection data-source="iStock-1253685765">
@@ -68,7 +68,7 @@ const BackgroundSection = styled.section`
 `;
 const Content = styled.article`
     padding-top: 24px;
-    ${breakpoints.medium} {
+    ${breakpoints.small} {
         padding-top: 10vh;
     }
     display: flex;

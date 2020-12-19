@@ -6,7 +6,7 @@ import { Text, DividerBlock } from '../../styles';
 import { breakpoints } from '../../lib/styles';
 
 function HardToManagement() {
-    const mobile = useMediaQuery(breakpoints.medium);
+    const mobile = useMediaQuery(breakpoints.small);
 
     return (
         <SectionLayout
@@ -30,7 +30,7 @@ function HardToManagement() {
                 </h2>
                 <DividerBlock height={24} />
                 <ForgotImg
-                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F2page.png?alt=media&token=2c9d718e-bde4-45fb-baeb-fdb368c4b52d"
+                    src="https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2F2page_new.png?alt=media&token=0b113ff2-636a-4e4f-abec-aa1ef5258016"
                     alt="사료구매를 가끔 깜빡해요"
                 />
             </HardToManagementBlock>

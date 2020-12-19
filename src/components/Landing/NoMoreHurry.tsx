@@ -5,7 +5,7 @@ import { Text } from '../../styles';
 import SectionLayout from './SectionLayout';
 
 function NoMoreHurry() {
-    const mobile = useMediaQuery(breakpoints.medium);
+    const mobile = useMediaQuery(breakpoints.small);
     return (
         <SectionLayout
             background="#EAEAEA"
@@ -54,6 +54,6 @@ const NoMoreHurryBlock = styled.div`
 
 const FillYourFeedImg = styled.img`
     max-width: 540px;
-    width: 80%;
+    width: 90%;
     margin-top: 100px;
 `;

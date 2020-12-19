@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { GetServerSideProps } from 'next';
-import AppDownload from '../src/components/AppDownload';
-import HardToManagement from '../src/components/Landing/HardToManagement';
 import Hero from '../src/components/Landing/Hero';
+import HardToManagement from '../src/components/Landing/HardToManagement';
 import NoMoreHurry from '../src/components/Landing/NoMoreHurry';
 import BottomContent from '../src/components/Landing/BottomContent';
+import AppDownload from '../src/components/AppDownload';
 // import usePageBottom from "../src/hooks/useScrollBottom"
 // import PlaypetProducts from "../src/components/Landing/PlaypetProducts"
 import Layout from '../src/components/Layout';

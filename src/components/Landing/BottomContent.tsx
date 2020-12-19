@@ -4,7 +4,7 @@ import { DividerBlock, Text } from '../../styles';
 import { breakpoints, colors } from '../../lib/styles';
 
 export default function BottomContent() {
-    const mobile = useMediaQuery(breakpoints.medium);
+    const mobile = useMediaQuery(breakpoints.small);
     return (
         <SectionLayout background={colors.primary}>
             <h2>

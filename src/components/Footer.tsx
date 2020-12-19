@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Facebook, Instagram } from '@material-ui/icons';
+import { point } from '../lib/styles/breakpoints/breakpoints';
 
 export default function Footer() {
     // const [minimum, setMinimum] = useState(minimumFooter)
@@ -73,7 +74,11 @@ const FooterBlock = styled.footer`
     flex: 1;
     font-size: 13px;
     color: #4b5064;
-    padding: 24px 0;
+    padding: 24px;
+
+    @media only screen and (max-width: ${point.small}px) {
+        flex-direction: column;
+    }
 `;
 
 const BusinessSection = styled.section``;
@@ -81,7 +86,7 @@ const ProvisionSection = styled.section`
     display: flex;
     flex-direction: column;
 
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: ${point.small}px) {
         margin-top: 24px;
     }
 `;
