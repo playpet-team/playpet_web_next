@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
+        "clean": "rm -rf ./build",
         "build": "rm -rf ./build && NODE_ENV=production next build",
         "start": "next start -p 8080",
         "deploy": "yarn build && gcloud app deploy",

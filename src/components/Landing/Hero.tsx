@@ -14,11 +14,11 @@ export default function Hero() {
         <HeroBlock ref={ref}>
             <BackgroundSection data-source="iStock-1253685765">
                 <Content>
-                    <DividerBlock height={mobile ? 24 : 48} />
+                    <DividerBlock height={mobile ? 40 : 60} />
                     <h1>
                         <Text
                             family="Notosans Bold"
-                            size={mobile ? 32 : 44}
+                            size={mobile ? 26 : 48}
                             color={colors.white}
                             weight={800}
                             align="center"
@@ -27,15 +27,23 @@ export default function Hero() {
                             <br />
                             건강과 사료 관리가
                             <br />
-                            쉬워진다!
+                            쉬워진다
+                            {/* 반려동물 사료관리가
+                            <br />
+                            쉬워지는 방법 */}
+                            {/* 건강한 반려동물을 위한
+                            <br />더 나은 생활 필수앱 */}
                         </Text>
                     </h1>
                     <DividerBlock height={24} />
                     <h2>
-                        <Text size={mobile ? 14 : 20} color={colors.white}>
-                            사료 재고 관리부터 정량 배식까지,
+                        <Text size={16} color={colors.white}>
+                            {/* 사료 재고 관리부터 정량 배식까지,
                             <br />
-                            이제는 책임감 있게 키울 수 있습니다.
+                            이제는 책임감 있게 키울 수 있습니다. */}
+                            {/* 반려동물을 위한 건강한 문화,
+                            <br />
+                            우리 함께 만들어요 */}
                         </Text>
                     </h2>
                     <AppHomeScreenImg
@@ -86,8 +94,8 @@ const AppHomeScreenImg = styled.img<InView>`
     width: 75%;
     max-width: 470px;
 
-    transform: translateY(140px);
-    transition: opacity 800ms ease-out, transform 600ms ease-out;
+    transform: translateY(120px);
+    transition: opacity 600ms ease-out, transform 800ms ease-out;
     opacity: 0;
 
     ${({ inView }) =>
