@@ -37,7 +37,10 @@ export default function Hero() {
                     </h1>
                     <DividerBlock height={24} />
                     <h2>
-                        <Text size={16} color={colors.white}>
+                        <Text align="center" size={16} color={colors.white}>
+                            사료 관리, 정량배식 모두 플레이펫과 함께
+                            <br />
+                            건강한 반려동물 문화를 만들어요
                             {/* 사료 재고 관리부터 정량 배식까지,
                             <br />
                             이제는 책임감 있게 키울 수 있습니다. */}
