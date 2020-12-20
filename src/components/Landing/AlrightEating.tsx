@@ -65,17 +65,17 @@ const AlrightEatingBlock = styled.div`
 `;
 
 const SickYourPetImgWrapper = styled.div`
-    position: relative;
     display: flex;
     justify-content: center;
-    margin-left: 40px;
+    max-width: 90%;
+    margin: 50px 0;
+    position: relative;
+    left: 10px;
 `;
 
 const SickYourPetImg = styled.img`
-    max-width: 480px;
-    width: 80%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    max-width: 370px;
+    max-height: 350px;
 `;
 
 const SickYourPetImgWarning = styled(SickYourPetImg)`

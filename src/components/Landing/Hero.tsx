@@ -73,6 +73,7 @@ const BackgroundSection = styled.section`
     background-size: cover;
     height: 100vh;
     width: 100%;
+    position: relative;
 `;
 const Content = styled.article`
     padding-top: 24px;
