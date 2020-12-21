@@ -98,6 +98,10 @@ const AppHomeScreenImg = styled.img<InView>`
     width: 75%;
     max-width: 470px;
 
+    @media only screen and (max-height: 800px) {
+        display: none;
+    }
+
     transform: translateY(120px);
     transition: opacity 600ms ease-out, transform 800ms ease-out;
     opacity: 0;
