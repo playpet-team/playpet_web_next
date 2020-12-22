@@ -60,7 +60,7 @@ export default function Hero() {
     );
 }
 
-const HeroBlock = styled.div`
+const HeroBlock = styled.section`
     flex: 1;
     justify-content: center;
     align-items: center;
@@ -70,7 +70,7 @@ export const LogoImg = styled.img`
     width: 150px;
 `;
 
-const BackgroundSection = styled.section`
+const BackgroundSection = styled.div`
     background-image: url('https://firebasestorage.googleapis.com/v0/b/playpet-production.appspot.com/o/assets%2Fimages%2Flanding%2Fhero-overlay.jpg?alt=media&token=6307ee51-a8ea-4867-863f-6cc7c38258bb');
     background-position: center center;
     background-size: cover;
