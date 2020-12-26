@@ -96,9 +96,21 @@ const AppHomeScreenImg = styled.img<InView>`
     position: absolute;
     bottom: 0;
     width: 75%;
-    max-width: 470px;
+    max-width: 400px;
+
+    ${breakpoints.small} {
+        width: 90%;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        max-width: 400px;
+    }
 
     @media only screen and (max-height: 800px) {
+        max-width: 320px;
+    }
+
+    @media only screen and (max-height: 600px) {
         display: none;
     }
 
