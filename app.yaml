@@ -13,10 +13,4 @@
 
 # [START app_yaml]
 runtime: nodejs12
-health_check:
-    enable_health_check: true
-    check_interval_sec: 3600
-    timeout_sec: 5
-    unhealthy_threshold: 2
-    healthy_threshold: 2
 # [END app_yaml]
